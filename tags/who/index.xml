@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WHO on In Code We Trust</title>
+    <link>/tags/who/</link>
+    <description>Recent content in WHO on In Code We Trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Apr 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/who/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Public Health Data from the WHO</title>
+      <link>/2016/04/public-health-data-from-the-who/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/04/public-health-data-from-the-who/</guid>
+      <description>Everything you&amp;rsquo;ll ever need to analyze public health data, well almost.</description>
+    </item>
+    
+  </channel>
+</rss>

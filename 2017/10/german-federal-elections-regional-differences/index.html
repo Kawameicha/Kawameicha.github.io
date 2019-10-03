@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.58.3 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="Resurgence of far-right Germany or the &lsquo;return of the Nazis&rsquo;.">
+
+
+<meta property="og:description" content="Resurgence of far-right Germany or the &lsquo;return of the Nazis&rsquo;.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="German Federal Election&#39;s Regional Differences">
+<meta name="twitter:title" content="German Federal Election&#39;s Regional Differences">
+<meta property="og:url" content="/2017/10/german-federal-elections-regional-differences/">
+<meta property="twitter:url" content="/2017/10/german-federal-elections-regional-differences/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="Resurgence of far-right Germany or the &lsquo;return of the Nazis&rsquo;.">
+<meta name="twitter:description" content="Resurgence of far-right Germany or the &lsquo;return of the Nazis&rsquo;.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2017-10-06T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2017-10-06T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Unsupervised Learning">
+    
+      <meta property="article:section" content="Dimensionality Reduction">
+    
+  
+  
+    
+      <meta property="article:tag" content="tidyverse">
+    
+      <meta property="article:tag" content="gridExtra">
+    
+      <meta property="article:tag" content="ggrepel">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Bundesadler.svg/150px-Bundesadler.svg.png">
+  <meta property="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Bundesadler.svg/150px-Bundesadler.svg.png">
+
+
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Berlin_-_Reichstagsgebäude3.jpg/1200px-Berlin_-_Reichstagsgebäude3.jpg">
+  <meta property="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Berlin_-_Reichstagsgebäude3.jpg/1200px-Berlin_-_Reichstagsgebäude3.jpg">
+
+
+
+
+  <meta property="og:image" content="/logo/bio.png">
+  <meta property="twitter:image" content="/logo/bio.png">
+
+
+    <title>German Federal Election&#39;s Regional Differences</title>
+
+    <link rel="icon" href="logo/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="/2017/10/german-federal-elections-regional-differences/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Berlin_-_Reichstagsgeb%c3%a4ude3.jpg/1200px-Berlin_-_Reichstagsgeb%c3%a4ude3.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      German Federal Election&#39;s Regional Differences
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-10-06T00:00:00Z">
+        
+  
+  
+  
+  
+    Oct 6, 2017
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/unsupervised-learning">Unsupervised Learning</a>, 
+    
+      <a class="category-link" href="/categories/dimensionality-reduction">Dimensionality Reduction</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>In Germany we organize an election to decide who is allowed to form a government with Angela Merkel every fourth year. It’s truly boring and generally without any surprises. At the end, she gets elected whatever happens. In fact, among the youngest Germans, most aren’t really sure whether a man can be chancellor or not.</p>
+<p>But this year was different. We had Martin Schulz, a man truly convinced he could take the leading role away from Angela Merkel and also the big comeback of Nazis. It has been a long time now and the far-right comes back with totally new, fresh ideas to fight for… no just kidding, they are just the very same idiots.</p>
+<p>And that’s only the first bad news as they also got quite a lot suffrage. Let’s have a look at the results of this historic election together.</p>
+<div id="recover-the-data-via-govdata" class="section level1">
+<h1>Recover the data via GovData</h1>
+<p>The data is accessible via <a href="https://www.govdata.de">govdata.de</a> an easy way to get, use and share data about Germany. If you don’t speak German I’d suggest you use the <code>curl</code> package to download the data directly from the website.</p>
+<pre class="r"><code># Some settings
+temp &lt;- tempfile()
+url &lt;- &quot;https://www.bundeswahlleiter.de/dam/jcr/72f186bb-aa56-47d3-b24c-6a46f5de22d0/btw17_kerg.csv&quot;
+
+# Then download it
+curl_download(url, temp)
+
+# And read it
+bundeswahl &lt;- read.csv2(temp, skip = 5)</code></pre>
+<p>I use <code>read.csv2()</code> because of the European .csv format (alternatively, you can add an argument <code>sep = ';'</code>) and skip two rows of useless information. Afterwards, a quick look at the first rows shows us this.</p>
+<pre class="r"><code>head(bundeswahl[, 1:10])
+##   Nr                            Gebiet gehört.zu Wahlberechtigte
+## 1 NA                                          NA     Erststimmen
+## 2 NA                                          NA       Endgültig
+## 3  1             Flensburg – Schleswig         1          228471
+## 4  2 Nordfriesland – Dithmarschen Nord         1          186568
+## 5  3      Steinburg – Dithmarschen Süd         1          176636
+## 6  4             Rendsburg-Eckernförde         1          200831
+##            X          X.1        X.2      Wähler        X.3          X.4
+## 1            Zweitstimmen            Erststimmen            Zweitstimmen
+## 2 Vorperiode    Endgültig Vorperiode   Endgültig Vorperiode    Endgültig
+## 3     226944       228471     226944      171914     162749       171914
+## 4     186177       186568     186177      139194     131527       139194
+## 5     176731       176636     176731      132017     126409       132017
+## 6     198903       200831     198903      157354     149583       157354</code></pre>
+<p>The two first rows are going to be problematic as all underlying numbers are read as factor. To quickly circumvent this issue and as this information is highly repetitive, I propose that we save the column names and read the data again skipping two more rows.</p>
+<pre class="r"><code># Save names
+coldim &lt;- colnames(bundeswahl)
+
+# Read again and rename columns
+bundeswahl &lt;- read.csv2(temp, skip = 7)
+colnames(bundeswahl) &lt;- coldim</code></pre>
+<p>We’re all set! What we need is a convenient way to pull apart information about each vote. If you remember that the first two columns are always first vote (this year’s election and 2013) whereas the second two columns are always second vote, it isn’t really challenging.</p>
+<p>To get this year’s first suffrage via column names simply use <code>grep()</code> and grab columns with real information.</p>
+<pre class="r"><code># Find this year&#39;s first suffrage column&#39;s number
+vot1new &lt;- grep(&quot;X&quot;, coldim, invert = TRUE)</code></pre>
+<p>Other vote results can be easily deduced but don’t forget that the three first columns are always the same.</p>
+<pre class="r"><code>vot1old &lt;- c(vot1new[1:3], sapply(vot1new[4:length(vot1new)], function(x) x+1))
+vot2new &lt;- c(vot1new[1:3], sapply(vot1new[4:length(vot1new)], function(x) x+2))
+vot2old &lt;- c(vot1new[1:3], sapply(vot1new[4:length(vot1new)], function(x) x+3))</code></pre>
+<p>Last thing, we need to isolate cities and states, which are both in this .csv. The column <em><code>gehört.zu</code></em> contains this information. Numbers vary from 1 to 16, for the 16 German states and 99 indicates the suffrage’s sum for a particular state.</p>
+<pre class="r"><code>cities &lt;- which(bundeswahl[, &#39;gehört.zu&#39;] &lt;= 16)
+states &lt;- which(bundeswahl[, &#39;gehört.zu&#39;] == 99)</code></pre>
+<p>This way we can now select cities or states independently for any vote.</p>
+</div>
+<div id="who-will-form-a-government-with-angela-merkel" class="section level1">
+<h1>Who will form a government with Angela Merkel?</h1>
+<p>Let’s be honest not everyone has a chance. We have quite a lot of parties and there is fierce competition to form a government together with Angela Merkel. Let’s see how many participants we have this year.</p>
+<pre class="r"><code>parteien &lt;- vot1new[8:length(vot1new)]
+length(parteien)
+## [1] 43</code></pre>
+<p>So total of 42 plus others (<em>Übrige</em> if you have a closer look at the list). If you investigate further you will find, among others, a <a href="https://v-partei.de"><em>V Partei Partei für Veränderung Vegetarier und Veganer</em></a> - yes that’s indeed Germany - a <a href="http://www.magdeburger-gartenpartei.de"><em>Madgeburger Gartenpartei</em></a> - fascinating Magdeburger Garden Party - and even <a href="https://www.die-urbane.de/de/"><em>Die Urbane Eine HipHop Partei</em></a> - hip-hop, really?!.</p>
+<p>Just out of curiosity, how many suffrage for each one of them?</p>
+<pre class="r"><code>sum(bundeswahl[states, &#39;V.Partei....Partei.für.Veränderung..Vegetarier.und.Veganer&#39;], na.rm = TRUE)
+## [1] 1201
+sum(bundeswahl[states, &#39;Madgeburger.Gartenpartei&#39;], na.rm = TRUE)
+## [1] 2570
+sum(bundeswahl[states, &#39;Die.Urbane..Eine.HipHop.Partei&#39;], na.rm = TRUE)
+## [1] 772</code></pre>
+<p>That’s the number of suffrage for whole Germany. Wow, definitively worth it! But well, Magdeburger gardens certainly deserve more attention. However, it definitely appears that we can include some more of these fancy parties under <em>Übrige</em>.</p>
+<p>We will keep only those with more than one million suffrage total.</p>
+<pre class="r"><code>which(sapply(bundeswahl[states, parteien], function(x) sum(x, na.rm = TRUE)) &gt;= 10^6)
+## Christlich.Demokratische.Union.Deutschlands 
+##                                           1 
+##     Sozialdemokratische.Partei.Deutschlands 
+##                                           2 
+##                                   DIE.LINKE 
+##                                           3 
+##                       BÜNDNIS.90.DIE.GRÜNEN 
+##                                           4 
+##     Christlich.Soziale.Union.in.Bayern.e.V. 
+##                                           5 
+##                  Freie.Demokratische.Partei 
+##                                           6 
+##                 Alternative.für.Deutschland 
+##                                           7</code></pre>
+<p>So we will keep seven and add the others to <em>Übrige</em>. That’s going to be facilitated by the fact that they appear to be ordered correctly. We just have to fetch the next one and start to reorganize from there.</p>
+<pre class="r"><code>coldim[parteien[8]]
+## [1] &quot;Piratenpartei.Deutschland&quot;</code></pre>
+<p>Oh no, pirates! Now I really feel sorry I’ve decided to cut at one million suffrage. At least we get to define a pirate object, which is something I’ve been dreaming of for quite a long time now.</p>
+<pre class="r"><code># Get important column numbers
+gueltig &lt;- which(colnames(bundeswahl[, vot1new]) == &#39;Gültige&#39;)
+piraten &lt;- which(colnames(bundeswahl[, vot1new]) == &#39;Piratenpartei.Deutschland&#39;)</code></pre>
+<p>Before moving on, may I suggest that we remove all these annoying dots in the names and save this edited list for our legend.</p>
+<pre class="r"><code># Find and remove &#39;.&#39; in names
+partnames &lt;- sapply(colnames(bundeswahl)[parteien], function(x) gsub(&quot;\\..*?&quot;, &#39; &#39;, basename(x)))</code></pre>
+<p>Oh yes and finally we should create a official German <em>Bundestag</em> palette!</p>
+<pre class="r"><code>bundestagP &lt;- c(&quot;#464687&quot;, &quot;#AE0035&quot;, &quot;#8158C2&quot;, &quot;#64A364&quot;, &quot;#4D88C1&quot;, &quot;#F2CB45&quot;, &quot;#79C9C4&quot;, &quot;#D2D2D2&quot;)</code></pre>
+</div>
+<div id="time-to-have-a-look-at-results" class="section level1">
+<h1>Time to have a look at results</h1>
+<p>Let’s start with this year’s election, second vote. The second vote is more important than the first one as it determines the seat distribution in the German <em>Bundestag</em>.</p>
+<pre class="r"><code># Get 2017 data
+bundeswahl17 &lt;- bundeswahl[, vot2new]
+
+# Rename properly
+colnames(bundeswahl17) &lt;- colnames(bundeswahl[, vot1new])
+
+# Replace NA with 0
+bundeswahl17[is.na(bundeswahl17)] &lt;- 0
+
+# Calculate percentages based on valid suffrages
+bundeswahlPer17 &lt;- cbind(bundeswahl17[, 1:gueltig],
+                         sapply(bundeswahl17[, (gueltig+1):(piraten-1)], function(x) (x/bundeswahl17[, gueltig]*100)),
+                         rowSums(bundeswahl17[, piraten:ncol(bundeswahl17)]/bundeswahl17[, gueltig]*100))
+
+# Rename Übrige (and use pirat!)
+colnames(bundeswahlPer17)[piraten] &lt;- &quot;Übrige&quot;</code></pre>
+<p>That’s it. Regional differences can be plotted easily now.</p>
+<pre class="r"><code>bundeswahlPer17[states, ] %&gt;%
+  select(Gebiet, Christlich.Demokratische.Union.Deutschlands,
+         Sozialdemokratische.Partei.Deutschlands, DIE.LINKE,
+         BÜNDNIS.90.DIE.GRÜNEN, Christlich.Soziale.Union.in.Bayern.e.V.,
+         Freie.Demokratische.Partei, Alternative.für.Deutschland,
+         Übrige) %&gt;%
+  melt(id = c(&quot;Gebiet&quot;)) %&gt;%
+  ggplot(aes(x = variable, y = value, fill = variable)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  theme_void() +
+  scale_fill_manual(values = bundestagP,
+                    name = &quot;Partei&quot;,
+                    labels = partnames) +
+  labs(x = NULL, y = NULL,
+       title = &quot;German federal election 2017&quot;,
+       subtitle = &quot;Second vote by state&quot;) +
+  theme(legend.text = element_text(size = 6),
+        legend.title = element_blank()) +
+  theme(legend.position = &quot;bottom&quot;) +
+  facet_wrap(~Gebiet)</code></pre>
+<p><img src="/post/2017-10-06-german-federal-election-regional-differences_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>As expected, there is quite a lot of variability. Note that <em>Christlich Soziale Union in Bayern</em> is specific for Bavaria. In the rest of Germany we have <em>Christlich Demokratische Union Deutschlands</em>. Both are relatively similar but it does not mean that they always agree.</p>
+</div>
+<div id="a-nostalgic-look-back-to-the-30s" class="section level1">
+<h1>A nostalgic look back to the ’30s</h1>
+<p>We have more data for cities so let’s use it to do a principal component analysis and see if there is a regional homogeneity. Why? Well, I just like principal component analysis. It has to be one of my favorite algorithmic and it generally gives eyes appealing representation of the data.</p>
+<p>But wait, 16 <em>Bundesländer</em> total. This isn’t something we can handle with a normal palette chart. Let’s adapt one out of the spectral brewer palette.</p>
+<pre class="r"><code># Define the length
+colourCount &lt;- length(unique(bundeswahl[states, &quot;Gebiet&quot;]))
+
+# And adapt the &#39;Set3&#39; palette
+getPalette &lt;- colorRampPalette(brewer.pal(9, &quot;Spectral&quot;))</code></pre>
+<p>No need to normalize, it’s all in percentage already.</p>
+<pre class="r"><code>df.pca &lt;- prcomp(bundeswahlPer17[cities, (gueltig+1):ncol(bundeswahlPer17)])
+summary(df.pca)
+## Importance of components:
+##                            PC1    PC2     PC3     PC4     PC5     PC6
+## Standard deviation     18.7322 8.0096 5.22733 4.88081 2.60587 1.76243
+## Proportion of Variance  0.7363 0.1346 0.05734 0.04999 0.01425 0.00652
+## Cumulative Proportion   0.7363 0.8709 0.92823 0.97822 0.99246 0.99898
+##                            PC7       PC8
+## Standard deviation     0.69653 3.031e-15
+## Proportion of Variance 0.00102 0.000e+00
+## Cumulative Proportion  1.00000 1.000e+00</code></pre>
+<p>Good news, everyone! PC1 and PC2 explain pretty much everything.</p>
+<pre class="r"><code># Concatenate all information together
+scores &lt;- data.frame(bundeswahlPer17[cities, ], df.pca$x)
+
+# And store the pca plot
+pca &lt;- qplot(data = scores, x = PC1, y = PC2, colour = as.factor(gehört.zu),
+      size = Wahlberechtigte, alpha = .5) +
+  scale_alpha_continuous(guide = FALSE) +
+  scale_size_continuous(guide = FALSE) +
+  theme_minimal() +
+  scale_colour_manual(values = getPalette(colourCount),
+                      breaks = bundeswahl[states, &quot;Nr&quot;],
+                      labels = bundeswahl[states, &quot;Gebiet&quot;]) +
+  labs(title = &quot;German federal election 2017&quot;,
+       subtitle = &quot;Second vote by city&quot;) +
+  theme(legend.text = element_text(size = 6), legend.position = &quot;bottom&quot;,
+        legend.title = element_blank())</code></pre>
+<p>Ideally, I’d also like to see what the first two of the principal components actually look like.</p>
+<pre class="r"><code># Concatenate relevante information
+melted &lt;- melt(df.pca$rotation[, 1:2])
+
+# And store this plot too
+PC &lt;- ggplot(data = melted) +
+  geom_bar(aes(x = Var1, y = value, fill = Var1), stat = &quot;identity&quot;) +
+  theme_void() +
+  scale_fill_manual(values = bundestagP,
+                    name = &quot;Partei&quot;,
+                    labels = partnames) +
+  labs(x = NULL, y = NULL,
+       title = &quot;&quot;,
+       subtitle = &quot;Relative importance in each \nprincipal component&quot;) +
+  theme(legend.text = element_text(size = 6),
+        legend.title = element_blank()) +
+  theme(legend.position = &quot;none&quot;) +
+  facet_wrap(~Var2, ncol = 1)</code></pre>
+<p>Here we go.</p>
+<pre class="r"><code>grid.arrange(pca, PC, ncol = 2, widths = 2:1)</code></pre>
+<p><img src="/post/2017-10-06-german-federal-election-regional-differences_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>We can compare this with the situation in 2013 if we run the same code using <code>bundeswahl[, vot2old]</code>. I’ve hidden most of it here for the sake of clarity.</p>
+<pre><code>## Importance of components:
+##                            PC1    PC2     PC3     PC4     PC5     PC6
+## Standard deviation     23.6450 8.5221 6.85626 3.72942 1.35207 0.99159
+## Proportion of Variance  0.8034 0.1044 0.06755 0.01999 0.00263 0.00141
+## Cumulative Proportion   0.8034 0.9078 0.97533 0.99532 0.99794 0.99936
+##                            PC7       PC8
+## Standard deviation     0.66922 4.501e-15
+## Proportion of Variance 0.00064 0.000e+00
+## Cumulative Proportion  1.00000 1.000e+00</code></pre>
+<p>Roughly the same proportion of the variability explained by PC1 and PC2. And here comes the figure.</p>
+<pre class="r"><code>grid.arrange(pca13, PC13, ncol = 2, widths = 2:1)</code></pre>
+<p><img src="/post/2017-10-06-german-federal-election-regional-differences_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>In either case, the PC1 doesn’t contain any valuable information for us. It simply reflect the variability between <em>Christlich Soziale Union in Bayern</em> - specific in Bavaria - and <em>Christlich Demokratische Union Deutschlands</em> in the rest of Germany.</p>
+<p>However, everything is swapped in PC2. The <em>Sozialdemokratische Partei Deutschlands</em> and the <em>Alternative für Deutschland</em> are almost inverted. While in 2013 the <em>Sozialdemokratische Partei Deutschlands</em> and <em>DIE LINKE</em> were clearly driving the variability in PC2, in 2017 <em>Alternative für Deutschland</em> is the game changer.</p>
+</div>
+<div id="any-doubt-about-your-favorite-bundeslander" class="section level1">
+<h1>Any doubt about your favorite <em>Bundesländer</em>?</h1>
+<p>It can be difficult to isolate a specific <em>Bundesland</em> from previous principal component analyses. That is, beside Bavaria. However, we can simply run the code with <code>bundeswahl[states, ]</code>. Again, I’ll hide redundant lines and focus on the most important ones only.</p>
+<pre><code>## Importance of components:
+##                            PC1    PC2     PC3     PC4    PC5     PC6
+## Standard deviation     12.7473 8.9785 4.10249 3.30383 1.7388 0.87088
+## Proportion of Variance  0.5912 0.2933 0.06123 0.03971 0.0110 0.00276
+## Cumulative Proportion   0.5912 0.8845 0.94573 0.98545 0.9964 0.99921
+##                            PC7       PC8
+## Standard deviation     0.46691 1.059e-15
+## Proportion of Variance 0.00079 0.000e+00
+## Cumulative Proportion  1.00000 1.000e+00</code></pre>
+<p>I guess it isn’t a surprise now. PC1 and PC2 are sufficient enough, but this time we can identify all <em>Bundesländer</em>.</p>
+<pre class="r"><code>qplot(data = scoresStates, x = PC1, y = PC2, colour = as.factor(Gebiet),
+             size = Wahlberechtigte) +
+  scale_alpha_continuous(guide = FALSE) +
+  scale_size_continuous(guide = FALSE) +
+  theme_minimal() +
+  scale_colour_manual(values = getPalette(colourCount),
+                      breaks = bundeswahl[states, &quot;Nr&quot;],
+                      labels = bundeswahl[states, &quot;Gebiet&quot;]) +
+  labs(title = &quot;German federal election 2017&quot;,
+       subtitle = &quot;Second vote by state&quot;) +
+  theme(legend.text = element_text(size = 6), legend.position = &quot;bottom&quot;,
+        legend.title = element_blank()) +
+  geom_label_repel(aes(PC1, PC2,
+                       label = bundeswahl[states, &quot;Gebiet&quot;]))</code></pre>
+<p><img src="/post/2017-10-06-german-federal-election-regional-differences_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Of course, this doesn’t mean in any way that the <em>Sozialdemokratische Partei Deutschlands</em> or <em>DIE LINKE</em> are responsible for the <em>Alternative für Deutschland</em> breakthrough during this election. But simply that they’ve lost quite a lot of suffrage while the <em>Alternative für Deutschland</em> exploded his previous score - mostly in certain regions. What the PC1 cannot clearly show here is a lost of suffrage for both <em>Christlich Soziale Union in Bayern</em> and <em>Christlich Demokratische Union Deutschlands</em> in 2017 too. This is due to an almost identical lost for both and the overwhelming variability they artificially explain.</p>
+<p>Anyway, of interest for Germany here (i) it isn’t by far enough for Martin Schulz to replace Angela Merkel at the head of the country and (ii) which sadly appears divided once again. And once again, Nazis benefit from this. If geography is perhaps not your strong point, you can find a better visual support by the Interaktiv-Team from the <em>Berliner Morgenpost</em> <a href="https://interaktiv.morgenpost.de/analyse-bundestagswahl-2017/data/btw17_analysis.html?utm_content=buffer18861&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">here</a>. They’ve nicely mapped results by party and region.</p>
+<p>Is there a good news in all of that misery after all? Yes, I’ve found one =)</p>
+<pre class="r"><code># Lower AFD percentage in the whole country is
+as.character(bundeswahlPer17[which.min(bundeswahlPer17[, &quot;Alternative.für.Deutschland&quot;]), &quot;Gebiet&quot;])
+## [1] &quot;Münster&quot;</code></pre>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/tidyverse/">tidyverse</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/gridextra/">gridExtra</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/ggrepel/">ggrepel</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/" data-tooltip="Road Accidents and Safety Data in the United Kingdom">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/bombs-away/" data-tooltip="Bombs Away!">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/german-federal-elections-regional-differences/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/10/german-federal-elections-regional-differences/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2017/10/german-federal-elections-regional-differences/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/" data-tooltip="Road Accidents and Safety Data in the United Kingdom">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/bombs-away/" data-tooltip="Bombs Away!">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/german-federal-elections-regional-differences/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/10/german-federal-elections-regional-differences/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2017/10/german-federal-elections-regional-differences/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2017%2F10%2Fgerman-federal-elections-regional-differences%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2017%2F10%2Fgerman-federal-elections-regional-differences%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2017%2F10%2Fgerman-federal-elections-regional-differences%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

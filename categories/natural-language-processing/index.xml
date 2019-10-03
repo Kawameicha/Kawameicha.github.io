@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Natural Language Processing on In Code We Trust</title>
+    <link>/categories/natural-language-processing/</link>
+    <description>Recent content in Natural Language Processing on In Code We Trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/natural-language-processing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to Select a Reading Depending on your State of Mind</title>
+      <link>/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</link>
+      <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</guid>
+      <description>A me too sentiment analysis and natural language processing post.</description>
+    </item>
+    
+  </channel>
+</rss>

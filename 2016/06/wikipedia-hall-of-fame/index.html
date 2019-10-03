@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.58.3 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="An all time humanity&rsquo;s pantheon: popularity analyse in wikipedia.">
+
+
+<meta property="og:description" content="An all time humanity&rsquo;s pantheon: popularity analyse in wikipedia.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wikipedia Hall of Fame">
+<meta name="twitter:title" content="Wikipedia Hall of Fame">
+<meta property="og:url" content="/2016/06/wikipedia-hall-of-fame/">
+<meta property="twitter:url" content="/2016/06/wikipedia-hall-of-fame/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="An all time humanity&rsquo;s pantheon: popularity analyse in wikipedia.">
+<meta name="twitter:description" content="An all time humanity&rsquo;s pantheon: popularity analyse in wikipedia.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2016-06-12T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2016-06-12T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Descriptive Statistics">
+    
+      <meta property="article:section" content="Geographic Visualization">
+    
+  
+  
+    
+      <meta property="article:tag" content="maps">
+    
+      <meta property="article:tag" content="ggplot2">
+    
+      <meta property="article:tag" content="dplyr">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="http://www.famouslogos.org/logos/wikipedia-logo.jpg">
+  <meta property="twitter:image" content="http://www.famouslogos.org/logos/wikipedia-logo.jpg">
+
+
+  <meta property="og:image" content="http://www.gamehackstudios.com/wp-content/uploads/2015/03/Civilization-5-Free-Download-PC-Full-Version-Torrent-Crack-4.jpg">
+  <meta property="twitter:image" content="http://www.gamehackstudios.com/wp-content/uploads/2015/03/Civilization-5-Free-Download-PC-Full-Version-Torrent-Crack-4.jpg">
+
+
+
+
+  <meta property="og:image" content="/logo/bio.png">
+  <meta property="twitter:image" content="/logo/bio.png">
+
+
+    <title>Wikipedia Hall of Fame</title>
+
+    <link rel="icon" href="logo/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="/2016/06/wikipedia-hall-of-fame/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('http://www.gamehackstudios.com/wp-content/uploads/2015/03/Civilization-5-Free-Download-PC-Full-Version-Torrent-Crack-4.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Wikipedia Hall of Fame
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2016-06-12T00:00:00Z">
+        
+  
+  
+  
+  
+    Jun 12, 2016
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/descriptive-statistics">Descriptive Statistics</a>, 
+    
+      <a class="category-link" href="/categories/geographic-visualization">Geographic Visualization</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>I found this dataset at <a href="https://dataverse.harvard.edu">Harvard Dataverse</a> - a collaboration with Harvard Library, Harvard University IT, and IQSS - about the most famous biographies present on <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a>. The Pantheon dataset is “a dataset of individuals that have transcended linguistic, temporal, and geographic boundaries.”</p>
+<p>It includes 11,341 biographies present in more than 25 languages on Wikipedia and is “enriched with: (i) manually verified demographic information (place and date of birth, gender); (ii) a taxonomy of occupations classifying each biography at three levels of aggregation; and (iii) two measures of global popularity including the number of languages in which a biography is present in Wikipedia (L), and the Historical Popularity Index (HPI) a metric that combines information on L, time since birth, and page-views (2008-2013).”</p>
+<p>This dataset is particularly interesting because it was compared manually (<em>sic</em>!) “to data from the 2003 book, Human Accomplishments, and also to external measures of accomplishment in individual games and sports: Tennis, Swimming, Car Racing, and Chess.”</p>
+<p>It ensures that all data correlate highly with individual accomplishment and suggests that measures of global popularity proxy the historical impact of individuals. The complete dataset as well as some more information are freely available to download <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/28201">here</a>.</p>
+<div id="how-to-load-and-clean-the-data" class="section level1">
+<h1>How to load and clean the data</h1>
+<p>To load the dataset we can use the <code>curl</code> package and download it directly from the website.</p>
+<pre class="r"><code># Some settings
+temp &lt;- tempfile()
+url &lt;- &quot;http://pantheon.media.mit.edu/pantheon.tsv&quot;
+
+# Then download it
+curl_download(url, temp)
+
+# And read it
+hallofFame &lt;- read.csv(temp, sep = &#39;\t&#39;, header = TRUE, stringsAsFactors = TRUE,
+                       # and because of variable NA strings
+                       na.strings = c(&quot;Unknown&quot;, &quot;UNK&quot;, &quot;&quot;))</code></pre>
+<p>And take a look a it.</p>
+<pre class="r"><code># Not evaluated here, for the sake of space
+summary(hallofFame)</code></pre>
+<p>At first glance it looks pretty good to me, but for three minor points.</p>
+<pre class="r"><code>head(summary(hallofFame$name), n = 3)
+## Alexandre Dumas  Andrew Johnson      Ben Foster 
+##               2               2               2</code></pre>
+<p>One could be suspicious seeing two times the same personality name in the column <code>name</code>. The good news is being French and fond of literature of the 19th century, I know there are indeed two Alexandre Dumas: <a href="https://en.wikipedia.org/wiki/Alexandre_Dumas">Alexandre Dumas, <em>père</em></a> (<em>The Count of Monte Cristo</em>, <em>The Three Musketeers</em>) and <a href="https://en.wikipedia.org/wiki/Alexandre_Dumas,_fils">Alexandre Dumas, <em>fils</em></a> (<em>The Lady of the Camellias</em>, which you probably only know via its adaptation for the opera <a href="https://en.wikipedia.org/wiki/La_traviata">La traviata</a> by <a href="https://en.wikipedia.org/wiki/Giuseppe_Verdi">Giuseppe Verdi</a>). If this all sounds new to you, I would highly encourage you to stop reading this blog right now and read the books. After all, there are more important things in life that coding!</p>
+<pre class="r"><code>head(summary(hallofFame$countryName), n = 5)
+##  UNITED STATES UNITED KINGDOM          ITALY  United States        Germany 
+##           1680            819            659            489            486</code></pre>
+<p>Okay, I also see some potential troubles within the <code>contryName</code> column. Strings were correctly converted into factors but it seems we have two different spellings for each countries. United States is written both <code>UNITED STATES</code> and <code>United States</code>. Problem which can be simply circumvented using the <code>toupper()</code> function:</p>
+<pre class="r"><code>hallofFame$countryName &lt;- toupper(hallofFame$countryName)</code></pre>
+<p>Finally, the <code>birthyear</code> column is not numeric but was converted into factors.</p>
+<pre class="r"><code>class(hallofFame$birthyear)
+## [1] &quot;factor&quot;</code></pre>
+<p>This can be corrected - although I’m assuming that it might be a bit of an overkill.</p>
+<pre class="r"><code>hallofFame$birthyear &lt;- as.numeric(levels(hallofFame$birthyear)[hallofFame$birthyear])</code></pre>
+<pre class="r"><code>head(summary(hallofFame$birthyear))
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -3500.000  1791.000  1919.000  1658.334  1961.000  2005.000</code></pre>
+<p>Alright, I guess that’s it!</p>
+</div>
+<div id="we-have-coordinates-so-why-not-use-them" class="section level1">
+<h1>We have coordinates, so why not use them</h1>
+<p>Well, it has been some years now since I’ve visited a history class for the last time. Anyway, I can very precisely remember that prehistory is not well defined but Europe before the 8th and 7th centuries BC is largely proto-historical. The antiquity abruptly ended in 472 with the fall of the Roman Empire. After what knights were savagely fighting in jousts to impress young ladies during the Middle Ages until <a href="https://en.wikipedia.org/wiki/Christopher_Columbus">Christopher Columbus</a> discovered the New World in 1472. The modern period which followed can be roughly divided into early modern period, ending in 1789 with the French revolution and late modern period, ending in 1945 at the end of WWII. No, actually I’m kidding. I had a look at Wikipedia for all this. Well not for the French revolution! That one I knew; told you I’m French. Also, I’m relatively confident that the contemporary times didn’t ended yet. Wikipedia and I agree on that.</p>
+<p>So let’s divide into historical eras and plot using the birth places:</p>
+<pre class="r"><code># Divide into historical eras based on birth dates
+hallofFame$era &lt;- ifelse(hallofFame$birthyear &lt; -800, &quot;Prehistory&quot;,
+                         ifelse(hallofFame$birthyear %in% -800:475, &quot;Antiquity&quot;,
+                         ifelse(hallofFame$birthyear %in% 476:1491, &quot;Middle Ages&quot;,
+                         ifelse(hallofFame$birthyear %in% 1492:1788, &quot;Early modern period&quot;,
+                         ifelse(hallofFame$birthyear %in% 1789:1944, &quot;Late modern period&quot;,
+                         ifelse(hallofFame$birthyear &gt; 1945, &quot;Contemporary times&quot;, NA))))))
+
+# Order the factor levels
+hallofFame$era &lt;- factor(hallofFame$era,
+                         levels = c(&quot;Prehistory&quot;, &quot;Antiquity&quot;, &quot;Middle Ages&quot;,
+                                    &quot;Early modern period&quot;, &quot;Late modern period&quot;,
+                                    &quot;Contemporary times&quot;, NA))</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(RColorBrewer)
+library(maps)
+
+ggplot() + geom_polygon(data = map_data(&quot;world&quot;),
+                        aes(x = long, y = lat, group = group),
+                        colour = &quot;white&quot;, fill = &quot;grey10&quot;) +
+  geom_point(data = hallofFame[which(hallofFame$era != &quot;NA&quot;),],
+             aes(x = LON, y = LAT, fill = domain),
+             shape = 21, color = &quot;white&quot;, stroke = 1, alpha = 1, size = 1) +
+  theme_minimal() +
+  scale_fill_brewer(palette=&quot;Spectral&quot;) +
+  theme(axis.ticks = element_blank(), axis.text.x = element_blank()) +
+  theme(axis.ticks = element_blank(), axis.text.y = element_blank()) +
+  scale_x_discrete(name = &quot;&quot;) +
+  scale_y_discrete(name = &quot;&quot;) +
+  theme(legend.title = element_blank()) +
+  ggtitle(expression(paste(&quot;Personalities&#39; birth place through the ages&quot;))) +
+  theme(legend.position = &quot;none&quot;) +
+  facet_wrap(~era, ncol = 2)</code></pre>
+<p><img src="/post/2016-06-12-wikipedia-hall-of-fame_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Pretty neat! It appears there were not that many celebrities in the early ages. I guess there was no point to be famous at that time, Wikipedia hasn’t been invented. Personalities in the prehistory nicely concentrate in the Middle East, only spreading out toward Europe during the antiquity. No big change during the Middle Ages, but with the early modern period begins the colonization of the New World. The population of celebrities clearly explodes in the late modern and contemporary periods. The big difference being the domain of activity: humanities, institutions, and science &amp; technology being largely over-represented during the late modern period, whereas they are dramatically shrinking in the contemporary times. Arts are well represented during both eras, sports notably booming nowadays.</p>
+<pre class="r"><code>ggplot(data = hallofFame[which(hallofFame$era == &quot;Late modern period&quot; |
+                               hallofFame$era == &quot;Contemporary times&quot;),],
+       aes(x = domain, fill = domain)) +
+  geom_bar() +
+  ggtitle(expression(paste(&quot;Activity domains during the late modern and contemporary periods&quot;))) +
+  theme_minimal() +
+  scale_fill_brewer(palette = &quot;Spectral&quot;) +
+  theme(axis.text.x = element_blank()) +
+  scale_x_discrete(name = &quot;&quot;) +
+  scale_y_continuous(name = &quot;Number of personality&quot;) +
+  theme(legend.title = element_blank()) +
+  theme(legend.position = &quot;bottom&quot;) +
+  facet_wrap(~era, ncol = 2)</code></pre>
+<p><img src="/post/2016-06-12-wikipedia-hall-of-fame_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="is-data-scientist-a-wise-career-choice" class="section level1">
+<h1>Is data scientist a wise career choice?</h1>
+<p>There are much more information included in the dataset than personalities’ place of birth and we can have a closer look at the evolution of industry through the ages. But before doing that, we have to reorganize our data. We need to create a new dataframe calculating the number of personality in each industry per era. Since late modern and contemporary periods concentrate around 75% of all personalities, it is necessary to apply a logarithmic normalization.</p>
+<pre class="r"><code>library(plyr)
+
+industry &lt;- ddply(hallofFame, .(era, industry), summarise,
+            ind = log(length(industry)))</code></pre>
+<p>We now can plot a heatmap of the results.</p>
+<pre class="r"><code>library(ggthemes)
+library(viridis)
+
+ggplot(data = industry[which(industry$era != &quot;NA&quot;),], aes(x = era, y = industry, fill = ind)) +
+  geom_tile(color = &quot;white&quot;, size = 0.1) +
+  scale_fill_viridis(name = &quot;&quot;) +
+  theme_tufte(base_family = &quot;Helvetica&quot;) +
+  coord_equal() +
+  labs(x = NULL, y = NULL, title = expression(paste(&quot;Industry through the ages&quot;))) +
+  scale_x_discrete(expand = c(0, 0)) +
+  theme(axis.text = element_text(size = 6)) +
+  theme(legend.title = element_text(size = 8)) +
+  theme(legend.position = &quot;right&quot;) +
+  theme(axis.ticks = element_blank(), axis.text.x = element_text(angle = 90, size = 8))</code></pre>
+<p><img src="/post/2016-06-12-wikipedia-hall-of-fame_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Again, same conclusion: sports (team sports, but also individual sports) are booming nowadays. Logically, only a very few careers were available in the prehistory: religion, philosophy, language, government, and … design! Well that’s a surprise. How can that be?</p>
+<pre class="r"><code>hallofFame[which(hallofFame$era == &quot;Prehistory&quot; &amp; hallofFame$industry == &quot;DESIGN&quot;),2:6]
+##        name numlangs birthcity birthstate countryName
+## 654 Imhotep       56   Memphis       &lt;NA&gt;       EGYPT</code></pre>
+<p>Imhotep, from Memphis (like Elvis!).</p>
+<pre class="r"><code>hallofFame[which(hallofFame$era == &quot;Prehistory&quot; &amp; hallofFame$industry == &quot;DESIGN&quot;),14:16]
+##     occupation industry domain
+## 654  ARCHITECT   DESIGN   ARTS</code></pre>
+<p>Well, sure some (if not all) of his buildings survived until the present day. I guess it’s indeed a fit!</p>
+<p>Some other industries popped up only recently (well not literally), like dance (but I’m not sure that’s totally true) and computer science. There are also some nice patterns in the data. Like religion, which seems to decline though the ages, whereas social and natural sciences are growing. I wonder if there is a correlation there. But I don’t think that’s a question we can answer using these data. Government seems to be always in demand; business is not that new, but on the contrary continuously growing since the modern times. Military and philosophy both suffer recent reverses. Law grows slowly, but not as fast as outlaw!</p>
+</div>
+<div id="to-be-continued" class="section level1">
+<h1>To be continued</h1>
+<p>I found these data really amazing and there certainly is a lot more one can extract from them. After all I didn’t even have a look at the global popularity scoring yet. We have information about the number of language in which a biography is present in Wikipedia, and an historical popularity index we could use in combination with the nationality of each personality. We also have more detailed information on the occupation (88 levels), which can be used to analyze more precisely industries. On the other hand, occupations through the ages are even more variable. As a matter of fact <code>PSYCHOLOGIST</code> was notably not available before Freud was born and <code>PORNOGRAPHIC ACTOR</code> was not that common in the antiquity (wasn’t it?). Next time we will therefore concentrate on the modern periods. So as not to leave you wondering, there is a <code>COMPUTER SCIENTIST</code> occupation factor level. Next time we will definitively answer the question: data scientist, a wise career choice?</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/maps/">maps</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/ggplot2/">ggplot2</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/dplyr/">dplyr</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/05/beginners-guide-to-financial-report-with-r/" data-tooltip="Beginners&#39; Guide to Financial Report with R">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/" data-tooltip="How to Select a Reading Depending on your State of Mind">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/wikipedia-hall-of-fame/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/wikipedia-hall-of-fame/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/wikipedia-hall-of-fame/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/05/beginners-guide-to-financial-report-with-r/" data-tooltip="Beginners&#39; Guide to Financial Report with R">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/" data-tooltip="How to Select a Reading Depending on your State of Mind">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/wikipedia-hall-of-fame/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/wikipedia-hall-of-fame/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/wikipedia-hall-of-fame/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2016%2F06%2Fwikipedia-hall-of-fame%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2016%2F06%2Fwikipedia-hall-of-fame%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2016%2F06%2Fwikipedia-hall-of-fame%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

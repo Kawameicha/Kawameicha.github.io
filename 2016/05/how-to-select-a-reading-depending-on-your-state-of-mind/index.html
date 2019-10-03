@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.58.3 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="A me too sentiment analysis and natural language processing post.">
+
+
+<meta property="og:description" content="A me too sentiment analysis and natural language processing post.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Select a Reading Depending on your State of Mind">
+<meta name="twitter:title" content="How to Select a Reading Depending on your State of Mind">
+<meta property="og:url" content="/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">
+<meta property="twitter:url" content="/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="A me too sentiment analysis and natural language processing post.">
+<meta name="twitter:description" content="A me too sentiment analysis and natural language processing post.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2016-05-08T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2016-05-08T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Unsupervised Learning">
+    
+      <meta property="article:section" content="Natural Language Processing">
+    
+  
+  
+    
+      <meta property="article:tag" content="syuzhet">
+    
+      <meta property="article:tag" content="ggplot2">
+    
+      <meta property="article:tag" content="dplyr">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="http://etc.usf.edu/lit2go/static/thumbnails/authors/68.png">
+  <meta property="twitter:image" content="http://etc.usf.edu/lit2go/static/thumbnails/authors/68.png">
+
+
+  <meta property="og:image" content="http://img06.deviantart.net/d104/i/2014/205/3/6/edgar_allan_poe___the_black_cat_by_alexanderlevett-d7s2h81.jpg">
+  <meta property="twitter:image" content="http://img06.deviantart.net/d104/i/2014/205/3/6/edgar_allan_poe___the_black_cat_by_alexanderlevett-d7s2h81.jpg">
+
+
+
+
+  <meta property="og:image" content="/logo/bio.png">
+  <meta property="twitter:image" content="/logo/bio.png">
+
+
+    <title>How to Select a Reading Depending on your State of Mind</title>
+
+    <link rel="icon" href="logo/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('http://img06.deviantart.net/d104/i/2014/205/3/6/edgar_allan_poe___the_black_cat_by_alexanderlevett-d7s2h81.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      How to Select a Reading Depending on your State of Mind
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2016-05-08T00:00:00Z">
+        
+  
+  
+  
+  
+    May 8, 2016
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/unsupervised-learning">Unsupervised Learning</a>, 
+    
+      <a class="category-link" href="/categories/natural-language-processing">Natural Language Processing</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>Lately I’ve discovered sentiment analysis that combines natural language processing with text analysis to basically identify (and quantify!) feelings created by words. Some R packages like the <code>syuzhet</code> package are now available from the CRAN and doing your very own natural language analysis has never been so easy.</p>
+<p>Besides R packages, you will most certainly need some texts to analyze. For those of you who never heard about it, I would highly suggest having a look at the <a href="http://www.gutenberg.org">Project Gutenberg</a>. The Project Gutenberg currently offers over 50,000 free eBooks you are allowed to download because their copyrights have expired.</p>
+<p>Personally, I’m a huge fan of Edgar Allan Poe and in his works exhaustive descriptions of a variety of emotions are quite common. So his novels should represent really good data to analyze. Even better, there are so many different novels and we certainly can try to compare them. After all, I usually read late and I might want to choose wisely the novel so as to be able to sleep afterwards.</p>
+<div id="how-to-download-texts-using-a-unix-shell" class="section level1">
+<h1>How to download texts using a Unix shell</h1>
+<p>For the purpose of this work, I’m using the plain text UTF-8 files available via the the <a href="http://www.gutenberg.org">Project Gutenberg</a> website. A very convenient way to retrieve them is to use the terminal.</p>
+<pre class="r"><code># This is Unix code
+cd ~/path/to/directory
+curl URLtoTransfer &gt; text.txt</code></pre>
+<p>The complete works of Edgar Allan Poe I used is available <a href="http://www.gutenberg.org/files/2147/2147-0.txt">here</a>.</p>
+</div>
+<div id="lets-first-get-the-data-ready-for-analysis" class="section level1">
+<h1>Let’s first get the data ready for analysis</h1>
+<p>Having the Edgar Allan Poe texts in a working directory, it’s fast and easy to read them using the <code>read_lines</code> command from the <code>readr</code> package. The Project Gutenberg has header and footer information we do not need. Using <code>skip</code> and <code>n_max</code> options allows leaving them out and import only the novels.</p>
+<pre class="r"><code># Import the first volume
+library(readr)
+
+rawtext &lt;- read_lines(&quot;../data/poeVol1.txt&quot;, skip = 956, n_max = 7902)</code></pre>
+<p>Well, now let’s use the R’s <code>syuzhet</code> package to break down sentence-by-sentence and the package’s <code>get_sentiment</code> function to quantify positive and negative sentiments. At the same time, we certainly want to make sure we get rid of all these annoying <code>\n</code> newline marks in the text. I’m not sure if and how they could affect the quantification, but better safe than sorry.</p>
+<pre class="r"><code># Break down sentence by sentence, remove &#39;\n&#39; and get sentiment
+library(syuzhet)
+
+sentences &lt;- get_sentences(rawtext)
+poeVol1 &lt;- gsub(&quot;\n&quot;, &quot; &quot;, sentences)
+sentiment &lt;- get_sentiment(poeVol1)</code></pre>
+<p>The <code>get_sentiment</code> function can use several methods to analyze the text. The default method, <code>&quot;syuzhet&quot;</code> is a custom sentiment dictionary developed in the <a href="http://litlab.unl.edu">Nebraska Literary Lab</a>. According to them, the default dictionary should “be better tuned to fiction as the terms were extracted from a collection of 165,000 human coded sentences taken from a small corpus of contemporary novels.”</p>
+<p>Okay, Edgar Allan Poe novels might be over one hundred years old, which makes them I guess not really contemporary, but at least they’re composed of fictional work only. Additionally, Julia Silge used the same method on her <a href="http://juliasilge.com/blog/You-Must-Allow-Me/">blog</a>, where she mined her favorite book, <em>Pride and Prejudice</em>. Have a look: it’s a fantastic (and very inspiring) example!</p>
+</div>
+<div id="that-sentimental-feeling" class="section level1">
+<h1>That sentimental feeling</h1>
+<p>Now that we broke down sentence by sentence and cleaned the text, how about having a look at some examples. To avoid any bias – after all you have no reason to trust me – you can generate them randomly.</p>
+<pre class="r"><code># Randomly select three sentences in the text
+rn &lt;- sample(length(poeVol1), 3)</code></pre>
+<p>I did it that way and obtained <code>1657</code>, <code>1225</code>, and <code>3232</code>, which I have to set manually for the purpose of this post. But please feel free to experiment should you really not trust me at all!</p>
+<p>So, trying to get sentiment for the first one:</p>
+<pre class="r"><code>poeVol1[rn[1]]
+## [1] &quot;By this time the cries had ceased; but, as the party rushed up the first flight of stairs, two or more rough voices in angry contention were distinguished and seemed to proceed from the upper part of the house.&quot;
+get_nrc_sentiment(poeVol1[rn[1]])
+##   anger anticipation disgust fear joy sadness surprise trust negative
+## 1     1            1       1    0   0       0        0     0        1
+##   positive
+## 1        0</code></pre>
+<p>Well, it gives a pretty good result! There is definitively some anger, anticipation and disgust in that sentence. The overall felling is most certainly negative. Just imagine yourself during the 19th century, in the middle of a lovely diner at your aunt’s mansion, just about to savor a <em>filet de sole à la Dugléré</em>, interrupted by some cries, having to rush upstairs without any time to warm-up. Indeed very negative!</p>
+<p>Another one:</p>
+<pre class="r"><code>poeVol1[rn[2]]
+## [1] &quot;You will observe that the stories told are all about money-seekers, not about money-finders.&quot;
+get_nrc_sentiment(poeVol1[rn[2]])
+##   anger anticipation disgust fear joy sadness surprise trust negative
+## 1     1            1       0    0   1       0        1     1        0
+##   positive
+## 1        1</code></pre>
+<p>Hmm, this one is not an easy one and the result is maybe less convincing here. Anyway, with a little imagination one can identify some of the feelings recognized. And there is definitively neither disgust or fear, nor sadness or surprise in that sentence. I guess overall it’s slightly positive as well. After all the money-seekers could eventually become money-finders some day!</p>
+<p>Okay, last one:</p>
+<pre class="r"><code>poeVol1[rn[3]]
+## [1] &quot;Mem:_ at 25,000 feet elevation the sky appears nearly black, and the stars are distinctly visible; while the sea does not seem convex (as one might suppose) but absolutely and most unequivocally _concave_.(*1)  \&quot;_Monday, the 8th_.&quot;
+get_nrc_sentiment(poeVol1[rn[3]])
+##   anger anticipation disgust fear joy sadness surprise trust negative
+## 1     0            1       0    1   1       1        0     1        1
+##   positive
+## 1        4</code></pre>
+<p>I do not particularly suffer from acrophobia, but back in the 19th century, 25,000 feet elevation was pretty unusual and certainly a bit frightening. There is some disappointment associated to the shape of the sea. After spending so many years at school, I also expected it to be rather convex. But anyway, under the visible stars the view is certainly awesome and as long the as the aerostat works fine, everything should be just fine. So definitively positive too!</p>
+</div>
+<div id="break-down-novel-by-novel" class="section level1">
+<h1>Break down novel by novel</h1>
+<p>So far so good. But my primarily idea was to compare feelings among novels. Now that we have code to extract the sentiment, we need to delimit each narrative. The first volume of Edgar Allan Poe works contains eight of them. Names can be found in the Project Gutenberg’s header and we will create a list to automatically search for them among the text with regular expressions.</p>
+<pre class="r"><code>novels &lt;- c(&quot;The Unparalleled Adventures of One Hans Pfaall&quot;, &quot;The Gold-Bug&quot;,
+            &quot;Four Beasts in One--The Homo-Cameleopard&quot;, &quot;The Murders in the Rue Morgue&quot;,
+            &quot;The Mystery of Marie Roget&quot;, &quot;The Balloon-Hoax&quot;,
+            &quot;MS Found in a Bottle&quot;, &quot;The Oval Portrait&quot;)</code></pre>
+<p>Let’s create a dataframe that contains sentence number and sentiment through the whole text.</p>
+<pre class="r"><code># Create dataframe with sentence number and sentiment
+poenrcVol1 &lt;- cbind(sentence = seq_along(sentences), get_nrc_sentiment(poeVol1))
+poenrcVol1$sentiment &lt;- sentiment</code></pre>
+<p>Following loop will make a <code>novel</code> vector for the dataframe and name each novel.</p>
+<pre class="r"><code># Search for novel in the text and name each of them
+poenrcVol1$novel &lt;- NA
+for(i in 1:length(novels)) {
+  while(i &lt;= length(novels)) {
+    poenrcVol1[grep(toupper(novels[i]), sentences)[1]:length(sentences), &#39;novel&#39;] &lt;- novels[i]
+    i = i+1
+  }
+}</code></pre>
+<p>While the following one will restart the line number count at the beginning of each novel.</p>
+<pre class="r"><code># Restart the linenumber count at the beginning of each novel
+poenrcVol1$novel &lt;- as.factor(poenrcVol1$novel)
+for(i in 1:length(novels)) {
+  while(i &lt;= length(novels)) {
+    poenrcVol1$sentence[poenrcVol1$novel == novels[i]] &lt;- seq_along(sentences)
+    i = i+1
+  }
+}</code></pre>
+</div>
+<div id="time-for-some-plots" class="section level1">
+<h1>Time for some plots</h1>
+<p>The overall positive vs. negative sentiment in the novels of Edgar Allan Poe can now be roughly plotted.</p>
+<pre class="r"><code>library(ggplot2)
+library(RColorBrewer)
+
+ggplot(poenrcVol1, aes(x = sentence, y = sentiment, color = novel)) +
+  geom_line() +
+  facet_wrap(~novel, nrow = 4, ncol = 2) +
+  ggtitle(expression(paste(&quot;Sentiment in the Works of Edgar A. Poe&quot;))) +
+  theme_minimal() +
+  scale_colour_brewer(palette = &quot;Set2&quot;) +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/2016-05-03-how-to-select-a-reading-depending-on-your-state-of-mind_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>It definitively happens a lot in these novels. However, it is not particularly easy to read and they all have different lengths, which makes them hard to compare. In addition, we only represented the overall positive vs. negative sentiment there.</p>
+<p>Plotting all emotions within one figure is possible with a heatmap. But before we can do that, we have to reorganize a bit our data. So let’s create a new dataframe melting all emotions per sentence and novel and rename the columns.</p>
+<pre class="r"><code># Create reorganized dataframe
+emotions &lt;- poenrcVol1 %&gt;%
+  select(sentence, novel, anger, anticipation, disgust,
+         fear, joy, sadness, surprise, trust) %&gt;%
+  melt(id = c(&quot;sentence&quot;, &quot;novel&quot;))
+
+# Rename columns
+colnames(emotions) &lt;- c(&quot;sentence&quot;, &quot;novel&quot;, &quot;sentiment&quot;, &quot;value&quot;)</code></pre>
+<p>And here we go.</p>
+<pre class="r"><code>library(ggthemes)
+library(viridis)
+
+# Just three of them, about the same length
+ggplot(emotions[which(emotions$novel %in%
+                        c(&quot;The Balloon-Hoax&quot;,
+                          &quot;Four Beasts in One--The Homo-Cameleopard&quot;,
+                          &quot;MS Found in a Bottle&quot;)),],
+       aes(x = sentence, y = sentiment, fill = value)) +
+  geom_tile(color = &quot;white&quot;, size = 0.1) +
+  facet_wrap(~novel, nrow = 3) +
+  scale_fill_viridis(name = &quot;&quot;) +
+  theme_tufte(base_family = &quot;Helvetica&quot;) +
+  labs(x = NULL, y = NULL,
+       title = expression(paste(&quot;Emotions in the Works of Edgar A. Poe&quot;))) +
+  scale_x_discrete(expand = c(0, 0)) +
+  theme(axis.text = element_text(size = 6)) +
+  theme(legend.title = element_text(size = 8))</code></pre>
+<p><img src="/post/2016-05-03-how-to-select-a-reading-depending-on-your-state-of-mind_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>Again, it is not really perfect. But somehow, we have a better idea of what happens in the text and when. But we didn’t resolve the length difference issue. Besides, we now have to deal with even more information, which makes the quick comparison among novels harder.</p>
+</div>
+<div id="and-now-for-something-completely-different" class="section level1">
+<h1>And now for something completely different</h1>
+<p>Following the very same steps, it’s relatively easy to extract sentiment of all Edgar Allan Poe novels from the four other volumes (all available from Gutenberg: <a href="http://www.gutenberg.org/ebooks/2148">Volume 2</a>, <a href="http://www.gutenberg.org/ebooks/2149">Volume 3</a>, <a href="http://www.gutenberg.org/ebooks/2150">Volume 4</a>, and <a href="http://www.gutenberg.org/ebooks/2151">Volume 5</a>).</p>
+<p>After that we can create a new dataframe combining values of all novels.</p>
+<pre class="r"><code># Create a new big dataframe
+df &lt;- rbind.data.frame(poenrcVol1, poenrcVol2, poenrcVol3, poenrcVol4, poenrcVol5)
+head(unique(df$novel), n = 5)
+## [1] The Unparalleled Adventures of One Hans Pfaall
+## [2] The Gold-Bug                                  
+## [3] Four Beasts in One--The Homo-Cameleopard      
+## [4] The Murders in the Rue Morgue                 
+## [5] The Mystery of Marie Roget                    
+## 65 Levels: Four Beasts in One--The Homo-Cameleopard ...</code></pre>
+<p>By now, we manage to get the sentiment out of 65 Edgar Allan Poe novels. Nice! I wasn’t able to localize a few of them, which were mentioned in the header but didn’t pop-up in the text. Anyway, 65 is enough to run a principal component analysis. All we have to do is to reorganize our dataframe to get the mean for each emotion. That way, we get rid of the length issue. It is surely not perfectly standardized and the shortest novels might be disadvantaged, but it’s worth a try.</p>
+<pre class="r"><code># Create a reorganized version of our dataframe
+library(plyr)
+
+dfnew &lt;- ddply(df, .(novel), summarise,
+            anger = mean(anger),
+            anticipation = mean(anticipation),
+            disgust = mean(disgust),
+            fear = mean(fear),
+            joy = mean(joy),
+            sadness = mean(sadness),
+            surprise = mean(surprise),
+            trust = mean(trust),
+            sentiment = mean(sentiment),
+            negative = mean(negative),
+            positive = mean(positive))
+
+# Name row (and remove novel from dataframe)
+rownames(dfnew) &lt;- dfnew$novel; dfnew$novel &lt;- NULL</code></pre>
+<p>Let’s run the PCA and have a look at the components.</p>
+<pre class="r"><code># Run the PCA and summarize components
+df.pca &lt;- prcomp(dfnew[,1:8], center = TRUE, scale = TRUE)
+summary(df.pca)
+## Importance of components:
+##                          PC1    PC2     PC3     PC4     PC5     PC6
+## Standard deviation     2.265 1.3699 0.57000 0.49109 0.44609 0.30879
+## Proportion of Variance 0.641 0.2346 0.04061 0.03015 0.02487 0.01192
+## Cumulative Proportion  0.641 0.8756 0.91623 0.94637 0.97125 0.98317
+##                            PC7     PC8
+## Standard deviation     0.30177 0.20880
+## Proportion of Variance 0.01138 0.00545
+## Cumulative Proportion  0.99455 1.00000</code></pre>
+<p>Great! The two first components explain almost 90% of the variance. Having a second through on that, it was pretty obvious. Some novels are really emotional, whereas others aren’t that much. The first component of the PCA largely reflects that emotional scale. In addition, emotions quantified can be roughly split into two groups: more positive ones (<em>i.e.</em>, joy, trust, surprise, and anticipation) and more negative ones (<em>i.e.</em>, sadness, anger, fear, and disgust). The second component of the PCA separates indeed pretty well more positive novels from more negative ones.</p>
+<p>But enough explanation, we now have only two dimensions left, which is perfectly suited for a nice plot. Before that, we might want to add a vector to indicate us the volume from which the novel was initially extracted and create some more dataframes containing other information we will need to nicely plot the data.</p>
+<pre class="r"><code># Add the volume number
+dfnew$volume &lt;- ifelse(row.names(dfnew) %in% poenrcVol1$novel, &quot;Volume 1&quot;,
+                       ifelse(row.names(dfnew) %in% poenrcVol2$novel, &quot;Volume 2&quot;,
+                       ifelse(row.names(dfnew) %in% poenrcVol3$novel, &quot;Volume 3&quot;,
+                       ifelse(row.names(dfnew) %in% poenrcVol4$novel, &quot;Volume 4&quot;,
+                       ifelse(row.names(dfnew) %in% poenrcVol5$novel, &quot;Volume 5&quot;, NA)))))
+
+# Create the scores dataframe
+scores &lt;- data.frame(dfnew, df.pca$x)
+
+# Calculate legend coordinates
+datapc &lt;- data.frame(df.pca$rotation)
+mult &lt;- min(
+  (max(scores$PC2) - min(scores$PC2)/(max(datapc$PC2)-min(datapc$PC2))),
+  (max(scores$PC1) - min(scores$PC1)/(max(datapc$PC1)-min(datapc$PC1))))
+datapc &lt;- transform(datapc,
+                    v1 = .7 * mult * (get(&quot;PC1&quot;)),
+                    v2 = .7 * mult * (get(&quot;PC2&quot;)))</code></pre>
+<p>And finally…</p>
+<pre class="r"><code>qplot(data = scores, x = PC1, y = PC2, size = 1+sentiment, colour = volume, alpha = 0.1) +
+  geom_text(alpha = .75, size = 2, aes(label = row.names(df.pca$x)), nudge_y = .3) +
+  ggtitle(&quot;&quot;) +
+  xlab(&quot;PC1&quot;) +
+  ylab(&quot;PC2&quot;) +
+  theme_minimal() +
+  scale_colour_brewer(palette = &quot;Set2&quot;) +
+  theme(legend.position = &quot;none&quot;) +
+  theme(legend.title = element_blank()) +
+  geom_text(data = datapc, aes(x = v1, y = v2, label = rownames(df.pca$rotation)),
+            size = 4, vjust = 1, color = &quot;black&quot;)</code></pre>
+<p><img src="/post/2016-05-03-how-to-select-a-reading-depending-on-your-state-of-mind_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>And there it’s! We can now easily see the differences between all novels. Left to the right they become more emotional. Besides, the more positive ones cluster at the top-right corner, whereas the more negative ones cluster at the bottom-right corner. Without any surprise, reading “The Landscape Garden”, “Old English Poetry”, or “The Poetic Principle” before sleeping seems a much wiser choice than reading “King Pest”, “The Masque of the Red Death”, or “The Black Cat”. That’s very sad, because I guess the later is one of my favorite!</p>
+<p>Colors are function of the complete work volume from which the novels were extracted. One can see that the “Orange” volume (the second) is extremely heterogeneous and contains more of the most negative novels, whereas “Pink” and “Green” (volume 4 and 5, respectively) contain the most positive ones. Moreover, “Cyan” (volume 1) is relatively homogeneous and concentrates around the middle. I’m not totally sure if this complete edition was established in a chronological order, but it could be interesting to have a look at Edgar Allan Poe’s life and career.</p>
+</div>
+<div id="whats-next" class="section level1">
+<h1>What’s next</h1>
+<p>Well, I most certainly want to double-check the results. I found the difference between the complete work volumes very interesting. I really would like to know if this difference is a real one and if yes: how to possibly explain it. In addition, Poe’s novels are commonly categorized into “Adventure”, “Humor”, “Horror”, <em>etc</em>. It could represent a way to quickly and roughly compare them. In adventure or humor tales, we rather expect a happy ending. In horror stories on the contrary, not so much. Focusing only on the end of each novel could be another rational approach. I guess I could also simply spend some evenings reading them again.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/syuzhet/">syuzhet</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/ggplot2/">ggplot2</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/dplyr/">dplyr</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/wikipedia-hall-of-fame/" data-tooltip="Wikipedia Hall of Fame">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2016/04/public-health-data-from-the-who/" data-tooltip="Public Health Data from the WHO">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/wikipedia-hall-of-fame/" data-tooltip="Wikipedia Hall of Fame">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2016/04/public-health-data-from-the-who/" data-tooltip="Public Health Data from the WHO">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2016%2F05%2Fhow-to-select-a-reading-depending-on-your-state-of-mind%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2016%2F05%2Fhow-to-select-a-reading-depending-on-your-state-of-mind%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2016%2F05%2Fhow-to-select-a-reading-depending-on-your-state-of-mind%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on In Code We Trust</title>
+    <link>/page/</link>
+    <description>Recent content in Pages on In Code We Trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Useful Resources</title>
+      <link>/page/useful-resources/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/page/useful-resources/</guid>
+      <description> Other websites  Bob Rudis&amp;rsquo;s blog, most beautiful visualizations Damiano Fantini&amp;rsquo;s blog, useful R and python code Hadley Wickham&amp;rsquo;s website, the R bible Julia Silge&amp;rsquo;s blog, a truly inspirational one  Diverse books  An introduction to statistical learning, a must have Practical Data Science with R, basic principles and real use cases R Graphics Cookbook, for ggplot2 heroes R in a Nutshell, quick reference for beginners  </description>
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>/page/about-me/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/page/about-me/</guid>
+      <description>I’m dual French-German Pharm.D./Ph.D. with years of research experience in immuno-oncology. Besides, being of an inquisitive nature, I usually get interested in miscellaneous subjects. I cultivate coding skills as well as a marked preference for Unix and R.
+During my Ph.D. I rapidly got submerged in data, so that I eventually had to code on a daily basis. Looking back, this turned out to be the most successful and enjoyable part of my work.</description>
+    </item>
+    
+  </channel>
+</rss>

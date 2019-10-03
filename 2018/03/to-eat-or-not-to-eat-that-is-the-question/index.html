@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.58.3 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="Using deep learning to predict edibility of mushrooms.">
+
+
+<meta property="og:description" content="Using deep learning to predict edibility of mushrooms.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="To Eat, or not to Eat, that is the Question">
+<meta name="twitter:title" content="To Eat, or not to Eat, that is the Question">
+<meta property="og:url" content="/2018/03/to-eat-or-not-to-eat-that-is-the-question/">
+<meta property="twitter:url" content="/2018/03/to-eat-or-not-to-eat-that-is-the-question/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="Using deep learning to predict edibility of mushrooms.">
+<meta name="twitter:description" content="Using deep learning to predict edibility of mushrooms.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-03-24T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-03-24T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Supervised Learning">
+    
+      <meta property="article:section" content="Deep Learning">
+    
+  
+  
+    
+      <meta property="article:tag" content="keras">
+    
+      <meta property="article:tag" content="recipes">
+    
+      <meta property="article:tag" content="lime">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="http://res.cloudinary.com/dk-find-out/image/upload/q_80,c_limit,h_160,w_160/MA_00098775_e0pnpp.png">
+  <meta property="twitter:image" content="http://res.cloudinary.com/dk-find-out/image/upload/q_80,c_limit,h_160,w_160/MA_00098775_e0pnpp.png">
+
+
+  <meta property="og:image" content="http://wallpoper.com/images/00/35/85/27/autumn-mushrooms_00358527.jpg">
+  <meta property="twitter:image" content="http://wallpoper.com/images/00/35/85/27/autumn-mushrooms_00358527.jpg">
+
+
+
+
+  <meta property="og:image" content="/logo/bio.png">
+  <meta property="twitter:image" content="/logo/bio.png">
+
+
+    <title>To Eat, or not to Eat, that is the Question</title>
+
+    <link rel="icon" href="logo/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="/2018/03/to-eat-or-not-to-eat-that-is-the-question/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('http://wallpoper.com/images/00/35/85/27/autumn-mushrooms_00358527.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      To Eat, or not to Eat, that is the Question
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-03-24T00:00:00Z">
+        
+  
+  
+  
+  
+    Mar 24, 2018
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/supervised-learning">Supervised Learning</a>, 
+    
+      <a class="category-link" href="/categories/deep-learning">Deep Learning</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p><a href="https://en.wikipedia.org/wiki/Mycology">Mycology</a> is the branch of biology concerned with the study of fungi, including their genetic and biochemical properties, their taxonomy and their use to humans as a source for tinder, medicine, food, and entheogens, as well as their dangers, such as toxicity or infection. It’s complicated and fascinating at the same time.</p>
+<p>I wasn’t particularly fond of it at the university.</p>
+<p>On the other hand I really enjoy eating mushroom. I normally buy them at the local market, so safety is no real concern of mine. Nevertheless, can we predict whether or not to eat a mushroom? How much would you trust a black-box model? Could we identify which characteristics help to differentiate eatable or poisonous mushrooms?</p>
+<div id="where-to-find-the-mushrooms" class="section level1">
+<h1>Where to find the mushrooms?</h1>
+<p>In woods, country paths, meadows, <em>etc</em>. Most likely. But I’m not going to reveal you some good spots, no no. This post isn’t about mushroom hunting (otherwise known as “shrooming”). We would simply like to learn which features spell certain death and which are most palatable in this dataset of mushroom characteristics.</p>
+<p>It was originally donated to the <a href="https://archive.ics.uci.edu/ml/datasets/Mushroom">UCI Machine Learning repository</a> and includes descriptions of hypothetical samples corresponding to 23 species of gilled mushrooms in the Agaricus and Lepiota family mushroom drawn from the <a href="https://www.amazon.com/National-Audubon-Society-American-Mushrooms/dp/0394519922">Audubon Society Field Guide to North American Mushrooms (1981)</a>. Each species is identified as definitely eatable or definitely poisonous.</p>
+<pre class="r"><code># Some settings
+temp &lt;- tempfile()
+url &lt;- &quot;https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data&quot;
+
+# Then download it
+curl_download(url, temp)
+
+# read it
+mush_data_raw &lt;- read.csv(temp, header = FALSE)
+
+# Name columns
+colnames(mush_data_raw) &lt;- c(&quot;class&quot;, &quot;cap-shape&quot;, &quot;cap-surface&quot;, &quot;cap-color&quot;,
+                             &quot;bruises&quot;, &quot;odor&quot;, &quot;gill-attachment&quot;, &quot;gill-spacing&quot;,
+                             &quot;gill-size&quot;, &quot;gill-color&quot;, &quot;stalk-shape&quot;, &quot;stalk-root&quot;,
+                             &quot;stalk-surface-above-ring&quot;, &quot;stalk-surface-below-ring&quot;,
+                             &quot;stalk-color-above-ring&quot;, &quot;stalk-color-below-ring&quot;,
+                             &quot;veil-type&quot;, &quot;veil-color&quot;, &quot;ring-number&quot;, &quot;ring-type&quot;,
+                             &quot;spore-print-color&quot;, &quot;population&quot;, &quot;habitat&quot;)
+
+# And correct colnames
+colnames(mush_data_raw) &lt;- gsub(&quot;-&quot;, &quot;_&quot;, colnames(mush_data_raw))</code></pre>
+<p>Let’s have a look inside.</p>
+<pre class="r"><code>glimpse(mush_data_raw)
+## Observations: 8,124
+## Variables: 23
+## $ class                    &lt;fct&gt; p, e, e, p, e, e, e, e, p, e, e, e, e...
+## $ cap_shape                &lt;fct&gt; x, x, b, x, x, x, b, b, x, b, x, x, b...
+## $ cap_surface              &lt;fct&gt; s, s, s, y, s, y, s, y, y, s, y, y, s...
+## $ cap_color                &lt;fct&gt; n, y, w, w, g, y, w, w, w, y, y, y, y...
+## $ bruises                  &lt;fct&gt; t, t, t, t, f, t, t, t, t, t, t, t, t...
+## $ odor                     &lt;fct&gt; p, a, l, p, n, a, a, l, p, a, l, a, a...
+## $ gill_attachment          &lt;fct&gt; f, f, f, f, f, f, f, f, f, f, f, f, f...
+## $ gill_spacing             &lt;fct&gt; c, c, c, c, w, c, c, c, c, c, c, c, c...
+## $ gill_size                &lt;fct&gt; n, b, b, n, b, b, b, b, n, b, b, b, b...
+## $ gill_color               &lt;fct&gt; k, k, n, n, k, n, g, n, p, g, g, n, w...
+## $ stalk_shape              &lt;fct&gt; e, e, e, e, t, e, e, e, e, e, e, e, e...
+## $ stalk_root               &lt;fct&gt; e, c, c, e, e, c, c, c, e, c, c, c, c...
+## $ stalk_surface_above_ring &lt;fct&gt; s, s, s, s, s, s, s, s, s, s, s, s, s...
+## $ stalk_surface_below_ring &lt;fct&gt; s, s, s, s, s, s, s, s, s, s, s, s, s...
+## $ stalk_color_above_ring   &lt;fct&gt; w, w, w, w, w, w, w, w, w, w, w, w, w...
+## $ stalk_color_below_ring   &lt;fct&gt; w, w, w, w, w, w, w, w, w, w, w, w, w...
+## $ veil_type                &lt;fct&gt; p, p, p, p, p, p, p, p, p, p, p, p, p...
+## $ veil_color               &lt;fct&gt; w, w, w, w, w, w, w, w, w, w, w, w, w...
+## $ ring_number              &lt;fct&gt; o, o, o, o, o, o, o, o, o, o, o, o, o...
+## $ ring_type                &lt;fct&gt; p, p, p, p, e, p, p, p, p, p, p, p, p...
+## $ spore_print_color        &lt;fct&gt; k, n, n, k, n, k, k, n, k, k, n, k, n...
+## $ population               &lt;fct&gt; s, n, n, s, a, n, n, s, v, s, n, s, s...
+## $ habitat                  &lt;fct&gt; u, g, m, u, g, g, m, m, g, m, g, m, g...</code></pre>
+<p>The first row contains what we are trying to predict: the <code>class</code> <code>e</code> and <code>p</code> referring to eatable and poisonous. I figured out that <code>veil_type</code> contains only <code>p</code> for partial in this list. This isn’t going to help to predict in any way and we can get rid of it.</p>
+<pre class="r"><code># Prune the data
+mush_data_tbl &lt;- mush_data_raw %&gt;%
+  select(-veil_type) %&gt;%
+  select(class, everything())</code></pre>
+<p>The guide clearly states that there is no simple rule for determining the edibility of a mushroom; no rule like “leaflets three, let it be” for poisonous Oak and Ivy. However, this was written years before the democratization of deep learning.</p>
+<p>Before actually trying it out, there is a need to partition the data into training and testing datasets. Using all the data to build the model could lead to overfitting where it might be able to predict well on current data that it sees as it is built on, but may not predict well on new data.</p>
+<pre class="r"><code>set.seed(123)
+
+# Split test/training sets
+train_test_split &lt;- initial_split(mush_data_tbl, prop = 0.8)
+
+# Quick sanity check
+train_test_split
+## &lt;6500/1624/8124&gt;</code></pre>
+<p>Training and testing sets can be retrieved using <code>training()</code> and <code>testing()</code> functions.</p>
+<pre class="r"><code># Retrieve train and test sets
+train_tbl &lt;- training(train_test_split)
+test_tbl &lt;- testing(train_test_split)</code></pre>
+</div>
+<div id="create-a-recipe" class="section level1">
+<h1>Create a recipe</h1>
+<p>Yes, not that we want to cook the mushroom right away - we don’t know if we can eat them yet. But <code>recipes</code> is a new package for preprocessing machine learning data sets. Basically, nothing more than a series of transformations - the steps of your recipe - we would like to perform on the different sets.</p>
+<pre class="r"><code># Create recipe
+rec_obj &lt;- recipe(class ~ ., data = train_tbl) %&gt;%
+  step_dummy(all_nominal(), -all_outcomes()) %&gt;%
+  step_center(all_predictors(), -all_outcomes()) %&gt;%
+  step_scale(all_predictors(), -all_outcomes()) %&gt;%
+  prep(data = train_tbl)</code></pre>
+<p>The goal is to predict the <code>class</code>, using all other variables. The good news is that we only have nominal predictors. The bad, we need to take care of them before injecting them in a neural network. <code>recipe</code> makes it easy to one-hot encode them all with a <code>step_dummy</code>. We can then center the values and finally scale them; <code>step_center</code> and <code>step_scale</code>, respectively.</p>
+<p>To sum up, our recipe will perform following.</p>
+<pre class="r"><code>rec_obj
+## Data Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor         21
+## 
+## Training data contained 6500 data points and no missing data.
+## 
+## Operations:
+## 
+## Dummy variables from cap_shape, cap_surface, cap_color, bruises, ... [trained]
+## Centering for cap_shape_c, cap_shape_f, ... [trained]
+## Scaling for cap_shape_c, cap_shape_f, ... [trained]</code></pre>
+<p>And now we need to bake our datasets. I removed the prediction <code>class</code> manually after realizing this wasn’t performed automatically by the recipe. It’s my understanding that this should have been done and I’d assume this will get fixed in a future update of the package.</p>
+<pre class="r"><code>x_train_tbl &lt;- bake(rec_obj, newdata = train_tbl) %&gt;%
+  select(-class)
+x_test_tbl &lt;- bake(rec_obj, newdata = test_tbl) %&gt;%
+  select(-class)</code></pre>
+<p>Definitively makes life so much easier, right?</p>
+<p>Last but not the least, we will need to store the <code>class</code>, which is needed for modeling the neural network as this is supervised learning.</p>
+<pre class="r"><code>y_train &lt;- ifelse(pull(train_tbl, class) == &quot;e&quot;, 1, 0)
+y_test &lt;- ifelse(pull(test_tbl, class) == &quot;e&quot;, 1, 0)</code></pre>
+</div>
+<div id="building-an-artificial-neural-network" class="section level1">
+<h1>Building an artificial neural network</h1>
+<p>Could the computer go beyond “whatever we know how to order it to perform” and learn on its own how to perform a specified task? To make a long story short: yes. For those unfamiliar with machine and deep learning, read <a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/1">this chapter</a> from the excellent <a href="https://www.manning.com/books/deep-learning-with-r">Deep Learning with R</a> from François Chollet and J. J. Allaire. The clearest explanation I know and the best introduction to the world of deep learning using the powerful Keras library.</p>
+<p>Let’s initialize a sequential model.</p>
+<pre class="r"><code>model_keras &lt;- keras_model_sequential()</code></pre>
+<p>Then apply some layers to it. Three.</p>
+<pre class="r"><code>model_keras %&gt;%
+  # First hidden layer
+  layer_dense(units = 8, kernel_initializer = &quot;uniform&quot;, activation = &quot;relu&quot;, input_shape = ncol(x_train_tbl)) %&gt;%
+  # Dropout to prevent overfitting
+  layer_dropout(rate = 0.1) %&gt;%
+  # Second hidden layer
+  layer_dense(units = 4, kernel_initializer = &quot;uniform&quot;, activation = &quot;relu&quot;) %&gt;%
+  # Dropout to prevent overfitting
+  layer_dropout(rate = 0.1) %&gt;%
+  # Output layer
+  layer_dense(units = 1, kernel_initializer = &quot;uniform&quot;, activation = &quot;sigmoid&quot;) %&gt;%
+  # Compile
+  compile(optimizer = &#39;adam&#39;, loss = &#39;binary_crossentropy&#39;, metrics = c(&#39;accuracy&#39;))</code></pre>
+<p>Dropout layers are used to control overfitting. This was inspired by a fraud-prevention mechanism used in banks and aims at preventing conspiracies among employees. It introduces some random and artificial noise to break-up happenstance patterns that aren’t significant.</p>
+<p>Good, our model is now defined as.</p>
+<pre class="r"><code>model_keras
+## Model
+## ___________________________________________________________________________
+## Layer (type)                     Output Shape                  Param #     
+## ===========================================================================
+## dense_1 (Dense)                  (None, 8)                     768         
+## ___________________________________________________________________________
+## dropout_1 (Dropout)              (None, 8)                     0           
+## ___________________________________________________________________________
+## dense_2 (Dense)                  (None, 4)                     36          
+## ___________________________________________________________________________
+## dropout_2 (Dropout)              (None, 4)                     0           
+## ___________________________________________________________________________
+## dense_3 (Dense)                  (None, 1)                     5           
+## ===========================================================================
+## Total params: 809
+## Trainable params: 809
+## Non-trainable params: 0
+## ___________________________________________________________________________</code></pre>
+<p>And can be fitted on the training data.</p>
+<pre class="r"><code>fit_keras &lt;- fit(object = model_keras, x = as.matrix(x_train_tbl), y = y_train,
+                 batch_size = 50, epochs = 35, validation_split = 0.20)</code></pre>
+<p>Training and validation history looks like this.</p>
+<pre class="r"><code>plot(fit_keras) +
+  theme_minimal() +
+  scale_fill_brewer(palette = &quot;Pastel1&quot;) +
+  scale_color_brewer(palette = &quot;Pastel1&quot;) +
+  theme(legend.title = element_blank()) +
+  theme(axis.title.y = element_blank())</code></pre>
+<p><img src="/post/2018-03-24-to-eat-or-not-to-eat-that-is-the-question_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><code>yardstick</code> comes in very handy to quickly calculate metrics.</p>
+<pre class="r"><code># Predicted class
+keras_class &lt;- predict_classes(object = model_keras, x = as.matrix(x_test_tbl)) %&gt;%
+  as.vector()
+
+# Predicted class prob
+keras_prob  &lt;- predict_proba(object = model_keras, x = as.matrix(x_test_tbl)) %&gt;%
+  as.vector()
+
+# Format test data and predictions for yardstick metrics
+estimates_keras_tbl &lt;- tibble(truth = as.factor(y_test) %&gt;% fct_recode(Eatable = &quot;1&quot;, Poisonous = &quot;0&quot;),
+  estimate = as.factor(keras_class) %&gt;% fct_recode(Eatable = &quot;1&quot;, Poisonous = &quot;0&quot;), class_prob = keras_prob)
+
+options(yardstick.event_first = FALSE)</code></pre>
+<p>Coming back to our mushroom’s classification problem.</p>
+<pre class="r"><code># Confusion table
+estimates_keras_tbl %&gt;%
+  conf_mat(truth, estimate)
+##            Truth
+## Prediction  Poisonous Eatable
+##   Poisonous       759      41
+##   Eatable           0     824
+
+# Accuracy
+estimates_keras_tbl %&gt;%
+  metrics(truth, estimate)
+## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.975
+## 2 kap      binary         0.949
+
+# AUC
+estimates_keras_tbl %&gt;%
+  roc_auc(truth, class_prob)
+## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.999</code></pre>
+<p>We get a totally mind blowing ~99% accuracy. And this is only a quick and dirty first test! We can clearly see on the training and validation history that some tuning and possibly testing different classification algorithms may yield even better results.</p>
+<p>In real life, however, the few false positive predictions we made here may have you landing directly in the emergency medical unit from the next hospital. Still this is probably already a near-human-level classification because yes, human make mistakes too.</p>
+</div>
+<div id="using-lime-for-feature-importance-plot" class="section level1">
+<h1>Using LIME for feature importance plot</h1>
+<p>LIME stands for Local Interpretable Model-agnostic Explanations, and is a method for explaining black-box machine learning model classifiers. Sometimes you don’t know if you can trust a machine learning prediction as you also need to know if you can trust the model itself.</p>
+<p>Let’s use two functions to set up LIME from the excellent and very inspirational <a href="http://www.business-science.io/business/2017/11/28/customer_churn_analysis_keras.html">post from Matt Dancho</a>. In fact most of the code here was adapted from it to fit on the mushroom’s classification problem. They have fantastic explanation too, if I’ve lost you here.</p>
+<pre class="r"><code># Setup lime::model_type() function for keras
+model_type.keras.models.Sequential &lt;- function(x, ...) {
+  return(&quot;classification&quot;)
+}
+
+# Setup lime::predict_model() function for keras
+predict_model.keras.models.Sequential &lt;- function(x, newdata, type, ...) {
+  pred &lt;- predict_proba(object = x, x = as.matrix(newdata))
+  return(data.frame(Yes = pred, No = 1 - pred))
+}</code></pre>
+<p>Let’s run the explainer and create explanation for the first six mushrooms.</p>
+<pre class="r"><code># Run lime() on training set
+explainer &lt;- lime::lime(x = x_train_tbl, model = model_keras, bin_continuous = FALSE)
+
+# Run explain() on explainer
+explanation &lt;- lime::explain(x_test_tbl[1:6, ], explainer = explainer, n_labels = 1,
+  n_features = 5, kernel_width = 0.5)</code></pre>
+<p>Which we can plot to have a look at what the model used to label them all six.</p>
+<pre class="r"><code>plot_features(explanation) +
+  scale_fill_manual(values = c(brewer.pal(3, &quot;Pastel1&quot;)[3], brewer.pal(3, &quot;Pastel1&quot;)[1])) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.text.y = element_text(size = 4)) +
+  theme(legend.position = &quot;none&quot;) +
+  labs(title = &quot;LIME Feature Importance Visualization&quot;,
+       subtitle = &quot;hold out (test) set, first 6 cases shown&quot;)</code></pre>
+<p><img src="/post/2018-03-24-to-eat-or-not-to-eat-that-is-the-question_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>We visualize here the top five features. Surprisingly, it looks like four are sufficient enough for the model to decide. The green bars mean that the feature supports the model conclusion, and the red bars contradict. To predict if a mushroom is eatable or not our model mainly uses:</p>
+<ul>
+<li>odor definitively the most relevant piece of information</li>
+<li>gill spacing also very important was used in five cases</li>
+<li>spore print color seems important in 50% of the cases</li>
+</ul>
+<p>For a global perspective about what drives feature importance we can perform a correlation analysis on the training set as well. This will help analyze what features correlate globally with the possibility to eat a mushroom. Correlations are calculated as follows.</p>
+<pre class="r"><code>corrr_analysis &lt;- x_train_tbl %&gt;%
+  mutate(eatable = y_train) %&gt;%
+  correlate() %&gt;%
+  focus(eatable) %&gt;%
+  rename(feature = rowname) %&gt;%
+  arrange(abs(eatable)) %&gt;%
+  mutate(feature = as_factor(feature))</code></pre>
+<p>Which allows us to plot.</p>
+<pre class="r"><code>corrr_analysis %&gt;%
+  ggplot(aes(x = eatable, y = fct_reorder(feature, desc(eatable)))) +
+  geom_point() +
+  # positive correlations - likelihood eatable
+  geom_segment(aes(xend = 0, yend = feature),
+               color = brewer.pal(3, &quot;Pastel1&quot;)[3],
+               data = corrr_analysis %&gt;% filter(eatable &gt; 0),
+               size = .25) +
+  geom_point(color = brewer.pal(3, &quot;Pastel1&quot;)[3],
+             data = corrr_analysis %&gt;% filter(eatable &gt; 0)) +
+  # negative correlations - likelihood poisonous
+  geom_segment(aes(xend = 0, yend = feature),
+               color = brewer.pal(3, &quot;Pastel1&quot;)[1],
+               data = corrr_analysis %&gt;% filter(eatable &lt; 0),
+               size = .25) +
+  geom_point(color = brewer.pal(3, &quot;Pastel1&quot;)[1],
+             data = corrr_analysis %&gt;% filter(eatable &lt; 0)) +
+  # aesthetics
+  scale_x_continuous(breaks = seq(-1, 1, .25)) +
+  theme_minimal() +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank()) +
+  theme(axis.text.y = element_text(size = 4)) +
+  labs(title = &quot;Mushroom Correlation Analysis&quot;,
+       subtitle = &quot;likelihood poisonous versus likelihood eatable&quot;)</code></pre>
+<p><img src="/post/2018-03-24-to-eat-or-not-to-eat-that-is-the-question_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Without big surprise we find that odor, gill, and spore are determinant to classify the mushrooms. Clearly the ring, bruises, and stalk are extremely important too. The guide is right in stating that there is no simple rule for determining the edibility, although a couple of rules could maybe give an accurate prediction.</p>
+<p>Let’s see how this could look.</p>
+<pre class="r"><code>mush_data_raw %&gt;%
+  ggplot(aes(x = as.factor(stalk_surface_above_ring), y = as.factor(gill_size), color = class)) +
+  geom_jitter() +
+  scale_color_manual(breaks = c(&quot;No&quot;,&quot;Yes&quot;),
+                     values = c(brewer.pal(3, &quot;Pastel1&quot;)[3], brewer.pal(3, &quot;Pastel1&quot;)[1])) +
+  scale_x_discrete(breaks = c(&quot;f&quot;, &quot;k&quot;, &quot;s&quot;, &quot;y&quot;),
+                   labels = c(&quot;fibrous&quot;, &quot;silky&quot;, &quot;smooth&quot;, &quot;scaly&quot;)) +
+  scale_y_discrete(breaks = c(&quot;b&quot;, &quot;n&quot;),
+                   labels = c(&quot;broad&quot;, &quot;narrow&quot;)) +
+  theme_minimal() +
+  theme(legend.title = element_blank()) +
+  theme(axis.text.x = element_text(angle = 45, vjust = .5)) +
+  theme(axis.text.y = element_text(angle = 45, vjust = -.5)) +
+  labs(x = &quot;Stalk surface above ring&quot;, y = &quot;Gill size&quot;,
+       title = &quot;Edibility of mushrooms: rule one.&quot;,
+       subtitle = &quot;using stalk surface above ring and gill syze&quot;)</code></pre>
+<p><img src="/post/2018-03-24-to-eat-or-not-to-eat-that-is-the-question_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Not bad but still very risky.</p>
+<pre class="r"><code>mush_data_raw %&gt;%
+  ggplot(aes(x = as.factor(odor), y = as.factor(ring_type), color = class)) +
+  geom_jitter() +
+  scale_color_manual(breaks = c(&quot;No&quot;,&quot;Yes&quot;),
+                     values = c(brewer.pal(3, &quot;Pastel1&quot;)[3], brewer.pal(3, &quot;Pastel1&quot;)[1])) +
+  scale_x_discrete(breaks = c(&quot;a&quot;, &quot;c&quot;, &quot;f&quot;, &quot;l&quot;, &quot;m&quot;, &quot;n&quot;, &quot;p&quot;, &quot;s&quot;, &quot;y&quot;),
+                      labels = c(&quot;almond&quot;, &quot;creosote&quot;, &quot;foul&quot;,
+                                 &quot;anise&quot;, &quot;musty&quot;, &quot;none&quot;,
+                                 &quot;pungent&quot;, &quot;spicy&quot;, &quot;fishy&quot;)) +
+  scale_y_discrete(breaks = c(&quot;e&quot;, &quot;f&quot;, &quot;l&quot;, &quot;n&quot;, &quot;p&quot;),
+                      labels = c(&quot;evanescent&quot;, &quot;flaring&quot;, &quot;large&quot;,
+                                 &quot;none&quot;, &quot;pendant&quot;)) +
+  theme_minimal() +
+  theme(legend.title = element_blank()) +
+  theme(axis.text.x = element_text(angle = 45, vjust = .5)) +
+  theme(axis.text.y = element_text(angle = 45, vjust = -.5)) +
+  labs(x = &quot;Odor&quot;, y = &quot;Ring type&quot;,
+       title = &quot;Edibility of mushrooms: rule two.&quot;,
+       subtitle = &quot;using odor and ring type&quot;)</code></pre>
+<p><img src="/post/2018-03-24-to-eat-or-not-to-eat-that-is-the-question_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>This is already much better and really helps to avoid most of the poisonous mushrooms. If it smells like almond or anise (and provided your mushroom was in this dataset) you can go ahead. However, if it has no particular smell, and if the ring isn’t flaring you need to be more careful before eating your prey.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Well, this is a good example of how deep learning can help with classification problem. Building the neural network model using the Keras package with a little help from <code>recipe</code> is very easy and results are jaw-dropping: very few lines of code and without any tuning of the model we can get an accuracy superior to 99%. The real good news is that from now on, using <code>lime</code> we can explain the model. This was traditionally a difficult task although it’s really utterly important to know what variable it uses if anybody is to trust it.</p>
+<p>As for the mushrooms, we were able to define critical items you should be paying attention to before bringing them back home and throw them in the pane. Odor is the most critical one. But as the guide stated, there is no golden rule you can use to decide, more like two or three questions (the model used four features) you should ask yourself to evaluate the risk. The model has a really low false positive rate, but after all any mistakes here could be deadly and you should be really careful.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/keras/">keras</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/recipes/">recipes</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/lime/">lime</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/11/my-heart-will-go-down/" data-tooltip="My Heart Will Go Down">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/" data-tooltip="Road Accidents and Safety Data in the United Kingdom">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/03/to-eat-or-not-to-eat-that-is-the-question/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/03/to-eat-or-not-to-eat-that-is-the-question/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/03/to-eat-or-not-to-eat-that-is-the-question/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/11/my-heart-will-go-down/" data-tooltip="My Heart Will Go Down">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/" data-tooltip="Road Accidents and Safety Data in the United Kingdom">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/03/to-eat-or-not-to-eat-that-is-the-question/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/03/to-eat-or-not-to-eat-that-is-the-question/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/03/to-eat-or-not-to-eat-that-is-the-question/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F03%2Fto-eat-or-not-to-eat-that-is-the-question%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F03%2Fto-eat-or-not-to-eat-that-is-the-question%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2018%2F03%2Fto-eat-or-not-to-eat-that-is-the-question%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

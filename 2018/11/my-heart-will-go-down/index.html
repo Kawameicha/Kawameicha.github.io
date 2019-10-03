@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.58.3 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="All has been said, so let&rsquo;s call it an introduction to machine learning.">
+
+
+<meta property="og:description" content="All has been said, so let&rsquo;s call it an introduction to machine learning.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="My Heart Will Go Down">
+<meta name="twitter:title" content="My Heart Will Go Down">
+<meta property="og:url" content="/2018/11/my-heart-will-go-down/">
+<meta property="twitter:url" content="/2018/11/my-heart-will-go-down/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="All has been said, so let&rsquo;s call it an introduction to machine learning.">
+<meta name="twitter:description" content="All has been said, so let&rsquo;s call it an introduction to machine learning.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-11-30T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-11-30T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Supervised Learning">
+    
+      <meta property="article:section" content="Random Forest">
+    
+  
+  
+    
+      <meta property="article:tag" content="corrplot">
+    
+      <meta property="article:tag" content="rpart">
+    
+      <meta property="article:tag" content="randomForest">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="https://images-na.ssl-images-amazon.com/images/I/51S2KRQm-2L._AC_UL160_SR160,160_.jpg">
+  <meta property="twitter:image" content="https://images-na.ssl-images-amazon.com/images/I/51S2KRQm-2L._AC_UL160_SR160,160_.jpg">
+
+
+  <meta property="og:image" content="http://www.astrosurf.com/luxorion/Sciences/titanic-jason.jpg">
+  <meta property="twitter:image" content="http://www.astrosurf.com/luxorion/Sciences/titanic-jason.jpg">
+
+
+
+
+  <meta property="og:image" content="/logo/bio.png">
+  <meta property="twitter:image" content="/logo/bio.png">
+
+
+    <title>My Heart Will Go Down</title>
+
+    <link rel="icon" href="logo/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="/2018/11/my-heart-will-go-down/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('http://www.astrosurf.com/luxorion/Sciences/titanic-jason.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      My Heart Will Go Down
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-11-30T00:00:00Z">
+        
+  
+  
+  
+  
+    Nov 30, 2018
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/supervised-learning">Supervised Learning</a>, 
+    
+      <a class="category-link" href="/categories/random-forest">Random Forest</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>The sinking of the <a href="https://en.wikipedia.org/wiki/RMS_Titanic">RMS Titanic</a> on April 15, 1912 after colliding with an iceberg during her maiden voyage from Southampton to New York City, is one of the most infamous shipwrecks in history. It is one of the deadliest commercial peacetime maritime disasters in modern history, killing 1502 out of 2224 passengers and crew and this sensational tragedy shocked the international community. Both Thomas Andrews, her architect, and Capt. Edward Smith, who was in command, went down with the ship.</p>
+<p>Being designed to be the pinnacle of comfort and luxury, with an on-board gymnasium, swimming pool, libraries, high-class restaurants and opulent cabins, the ocean liner carried some of the wealthiest people in the world. However, hundreds of emigrants from Great Britain and elsewhere who were seeking a new life in the United States were also on board. Although there was some element of luck involved in surviving the sinking, some groups of people were more likely to survive than others, such as women, children, and the upper-class.</p>
+<p>Provided we get access to relevant data, we can complete the analysis of what sorts of people had more chance to survive the disaster. It’s a classical problem: predict the outcome of a binary event.</p>
+<div id="without-data-youre-just-another-person-with-an-opinion" class="section level1">
+<h1>Without data you’re just another person with an opinion</h1>
+<p>The dataset is luckily given to us on a golden plate, with both test and train data included in the <code>titanic</code> package.</p>
+<pre class="r"><code># Load the data
+train_tit_raw &lt;- titanic_train</code></pre>
+<p>The <em>Titanic</em> passengers were divided into three separate classes and anybody who’s watched the movie knows that this, along with the passenger’s sex and fare, plays a big role in survival. In the end Jack dies and Rose survives.</p>
+<p>Let’s take a quick look at what we know about these people.</p>
+<pre class="r"><code># Greet the data
+glimpse(train_tit_raw)
+## Observations: 891
+## Variables: 12
+## $ PassengerId &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…
+## $ Survived    &lt;int&gt; 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1…
+## $ Pclass      &lt;int&gt; 3, 1, 3, 1, 3, 3, 1, 3, 3, 2, 3, 1, 3, 3, 3, 2, 3, 2…
+## $ Name        &lt;chr&gt; &quot;Braund, Mr. Owen Harris&quot;, &quot;Cumings, Mrs. John Bradl…
+## $ Sex         &lt;chr&gt; &quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;…
+## $ Age         &lt;dbl&gt; 22, 38, 26, 35, 35, NA, 54, 2, 27, 14, 4, 58, 20, 39…
+## $ SibSp       &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 3, 0, 1, 1, 0, 0, 1, 0, 0, 4, 0…
+## $ Parch       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 1, 0, 0, 5, 0, 0, 1, 0…
+## $ Ticket      &lt;chr&gt; &quot;A/5 21171&quot;, &quot;PC 17599&quot;, &quot;STON/O2. 3101282&quot;, &quot;113803…
+## $ Fare        &lt;dbl&gt; 7.2500, 71.2833, 7.9250, 53.1000, 8.0500, 8.4583, 51…
+## $ Cabin       &lt;chr&gt; &quot;&quot;, &quot;C85&quot;, &quot;&quot;, &quot;C123&quot;, &quot;&quot;, &quot;&quot;, &quot;E46&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;G…
+## $ Embarked    &lt;chr&gt; &quot;S&quot;, &quot;C&quot;, &quot;S&quot;, &quot;S&quot;, &quot;S&quot;, &quot;Q&quot;, &quot;S&quot;, &quot;S&quot;, &quot;S&quot;, &quot;C&quot;, &quot;S…</code></pre>
+<ul>
+<li><code>PassengerID</code> has to be a random unique identifier, and has no impact on the outcome variable. We can happily ignore it for this work.</li>
+<li><code>Survived</code> variable is our outcome or dependent variable. It is a binary nominal datatype of 1 for survived and 0 for did not survive.</li>
+<li><code>Pclass</code> is an ordinal datatype for the ticket class indicating passenger socio-economic status, 1 = upper, 2 = middle, and 3 = lower.</li>
+<li><code>Name</code> is a nominal datatype. It’s relatively useless as such, but can be used in feature engineering to derive gender and precise title.</li>
+<li><code>Sex</code> is, well, quite straightforward right?</li>
+<li><code>Age</code> is… Oh come on, I shouldn’t have to explain you all this really.</li>
+<li><code>SibSp</code> represents number of related siblings/spouse aboard and;</li>
+<li><code>Parch</code> the number of related parents/children aboard. Could be used to determine how many relatives were present on board.</li>
+<li><code>Ticket</code> is useless here. It might include information about class or fare but cannot be decoded. This has to be excluded too.</li>
+<li><code>Fare</code> is a continuous quantitative datatype. The price charged to transport the passenger.</li>
+<li><code>Cabin</code> could be used to determine approximate position on ship during the disaster (iceberg was hit at 11:40pm ship’s time).</li>
+<li><code>Embarked</code> is a nominal datatype indicating the port of embarkation.</li>
+</ul>
+<p>Using this we’d like to predict which passengers survived the tragedy and what are the most important variables.</p>
+</div>
+<div id="prepare-data-for-consumption" class="section level1">
+<h1>Prepare data for consumption</h1>
+<p>Most of the work has been done already and there is no need for hardcore data wrangling. The package provides easily manageable data. Nevertheless, we can do some data cleaning to identify aberrant or missing data points and potential information we can derive from what is included here.</p>
+<p>First let’s look at a NA’s X-ray <a href="#fig:X-ray">1</a>. I call it like this because it returns something very similar to an X-ray, only it highlights missing values.</p>
+<pre class="r"><code># Heatmap all NAs
+train_tit_raw %&gt;%
+  is.na %&gt;%
+  melt %&gt;%
+  # plot a visual take on the missing values
+  ggplot(aes(x = Var2, y = Var1)) +
+  geom_raster(aes(fill = value)) +
+  scale_fill_brewer(palette = &quot;Greys&quot;) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = .5),
+        panel.grid.minor=element_blank(),
+        panel.grid.major=element_blank(),
+        axis.text.y = element_blank()) +
+  theme(legend.position = &quot;none&quot;) +
+  labs(x = NULL, y = &quot;PassengerID&quot;,
+       title = &quot;NA&#39;s X-ray&quot;,
+       subtitle = &quot;NA&#39;s are displayed black&quot;,
+       caption = &quot;source: Titanic passenger survival data set&quot;)</code></pre>
+<div class="figure"><span id="fig:X-ray"></span>
+<img src="/post/2018-11-30-my-heart-will-go-down_files/figure-html/X-ray-1.png" alt="X-ray highlighting missing values." width="672" />
+<p class="caption">
+Figure 1: X-ray highlighting missing values.
+</p>
+</div>
+<p>Okay, so there are some NA values in the age. This could be bad as some algorithms don’t know how-to handle null values. I propose we impute <code>Age</code> simply using the median for now.</p>
+<p>There are many, too many, null values in <code>Ticket</code> as well. But I said earlier this variable will be dropped anyway as we cannot decode it.</p>
+<pre class="r"><code>train_tit &lt;- train_tit_raw %&gt;% 
+  mutate(Age = replace_na(Age, median(Age, na.rm = TRUE))) %&gt;% 
+  # and remove PassengerId, Ticket, and Cabin
+  select(-PassengerId, -Ticket, -Cabin)</code></pre>
+</div>
+<div id="more-predictors-do-not-make-a-better-model" class="section level1">
+<h1>More predictors do not make a better model</h1>
+<p>But selecting the right variables helps, quite a lot. Many independent features that each correlate well with the class will make the learning easier and of course, if the class is a very complex function of the features, you may not be able to learn it at all. Doing machine learning often implies spending quite a long time getting the raw data in a form that allows best to learn from it. It can also be one of the most interesting parts and has been described as <a href="https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf">the most important factor</a> in determining the success or failure of your predictive model.</p>
+<p>Three quick examples to help illustrate this.</p>
+<p>First guess: the passenger’s class matters.</p>
+<pre class="r"><code>train_tit %&gt;% 
+  group_by(Pclass) %&gt;%
+  summarise(died = sum(Survived == 0),
+            total = n(),
+            freq = died/total)
+## # A tibble: 3 x 4
+##   Pclass  died total  freq
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+## 1      1    80   216 0.370
+## 2      2    97   184 0.527
+## 3      3   372   491 0.758</code></pre>
+<p>Bingo… Okay, okay, this was clear already. But helps us set a baseline.</p>
+<p>Let’s save this as an histogram for a visualization down the road <a href="#fig:deathRate">2</a>.</p>
+<pre class="r"><code>pClass &lt;- train_tit %&gt;% 
+  mutate(Pclass = factor(case_when(Pclass == 1 ~ &quot;First&quot;,
+                                   Pclass == 2 ~ &quot;Second&quot;,
+                                   Pclass == 3 ~ &quot;Third&quot;),
+                         # let&#39;s scale x as we know the rates already
+                         levels = c(&quot;Third&quot;, &quot;Second&quot;, &quot;First&quot;))) %&gt;% 
+  group_by(Pclass) %&gt;%
+  summarise(died = sum(Survived == 0),
+            total = n(),
+            freq = died/total) %&gt;% 
+  ggplot(aes(x = Pclass, y = freq, fill = as.factor(Pclass))) +
+  geom_bar(stat = &quot;identity&quot;, alpha = .9, position = position_dodge()) +
+  theme_minimal() +
+  scale_fill_brewer(palette = &quot;RdYlBu&quot;) +
+  theme(legend.position=&quot;none&quot;) +
+  labs(x = NULL, y = &quot;Death rate&quot;,
+       title = &quot;Death rate among passengers&quot;,
+       subtitle = &quot;Organized from the highest to the lowest death rate&quot;,
+       caption = &quot;&quot;)</code></pre>
+<p>Second one: the passenger’s title too. Remember this can be extracted from the column <code>Name</code>.</p>
+<pre class="r"><code>train_tit %&gt;% 
+  mutate(Title = case_when(grepl(&quot;Miss.&quot;, Name) ~ &quot;Miss.&quot;,
+                           grepl(&quot;Mrs.&quot;, Name) ~ &quot;Mrs.&quot;,
+                           grepl(&quot;Mr.&quot;, Name) ~ &quot;Mr.&quot;,
+                           grepl(&quot;Master.&quot;, Name) ~ &quot;Master.&quot;,
+                           # the rest represents ~2%
+                           TRUE ~ as.character(&quot;Others&quot;))) %&gt;% 
+  group_by(Title) %&gt;%
+  summarise(died = sum(Survived == 0),
+            total = n(),
+            freq = died/total)
+## # A tibble: 5 x 4
+##   Title    died total  freq
+##   &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+## 1 Master.    17    40 0.425
+## 2 Miss.      55   182 0.302
+## 3 Mr.       436   518 0.842
+## 4 Mrs.       26   127 0.205
+## 5 Others     15    24 0.625</code></pre>
+<p>Here we go.</p>
+<p>I’m a little unsure about the meaning of Master here. This isn’t an academic title as it seems reserved to very young male children. Whatever is special about them, at least we can say they’ve definitively mastered the art of survival at sea.</p>
+<p>Okay, let’s save this one as an histogram too <a href="#fig:deathRate">2</a>.</p>
+<pre class="r"><code>title &lt;- train_tit %&gt;% 
+  mutate(Title = factor(case_when(grepl(&quot;Miss.&quot;, Name) ~ &quot;Miss.&quot;,
+                                  grepl(&quot;Mrs.&quot;, Name) ~ &quot;Mrs.&quot;,
+                                  grepl(&quot;Mr.&quot;, Name) ~ &quot;Mr.&quot;,
+                                  grepl(&quot;Master.&quot;, Name) ~ &quot;Master.&quot;,
+                                  # the rest represents ~2%
+                                  TRUE ~ as.character(&quot;Others&quot;)),
+                        # let&#39;s scale x as we know the rates alread
+                        levels = c(&quot;Mr.&quot;, &quot;Others&quot;, &quot;Master.&quot;, &quot;Miss.&quot;, &quot;Mrs.&quot;))) %&gt;% 
+  group_by(Title) %&gt;%
+  summarise(died = sum(Survived == 0),
+            total = n(),
+            freq = died/total) %&gt;% 
+  ggplot(aes(x = Title, y = freq, fill = Title)) +
+  geom_bar(stat = &quot;identity&quot;, alpha = .9, position = position_dodge()) +
+  theme_minimal() +
+  scale_fill_brewer(palette = &quot;RdYlBu&quot;) +
+  theme(legend.position=&quot;none&quot;) +
+  labs(x = NULL, y = &quot;&quot;,
+       title = &quot;&quot;,
+       subtitle = &quot;&quot;,
+       caption = &quot;&quot;)</code></pre>
+<p>Last guess: who had family on board.</p>
+<pre class="r"><code>train_tit %&gt;% 
+  mutate(Family = case_when(SibSp == 0 &amp; Parch == 0 ~ &quot;Alone&quot;,
+                            SibSp == 1 &amp; Parch == 0 ~ &quot;Couple&quot;,
+                            SibSp == 0 &amp; Parch &gt;= 1 ~ &quot;Parents&quot;,
+                            SibSp &gt;= 2 &amp; Parch == 0 ~ &quot;Siblings&quot;,
+                            SibSp &gt;= 1 &amp; Parch &gt;= 1 ~ &quot;Family&quot;)) %&gt;% 
+  group_by(Family) %&gt;%
+  summarise(died = sum(Survived == 0),
+            total = n(),
+            freq = died/total)
+## # A tibble: 5 x 4
+##   Family    died total  freq
+##   &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+## 1 Alone      374   537 0.696
+## 2 Couple      59   123 0.480
+## 3 Family      80   142 0.563
+## 4 Parents     24    71 0.338
+## 5 Siblings    12    18 0.667</code></pre>
+<p>This looks interesting too. Being on your own or with siblings only was the worse case. Lonely travelers were predominantly male. Having your family on board really increased chances of at least some surviving the disaster probably because these families were able to “save women and children first”. Being a couple certainly helped you to save at least your wife and travelling as a parent with children was the best way to find a seat in a lifeboat.</p>
+<p>We should save this as well <a href="#fig:deathRate">2</a>.</p>
+<pre class="r"><code>family &lt;- train_tit %&gt;% 
+  mutate(Family = factor(case_when(SibSp == 0 &amp; Parch == 0 ~ &quot;Alone&quot;,
+                                   SibSp == 1 &amp; Parch == 0 ~ &quot;Couple&quot;,
+                                   SibSp == 0 &amp; Parch &gt;= 1 ~ &quot;Parents&quot;,
+                                   SibSp &gt;= 2 &amp; Parch == 0 ~ &quot;Siblings&quot;,
+                                   SibSp &gt;= 1 &amp; Parch &gt;= 1 ~ &quot;Family&quot;),
+                         # let&#39;s scale x as we know the rates already
+                         levels = c(&quot;Alone&quot;, &quot;Siblings&quot;, &quot;Family&quot;, &quot;Couple&quot;, &quot;Parents&quot;))) %&gt;% 
+  group_by(Family) %&gt;%
+  summarise(died = sum(Survived == 0),
+            total = n(),
+            freq = died/total) %&gt;% 
+  ggplot(aes(x = Family, y = freq, fill = Family)) +
+  geom_bar(stat = &quot;identity&quot;, alpha = .9, position = position_dodge()) +
+  theme_minimal() +
+  scale_fill_brewer(palette = &quot;RdYlBu&quot;) +
+  theme(legend.position=&quot;none&quot;) +
+  labs(x = NULL, y = &quot;&quot;,
+       title = &quot;&quot;,
+       subtitle = &quot;&quot;,
+       caption = &quot;source: Titanic passenger survival data set&quot;)</code></pre>
+<p>Finally, we can quickly organize this into a layout.</p>
+<pre class="r"><code>grid.arrange(pClass, title, family, layout_matrix = rbind(c(1 ,2, 2), c(1, 3, 3)))</code></pre>
+<div class="figure"><span id="fig:deathRate"></span>
+<img src="/post/2018-11-30-my-heart-will-go-down_files/figure-html/deathRate-1.png" alt="Death rate among passengers." width="672" />
+<p class="caption">
+Figure 2: Death rate among passengers.
+</p>
+</div>
+<p>Looking at all this, being a married woman, travelling first class and with some members of your family, particularly children gave you the best survival chance. But is this all we can say?</p>
+</div>
+<div id="how-to-beat-the-odds" class="section level1">
+<h1>How to beat the odds</h1>
+<p>Binary events create an interesting dynamic, because we know statistically when we flip a coin that a random guess should achieve a 50% accuracy rate - in other words, you have a 50-50 chance of guessing correct - without creating one single algorithm or writing one single line of code. Therefore 50% would be the worst model performance (and actually in this particular case, extremely difficult to beat even with some heavy machine learning).</p>
+<p>But wait a minute… We already can do better here. Much better and with just one line of code.</p>
+<pre class="r"><code>train_tit %&gt;% 
+  summarise(died = sum(Survived == 0),
+            total = n(),
+            freq = died/total)
+##   died total      freq
+## 1  549   891 0.6161616</code></pre>
+<p>We have 891 people in this training dataset and 549 of them died. If we just predict the most frequent occurrence, simply guessing that all of them died, then we would be right 61.62% of the time. We can see 61.62% as bad model performance. Anything lower than that, I can just predict using the most frequent occurrence.</p>
+<p>This sets the baseline and of course, is where the challenge really starts.</p>
+<p>By the way, we have seen this 61.62% in our three guesses before, although slightly disguised. First guess, passenger’s class for example <code>(0.3703704 * 216 + 0.5271739 * 184 + 0.7576375 * 491) / 891</code> = 0.6162. Same for the two others of course, do the math and you will see it for yourself.</p>
+<p>What if we’d like to get a rough estimate of the difficulty here? Remember that many independent features that each correlate well with the class will make the learning easier. We can plot a heatmap including all you predictors and check this quickly.</p>
+<p>Let’s prepare <code>train_tit_coded</code> for the heatmap as we need to code these character variables as numerical factors.</p>
+<pre class="r"><code>train_tit_coded &lt;- train_tit %&gt;% 
+  mutate(Title = case_when(grepl(&quot;Miss.&quot;, Name) ~ &quot;Miss.&quot;,
+                           grepl(&quot;Mrs.&quot;, Name) ~ &quot;Mrs.&quot;,
+                           grepl(&quot;Mr.&quot;, Name) ~ &quot;Mr.&quot;,
+                           grepl(&quot;Master.&quot;, Name) ~ &quot;Master.&quot;,
+                           # the rest represents ~2%
+                           TRUE ~ as.character(&quot;Others&quot;)),
+         Family = case_when(SibSp == 0 &amp; Parch == 0 ~ &quot;Alone&quot;,
+                            SibSp == 1 &amp; Parch == 0 ~ &quot;Couple&quot;,
+                            SibSp == 0 &amp; Parch &gt;= 1 ~ &quot;Parents&quot;,
+                            SibSp &gt;= 2 &amp; Parch == 0 ~ &quot;Siblings&quot;,
+                            SibSp &gt;= 1 &amp; Parch &gt;= 1 ~ &quot;Family&quot;)) %&gt;% 
+  select(-Name) %&gt;% 
+  mutate_if(is.character, as.factor) %&gt;% 
+  mutate_if(is.factor, as.numeric)</code></pre>
+<p>Now we can quickly plot a matrix <a href="#fig:matrix">3</a> to classify parameters and determine correlation with the target (<em>i.e.</em>, <code>Survival</code>). This matrix can be ordered using a hierarchical clustering to facilitate the identification of hidden structures and patterns. Also we can cross out the less significant values.</p>
+<pre class="r"><code># Calculate correlation matrix
+corr.matrix &lt;- train_tit_coded %&gt;%
+  keep(is.numeric) %&gt;%
+  cor(method = c(&quot;pearson&quot;))
+
+# Significance test
+cor.mtest &lt;- train_tit_coded %&gt;%
+  keep(is.numeric) %&gt;%
+  cor.mtest(conf.level = .95)
+
+# Plot correlation matrix
+corrplot(corr.matrix, method = &quot;square&quot;, order = &quot;hclust&quot;, 
+         addrect = 4, p.mat = cor.mtest$p, sig.level = .2,
+         col = brewer.pal(n = 10, name = &quot;RdYlBu&quot;), tl.col = &quot;black&quot;)</code></pre>
+<div class="figure"><span id="fig:matrix"></span>
+<img src="/post/2018-11-30-my-heart-will-go-down_files/figure-html/matrix-1.png" alt="Correlation matrix." width="672" />
+<p class="caption">
+Figure 3: Correlation matrix.
+</p>
+</div>
+<p>The most important here is probably the relation among <code>SibSp</code>, <code>Parch</code>, and <code>Family</code> which is quite obvious. <code>Age</code> and <code>Title</code> seem to correlate and I bet this is at least partially due to our young Masters.</p>
+<p>Interestingly, there is some relation in between <code>Sex</code>, <code>Pclass</code>, and <code>Embarked</code>. But overall, it looks like we’ve a couple of features that, even if with some dependency, each correlate well with the <code>Survival</code>. This will certainly allow us to learn something more with a model.</p>
+</div>
+<div id="build-the-model" class="section level1">
+<h1>Build the model</h1>
+<p>So can we do better now, combining all these predictors and giving the machine a chance to do its magic so as to learn how to predict this outcome? To answer this question let’s simply start with a decision tree model. We are simply asking questions after questions and segment our target response placing the survivors and deceased into homogeneous subgroups.</p>
+<p>But first, we will need to partition the data into training and testing groups. This is something I’ve already been explaining in my <a href="http://christoph.freier.fr/2018/03/to-eat-or-not-to-eat-that-is-the-question/">previous post</a> when classifying mushrooms as edible or poisonous.</p>
+<p>First let’s create the <code>titanic_tbl</code>.</p>
+<pre class="r"><code>titanic_tbl &lt;- train_tit %&gt;% 
+  mutate(Title = case_when(grepl(&quot;Miss.&quot;, Name) ~ &quot;Miss.&quot;,
+                           grepl(&quot;Mrs.&quot;, Name) ~ &quot;Mrs.&quot;,
+                           grepl(&quot;Mr.&quot;, Name) ~ &quot;Mr.&quot;,
+                           grepl(&quot;Master.&quot;, Name) ~ &quot;Master.&quot;,
+                           # the rest represents ~2%
+                           TRUE ~ as.character(&quot;Others&quot;)),
+         Family = case_when(SibSp == 0 &amp; Parch == 0 ~ &quot;Alone&quot;,
+                            SibSp == 1 &amp; Parch == 0 ~ &quot;Couple&quot;,
+                            SibSp == 0 &amp; Parch &gt;= 1 ~ &quot;Parents&quot;,
+                            SibSp &gt;= 2 &amp; Parch == 0 ~ &quot;Siblings&quot;,
+                            SibSp &gt;= 1 &amp; Parch &gt;= 1 ~ &quot;Family&quot;)) %&gt;% 
+  select(-Name) %&gt;% 
+  mutate_if(is.character, as.factor) %&gt;% 
+  select(Survived, everything())</code></pre>
+<p>Then set some seeds for reproducibility and split it.</p>
+<pre class="r"><code>set.seed(123)
+
+# Split test/training sets
+train_test_split &lt;- initial_split(titanic_tbl, prop = 0.8)
+
+# Quick sanity check
+train_test_split
+## &lt;713/178/891&gt;</code></pre>
+<p>Training and testing sets can be retrieved using <code>training()</code> and <code>testing()</code> functions.</p>
+<pre class="r"><code># Retrieve train
+train_tit_tbl &lt;- training(train_test_split)
+
+# And test sets
+test_tit_tbl &lt;- testing(train_test_split) %&gt;% 
+  mutate(Survived = as.factor(case_when(Survived == 0 ~ &quot;No&quot;,
+                                        Survived == 1 ~ &quot;Yes&quot;)))</code></pre>
+<p>And here comes the decision tree <a href="#fig:decisionTree">4</a> that we can render with <code>fancyRpartPlot</code> from <code>rpart.plot</code>.</p>
+<pre class="r"><code># Build the model tree
+model_tree &lt;- rpart(Survived ~ ., method = &quot;class&quot;, data = train_tit_tbl)
+
+# Draw a decision tree
+fancyRpartPlot(model_tree, sub = &quot;&quot;)</code></pre>
+<div class="figure"><span id="fig:decisionTree"></span>
+<img src="/post/2018-11-30-my-heart-will-go-down_files/figure-html/decisionTree-1.png" alt="Fancy decision tree" width="672" />
+<p class="caption">
+Figure 4: Fancy decision tree
+</p>
+</div>
+<p>This decision tree goes deeper than the initial guesses. It’s a bit like a “Guess who” game. First question asked here is <em>is your passenger a Mr.?</em> that resonates well with the famous “save women and children first”. Then if yes, <em>did your passenger pay a fare inferior to 26?</em>; or if no, <em>was your passenger travelling third class?</em>, <em>etc</em>.</p>
+<p>But what about making a real prediction using the test set now. Did all this help improve the accuracy?</p>
+<pre class="r"><code># Let the model do its magic
+fitted_results_tree &lt;- predict(model_tree, test_tit_tbl, type = &quot;class&quot;)
+test_tit_tbl$predicted_tree &lt;- as.factor(ifelse(fitted_results_tree == 1, &quot;Yes&quot;, &quot;No&quot;))
+
+# Create confusion matrix
+confMatrix_tree &lt;- caret::confusionMatrix(data = test_tit_tbl$predicted_tree,
+                                          reference = test_tit_tbl$Survived,
+                                          positive = &quot;Yes&quot;)
+
+confMatrix_tree$table
+##           Reference
+## Prediction No Yes
+##        No  95  31
+##        Yes  6  46
+confMatrix_tree$overall[1]
+##  Accuracy 
+## 0.7921348</code></pre>
+<p>Yes, 79.21%. We nailed it down with an extra 17.6% accuracy.</p>
+<p>Can we beat this?</p>
+<p>At least we should try. Decision trees will quickly overfit to the data - when a model performs well on a training set, but does worse on unseen data - because all passenger’s story are different and the rule defined here may not generalize well to unknown passengers.</p>
+<p>How to avoid this?</p>
+<p>Simply let the trees vote. Yes, vote. The prediction works in a similar way: in a random forest model each tree make its classification decisions based on different variables, except that after all trees made their decisions they discuss who’s right.</p>
+<pre class="r"><code># Build the random forest
+model_rf &lt;- randomForest(Survived ~ ., importance = TRUE, ntree = 2000, data = train_tit_tbl)</code></pre>
+<p>I’ve happily set 2000 trees here. Whoever’s seen another movie (or much better, read the books) knows that trees can argue for quite a long time before taking any decisions. However, this dataset doesn’t contain that many observations and 2000 isn’t really going to slow us down.</p>
+<pre class="r"><code># Let the model do its magic
+fitted_results_rf &lt;- predict(model_rf, test_tit_tbl, type = &quot;class&quot;)
+test_tit_tbl$predicted_rf &lt;- as.factor(ifelse(fitted_results_rf &gt; .5, &quot;Yes&quot;, &quot;No&quot;))
+
+# Confusion matrix
+confMatrix_rf &lt;- caret::confusionMatrix(data = test_tit_tbl$predicted_rf,
+                                        reference = test_tit_tbl$Survived,
+                                        positive = &quot;Yes&quot;)
+
+confMatrix_rf$table
+##           Reference
+## Prediction No Yes
+##        No  92  32
+##        Yes  9  45
+confMatrix_rf$overall[1]
+##  Accuracy 
+## 0.7696629</code></pre>
+<p>Awesome! 76.97%. We improved the decision tree by another -2.25% accuracy.</p>
+</div>
+<div id="we-want-to-be-approximately-right-rather-than-exactly-wrong" class="section level1">
+<h1>We want to be approximately right, rather than exactly wrong</h1>
+<p>Although 76.97% isn’t probably the best we can achieve we’ve come a long way already, from the 61.62% baseline to the 76.97% accuracy of the random forest. There is no no free lunch theorem of machine learning, no super algorithm, that works best in all situations, for all datasets. We simply tried different implementations of a decision tree, which is the easiest concept to learn and understand. There are other flavors we didn’t talk about yet, nor did we tune our models at all here.</p>
+<p>Interestingly, the <code>Title</code> variable we derived from the <code>Name</code> was used in the first question asked by the decision trees. The question was <em>is your passenger a Mr.?</em> and not <em>is your passenger a male?</em>. Young males, particularly children, had better survival chances than married adults. This is a nice example of how feature engineering can help extract better variables and is were most of the work goes. There is certainly more we can do here and I’m sure the accuracy can be improved, but I’m afraid we will never be able to save Jack.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/corrplot/">corrplot</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/rpart/">rpart</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/randomforest/">randomForest</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/03/to-eat-or-not-to-eat-that-is-the-question/" data-tooltip="To Eat, or not to Eat, that is the Question">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/11/my-heart-will-go-down/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/11/my-heart-will-go-down/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/11/my-heart-will-go-down/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/03/to-eat-or-not-to-eat-that-is-the-question/" data-tooltip="To Eat, or not to Eat, that is the Question">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/11/my-heart-will-go-down/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/11/my-heart-will-go-down/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/11/my-heart-will-go-down/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F11%2Fmy-heart-will-go-down%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F11%2Fmy-heart-will-go-down%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2018%2F11%2Fmy-heart-will-go-down%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
