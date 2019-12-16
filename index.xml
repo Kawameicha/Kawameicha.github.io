@@ -107,8 +107,19 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/page/about-me/</guid>
-      <description>I’m dual French-German Pharm.D./Ph.D. with years of research experience in immuno-oncology. Besides, being of an inquisitive nature, I usually get interested in miscellaneous subjects. I cultivate coding skills as well as a marked preference for Unix and R.
-During my Ph.D. I rapidly got submerged in data, so that I eventually had to code on a daily basis. Looking back, this turned out to be the most successful and enjoyable part of my work.</description>
+      <description>I’m a data scientist and consultant although originally I studied pharmacy and biology, finishing my Pharm.D./Ph.D. with groups in France, Germany, and the United States.. Besides, being of an inquisitive nature, I usually get interested in miscellaneous subjects. I cultivate coding skills as well as a marked preference for Unix and R.
+During my Ph.D. I rapidly got submerged in data, so that I eventually had to code on a daily basis.</description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>/page/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/projects/</guid>
+      <description>Every once in a while, I&amp;rsquo;ve an idea that I think is worth to create a package about. A list of such projects below.
+indexSort This package&amp;ndash;currently hosted on GitHub&amp;ndash;contains functions to retrieve index sorted data and visually explore .fcs date files from various cell sorters.
+It has been adapted as a plugin for FlowJo and is available via the FlowJo Exchange.</description>
     </item>
     
     <item>
