@@ -117,9 +117,10 @@ During my Ph.D. I rapidly got submerged in data, so that I eventually had to cod
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/page/projects/</guid>
-      <description>Every once in a while, I&amp;rsquo;ve an idea that I think is worth to create a package about. A list of such projects below.
+      <description>Every once in a while, I&amp;rsquo;ve an idea that is worth to create a package about. A list of such projects below.
 indexSort This package&amp;ndash;currently hosted on GitHub&amp;ndash;contains functions to retrieve index sorted data and visually explore .fcs date files from various cell sorters.
-It has been adapted as a plugin for FlowJo and is available via the FlowJo Exchange.</description>
+It has been adapted as a plugin for FlowJo and is available via the FlowJo Exchange.
+clustRcheck This package&amp;ndash;currently hosted on GitHub&amp;ndash;contains statistical hypothesis testing for discovering the presence of more than one mode in cluster distributions.</description>
     </item>
     
     <item>
@@ -128,7 +129,7 @@ It has been adapted as a plugin for FlowJo and is available via the FlowJo Excha
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/page/useful-resources/</guid>
-      <description> Other websites  Bob Rudis&amp;rsquo;s blog, most beautiful visualizations Damiano Fantini&amp;rsquo;s blog, useful R and python code Hadley Wickham&amp;rsquo;s website, the R bible Julia Silge&amp;rsquo;s blog, a truly inspirational one  Diverse books  An introduction to statistical learning, a must have Practical Data Science with R, basic principles and real use cases R Graphics Cookbook, for ggplot2 heroes R in a Nutshell, quick reference for beginners  </description>
+      <description>Other websites  Bob Rudis&amp;rsquo;s blog, most beautiful visualizations Damiano Fantini&amp;rsquo;s blog, useful R and python code Hadley Wickham&amp;rsquo;s website, the R bible Julia Silge&amp;rsquo;s blog, a truly inspirational one  Diverse books  An introduction to statistical learning, a must have Practical Data Science with R, basic principles and real use cases R Graphics Cookbook, for ggplot2 heroes R in a Nutshell, quick reference for beginners  </description>
     </item>
     
   </channel>
