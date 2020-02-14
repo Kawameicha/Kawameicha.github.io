@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.63.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="AI can&rsquo;t bet humans at sentiments, but they can help analyze them.">
+
+
+<meta property="og:description" content="AI can&rsquo;t bet humans at sentiments, but they can help analyze them.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The King in Yellow">
+<meta name="twitter:title" content="The King in Yellow">
+<meta property="og:url" content="/2020/02/the-king-in-yellow/">
+<meta property="twitter:url" content="/2020/02/the-king-in-yellow/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="AI can&rsquo;t bet humans at sentiments, but they can help analyze them.">
+<meta name="twitter:description" content="AI can&rsquo;t bet humans at sentiments, but they can help analyze them.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2020-02-14T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-02-14T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Unsupervised Learning">
+    
+      <meta property="article:section" content="Natural Language Processing">
+    
+  
+  
+    
+      <meta property="article:tag" content="syuzhet">
+    
+      <meta property="article:tag" content="streamgraph">
+    
+      <meta property="article:tag" content="tidytext">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/7/78/Yellowsign.JPG">
+  <meta property="twitter:image" content="https://upload.wikimedia.org/wikipedia/en/7/78/Yellowsign.JPG">
+
+
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/64/The_King_in_Yellow.jpg">
+  <meta property="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/6/64/The_King_in_Yellow.jpg">
+
+
+
+
+  <meta property="og:image" content="/logo/bio.png">
+  <meta property="twitter:image" content="/logo/bio.png">
+
+
+    <title>The King in Yellow</title>
+
+    <link rel="icon" href="logo/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="/2020/02/the-king-in-yellow/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&quot;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-sitemap"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-vcard"></i>
+      
+      <span class="sidebar-button-desc">About Me</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin-square"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/6/64/The_King_in_Yellow.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      The King in Yellow
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-02-14T00:00:00Z">
+        
+  
+  
+  
+  
+    Feb 14, 2020
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/unsupervised-learning">Unsupervised Learning</a>, 
+    
+      <a class="category-link" href="/categories/natural-language-processing">Natural Language Processing</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/d3/d3.min.js"></script>
+<link href="/rmarkdown-libs/colorbrewer/colorbrewer.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/colorbrewer/colorbrewer.js"></script>
+<link href="/rmarkdown-libs/streamgraph/streamgraph.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/streamgraph-binding/streamgraph.js"></script>
+
+
+<p>A while ago, I had a lot of fun <a href="https://christoph.freier.fr/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/">classifying all novels from Edgar Allan Poe</a>. I’m a great admirer of his work and tried to go beyond polarity sentiment classification looking at emotional states such as “angry”, “sad”, and “happy” using the <code>syuzhet</code> package. I couldn’t help noticing there are some new R packages available like the <code>tidytext</code> one. I have been thinking about giving it a try for a long time now as it has been published by the excellent <a href="https://juliasilge.com">Julia Silge</a> and <a href="http://varianceexplained.org/about/">David Robinson</a>.</p>
+<blockquote>
+<p>In my whole life, I have known no wise people (over a broad subject matter area) who didn’t read all the time — none. Zero. <strong>Charlie T. Munger</strong></p>
+</blockquote>
+<p>Beside, reading is a most pleasant activity. I personally can’t get enough of it and, while all books are written using 100% recycled words, I’m continuously amazed by the variety of feelings and emotions they set free. Naturally, I read a lot of novels too. Fantasy is an exercise bicycle for the mind. It might not take you anywhere, but it tones up the muscles that can. The <code>gutenbergr</code> package now helps me download and process public domain works from the <a href="http://www.gutenberg.org">Project Gutenberg</a> to feed my collection.</p>
+<div id="something-is-rotten-in-the-state-of-germany" class="section level1">
+<h1>Something is rotten in the state of Germany</h1>
+<p>On December 30, 2015, the Frankfurt am Main Regional Court ordered that access to certain items in the Project Gutenberg collection are blocked from Germany after a claim from the <a href="https://www.fischerverlage.de">S. Fischer Verlag</a>. Although Project Gutenberg believes the Court has no jurisdiction over the matter access to website and sub-pages to all of Germany is blocked until the issue is resolved.</p>
+<p>That’s a real pain if you located in Germany but I won’t comment further. Fortunately enough, you can use the <code>gutenberg_download</code> function from the <code>gutenbergr</code> package to download your book anyway.</p>
+<p>Let’s say you’re looking for the terrifying The King in Yellow from Robert W. Chambers. First we need to locate the work. Using the website itself isn’t an alternative from Germany. Otherwise, it’s up to you.</p>
+<pre class="r"><code>gutenberg_works(author == &quot;Chambers, Robert W. (Robert William)&quot;) %&gt;% 
+  filter(title == &quot;The King in Yellow&quot;)
+## # A tibble: 1 x 8
+##   gutenberg_id title author gutenberg_autho… language gutenberg_books… rights
+##          &lt;int&gt; &lt;chr&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt; 
+## 1         8492 The … Chamb…            38191 en       Horror           Publi…
+## # … with 1 more variable: has_text &lt;lgl&gt;</code></pre>
+<p>Okay, let’s seize this classic book of short stories.</p>
+<pre class="r"><code>kingYellow &lt;- gutenberg_download(8492)</code></pre>
+</div>
+<div id="streamgraphing-feelings-and-emotions" class="section level1">
+<h1>Streamgraphing feelings and emotions</h1>
+<p><a href="https://en.wikipedia.org/wiki/The_King_in_Yellow">The King in Yellow</a> contains short stories and is named after a play with the same title which recurs as a motif through some of the stories.</p>
+<p>The tidy text format is defined as being a table with one-token-per-row. Structuring text data in this way means that it conforms to tidy data principles and can be manipulated with a set of consistent tools. We can restructure the text easily using the <code>unnest_tokens()</code> function.</p>
+<p>Let’s break down by sentences.</p>
+<pre class="r"><code>sentences &lt;- kingYellow %&gt;%
+  unnest_tokens(sentence, text, token = &quot;sentences&quot;)</code></pre>
+<p>The <code>tidytext</code> package contains several sentiment lexicons for evaluating the opinion or emotion in text. I prefer the <code>nrc lexicon</code> because this one categorizes words into 10 different categories: positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust.</p>
+<p>We can map it to the sentences.</p>
+<pre class="r"><code>sentiment &lt;- sentences$sentence %&gt;%
+  map_df(get_nrc_sentiment)</code></pre>
+<p>And aggregate sentences 100 by 100 to get an idea of the general sentiment throughout the book. We certainly can pipe this into a streamgraph. It represents the evolution of a numeric variable for several groups. Areas are usually displayed around a central axis, and edges are rounded to give a flowing shape, resulting in a flowing, organic shape</p>
+<pre class="r"><code>tidyYellow &lt;- cbind(sentences, sentiment) %&gt;% 
+  rename(line = gutenberg_id) %&gt;% 
+  mutate(line = c(rep(1:46, each = 100), rep(47, 98)))</code></pre>
+<p>It is straightforward to build in R thanks to the excellent <code>streamgraph</code> package from <a href="https://github.com/hrbrmstr/streamgraph">Bob Rudis</a>.</p>
+<p>Let’s start with the general feeling only.</p>
+<pre class="r"><code>tidyYellow %&gt;%
+  select(line, positive, negative, -sentence) %&gt;% 
+  group_by(line) %&gt;% 
+  summarise_if(is.numeric, mean) %&gt;% 
+  pivot_longer(-line) %&gt;% 
+  streamgraph(key    = &quot;name&quot;, 
+              value  = &quot;value&quot;, 
+              date   = &quot;line&quot;, 
+              height = &quot;300px&quot;, 
+              width  = &quot;750px&quot;, 
+              scale  = &quot;continuous&quot;)</code></pre>
+<div id="htmlwidget-1" class="streamgraph html-widget" style="width:750px;height:300px;"></div>
+<div id="htmlwidget-505f94c48c29b73bcbc7-legend" style="width:750px" class="streamgraph html-widget-legend"><center><label style='padding-right:5px' for='htmlwidget-505f94c48c29b73bcbc7-select'></label><select id='htmlwidget-505f94c48c29b73bcbc7-select' style='visibility:hidden;'></select></center></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":{"key":["negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","negative","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive","positive"],"value":[1.18,0.48,0.23,0.6,0.42,0.43,0.5,0.65,0.41,0.52,0.92,0.57,0.74,0.85,0.56,0.5,0.82,0.69,1.01,0.48,0.48,0.59,0.47,0.51,0.69,0.56,0.37,0.63,0.37,0.87,0.64,0.9,0.57,0.42,0.29,0.31,0.31,0.49,0.43,0.46,0.34,0.39,0.45,0.57,0.5,0.7,0.591836734693878,1.44,0.51,0.49,0.9,0.5,0.31,0.6,0.61,0.66,0.61,0.81,0.72,0.97,0.67,0.2,0.68,0.65,0.7,0.86,0.48,0.79,0.53,0.53,0.49,0.34,0.59,0.45,0.33,0.56,0.41,0.54,0.29,0.43,0.85,0.66,0.44,0.64,0.58,0.48,0.64,0.68,0.54,0.75,0.78,0.55,0.9,0.785714285714286],"date":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]},"markers":null,"annotations":null,"offset":"silhouette","interactive":true,"interpolate":"cardinal","palette":"Spectral","text":"black","tooltip":"black","x_tick_interval":10,"x_tick_units":null,"x_tick_format":",.0f","y_tick_count":5,"y_tick_format":",g","top":20,"right":40,"bottom":30,"left":50,"legend":false,"legend_label":"","fill":"brewer","label_col":"black","x_scale":"continuous","sort":true,"order":"none"},"evals":[],"jsHooks":[]}</script>
+<p>Or we can have a look at all these emotions.</p>
+<pre class="r"><code>tidyYellow %&gt;%
+  select(-positive, -negative, -sentence) %&gt;% 
+  group_by(line) %&gt;% 
+  summarise_if(is.numeric, mean) %&gt;% 
+  pivot_longer(-line) %&gt;% 
+  streamgraph(key    = &quot;name&quot;, 
+              value  = &quot;value&quot;, 
+              date   = &quot;line&quot;, 
+              height = &quot;300px&quot;, 
+              width  = &quot;750px&quot;, 
+              scale  = &quot;continuous&quot;)</code></pre>
+<div id="htmlwidget-2" class="streamgraph html-widget" style="width:750px;height:300px;"></div>
+<div id="htmlwidget-2acaae240361c49285a8-legend" style="width:750px" class="streamgraph html-widget-legend"><center><label style='padding-right:5px' for='htmlwidget-2acaae240361c49285a8-select'></label><select id='htmlwidget-2acaae240361c49285a8-select' style='visibility:hidden;'></select></center></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"data":{"key":["anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust"],"value":[0.42,0.19,0.08,0.27,0.21,0.17,0.12,0.28,0.18,0.11,0.34,0.22,0.34,0.35,0.13,0.2,0.24,0.25,0.4,0.2,0.22,0.13,0.17,0.26,0.23,0.17,0.19,0.28,0.12,0.37,0.33,0.43,0.25,0.18,0.14,0.06,0.06,0.17,0.12,0.21,0.15,0.15,0.11,0.19,0.19,0.19,0.346938775510204,0.47,0.17,0.25,0.36,0.3,0.22,0.28,0.27,0.34,0.34,0.38,0.45,0.74,0.51,0.17,0.28,0.36,0.31,0.45,0.26,0.39,0.3,0.35,0.27,0.14,0.33,0.25,0.33,0.21,0.23,0.21,0.13,0.19,0.4,0.36,0.24,0.22,0.43,0.28,0.23,0.38,0.27,0.35,0.21,0.29,0.4,0.275510204081633,0.33,0.14,0.03,0.18,0.13,0.08,0.16,0.15,0.14,0.12,0.28,0.15,0.22,0.19,0.15,0.24,0.16,0.19,0.29,0.1,0.09,0.06,0.22,0.17,0.16,0.27,0.1,0.1,0.05,0.24,0.13,0.13,0.16,0.18,0.07,0.1,0.07,0.12,0.06,0.09,0.07,0.08,0.07,0.21,0.16,0.16,0.183673469387755,0.77,0.27,0.09,0.3,0.26,0.28,0.34,0.42,0.15,0.21,0.53,0.41,0.38,0.55,0.26,0.3,0.34,0.28,0.56,0.3,0.3,0.25,0.24,0.22,0.3,0.26,0.28,0.37,0.2,0.48,0.33,0.55,0.3,0.15,0.19,0.16,0.09,0.25,0.25,0.3,0.15,0.19,0.17,0.17,0.22,0.22,0.275510204081633,0.45,0.19,0.27,0.44,0.23,0.14,0.24,0.27,0.3,0.33,0.29,0.41,0.52,0.31,0.09,0.3,0.38,0.29,0.35,0.2,0.41,0.29,0.31,0.24,0.12,0.28,0.2,0.18,0.29,0.16,0.15,0.07,0.16,0.47,0.38,0.3,0.31,0.26,0.28,0.31,0.36,0.25,0.32,0.31,0.25,0.53,0.326530612244898,0.63,0.17,0.12,0.22,0.14,0.19,0.29,0.28,0.24,0.39,0.5,0.37,0.46,0.46,0.27,0.25,0.46,0.33,0.57,0.22,0.27,0.31,0.26,0.23,0.32,0.22,0.19,0.28,0.17,0.51,0.29,0.39,0.28,0.26,0.15,0.12,0.13,0.23,0.18,0.17,0.14,0.21,0.21,0.35,0.2,0.44,0.377551020408163,0.25,0.08,0.11,0.2,0.14,0.12,0.18,0.16,0.24,0.18,0.15,0.17,0.18,0.1,0.06,0.24,0.28,0.16,0.28,0.19,0.2,0.22,0.11,0.17,0.13,0.2,0.11,0.12,0.14,0.17,0.15,0.18,0.1,0.23,0.19,0.26,0.06,0.21,0.21,0.23,0.21,0.09,0.22,0.23,0.2,0.21,0.214285714285714,0.83,0.24,0.28,0.45,0.25,0.12,0.38,0.36,0.34,0.34,0.41,0.47,0.51,0.4,0.12,0.46,0.51,0.25,0.49,0.21,0.39,0.34,0.31,0.22,0.17,0.34,0.25,0.22,0.31,0.26,0.41,0.19,0.22,0.42,0.36,0.3,0.32,0.37,0.23,0.33,0.39,0.22,0.32,0.32,0.26,0.42,0.448979591836735],"date":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]},"markers":null,"annotations":null,"offset":"silhouette","interactive":true,"interpolate":"cardinal","palette":"Spectral","text":"black","tooltip":"black","x_tick_interval":10,"x_tick_units":null,"x_tick_format":",.0f","y_tick_count":5,"y_tick_format":",g","top":20,"right":40,"bottom":30,"left":50,"legend":false,"legend_label":"","fill":"brewer","label_col":"black","x_scale":"continuous","sort":true,"order":"none"},"evals":[],"jsHooks":[]}</script>
+<p>Be the way it creates an htmlwidget so you can interact with the plots.</p>
+<p>Streamgraphs are really awesome! I knew I wanted to use them the first time I’ve seen one. We can see the bumps introduced by certain stories. For example there is a variety of sentiment and a big fat bubble of anticipation in formation between 10 and 15. The second half of the book seems flat in comparison. That’s quite interesting as the first half of the book is known to feature highly esteemed weird stories with recurrent mention of The King in Yellow, a forbidden play which induces despair or madness in those who read it.</p>
+</div>
+<div id="breaking-down-by-novels" class="section level1">
+<h1>Breaking down by novels</h1>
+<p>Okay, let’s have a look at the different stories. I’m afraid there is no real chapter so we cannot simply <code>regex</code> and we need to have the name of all these individual stories.</p>
+<p>This way we can keep track of the story number.</p>
+<pre class="r"><code>stories &lt;- &quot;THE REPAIRER OF REPUTATIONS|THE MASK|IN THE COURT OF THE DRAGON|THE YELLOW SIGN|THE DEMOISELLE D&#39;YS|THE PROPHETS&#39; PARADISE|THE STREET OF THE FOUR WINDS|THE STREET OF THE FIRST SHELL|THE STREET OF OUR LADY OF THE FIELDS|RUE BARREE&quot;
+
+sentences &lt;- kingYellow %&gt;%
+  mutate(story = cumsum(str_detect(text, stories))) %&gt;% 
+  unnest_tokens(sentence, text, token = &quot;sentences&quot;)</code></pre>
+<p>I’ve noticed <code>RUE BARREE</code> appears a second time in the story, generating a false 11th story. Sometimes, I get lazy and advocate for the easy fix.</p>
+<pre class="r"><code>sentences$story &lt;- ifelse(sentences$story == 11, 10, sentences$story)</code></pre>
+<p>This should sound familiar. I’m just redoing the mapping as the dimensions slightly changed.</p>
+<pre class="r"><code>sentiment &lt;- sentences$sentence %&gt;%
+  map_df(get_nrc_sentiment)</code></pre>
+<p>As well as the following line. Incidentally, we can get rid of story 0 that only contains the title page.</p>
+<pre class="r"><code>tidyYellow &lt;- cbind(sentences, sentiment) %&gt;%
+  select(-gutenberg_id) %&gt;% 
+  filter(story != 0)</code></pre>
+<p>And because it is always nicer to properly annotate our plots, let’s save the stories’ titles too.</p>
+<pre class="r"><code>titles &lt;- c(&quot;The Repairer of\n Reputations&quot;, &quot;The Mask&quot;, &quot;In the Court of\n the Dragon&quot;,
+            &quot;The Yellow\n Sign&quot;, &quot;The Demoiselle\n d&#39;Ys&quot;, &quot;The Prophets&#39;\n Paradise&quot;,
+            &quot;The Street of the\n Four Winds&quot;, &quot;The Street of the\n First Shell&quot;,
+            &quot;The Street of Our Lady\n of the Fields&quot;, &quot;Rue Barrée&quot;)</code></pre>
+</div>
+<div id="clustering-sentiments-in-the-stories" class="section level1">
+<h1>Clustering sentiments in the stories</h1>
+<p>A bit of piping, some wrangling and we can heatmap these stories highlighting the mean sentimental values for each one of them.</p>
+<pre class="r"><code>tidyYellow  %&gt;% 
+  select(-positive, -negative) %&gt;% 
+  group_by(story) %&gt;% 
+  summarise_if(is.numeric, mean) %&gt;% 
+  pivot_longer(-story) %&gt;% 
+  ggplot(aes(x = name, y = as.factor(story), fill = value)) +
+  geom_tile(color = &quot;white&quot;, size = .5) +
+  scale_fill_viridis_c() +
+  scale_y_discrete(label = titles) +
+  theme_minimal() +
+  coord_flip() +
+  theme(legend.title = element_blank(),
+        axis.title   = element_blank(),
+        axis.text.x  = element_text(angle = 45, hjust = 1))</code></pre>
+<p><img src="/post/2020-02-14-the-king-in-yellow_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>It clearly appears that the first part of the book contains the most emotional stories. Story number 3, In the Court of the Dragon, is clearly highlighted on this map. It has both the largest panel of sentiments and the highest mean values. If you’re looking for some sentimental exercise, this one is clearly a good candidate. This story is also one of the most mysterious in the collection.</p>
+<p>A quick hierarchical clustering can help us to organize them looking at dissimilarities.</p>
+<pre class="r"><code>tidyYellow  %&gt;% 
+  select(-positive, -negative) %&gt;% 
+  group_by(story) %&gt;% 
+  summarise_if(is.numeric, mean) %&gt;% 
+  select(-story) %&gt;% 
+  dist() %&gt;% 
+  hclust() %&gt;% 
+  plot(main   = &quot;&quot;,
+       xlab   = &quot;&quot;,
+       sub    = &quot;&quot;)</code></pre>
+<p><img src="/post/2020-02-14-the-king-in-yellow_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>I like this a lot. In the Court of the Dragon (number 3) is obviously the most intense story. But we also quite clearly can see the different in between the first and the second half of the book. Stories number 1, 2, 4, and 5 definitively cluster apart from stories number 6, 7, 8, and 9. That’s awesome and also correspond to the most famous stories of the book. I wonder if this is some kind of explanation.</p>
+</div>
+<div id="streamgraph-are-really-cool" class="section level1">
+<h1>Streamgraph are really cool</h1>
+<p>Since we now have individual stories at hand and just because streamgraph look so amazing we can have a look and compare both the most intense one–In the Court of the Dragon–and The Street of the Four Winds that appears to be the less intense one in this corpus.</p>
+<p>Simple filtering will do. Please note I’m also aggregating sentences 10 by 10 now to have a closer look at the sentiments developing along the story.</p>
+<pre class="r"><code>courtDragon &lt;- tidyYellow  %&gt;% 
+  filter(story == 3) %&gt;% 
+  select(-positive, -negative) %&gt;%
+  mutate(line = c(rep(1:19, each = 10), rep(20, 2))) %&gt;% 
+  select(-story, -sentence) %&gt;% 
+  group_by(line) %&gt;% 
+  summarise_if(is.numeric, mean) %&gt;% 
+  pivot_longer(-line)</code></pre>
+<pre class="r"><code>courtDragon %&gt;%
+  streamgraph(key    = &quot;name&quot;, 
+              value  = &quot;value&quot;, 
+              date   = &quot;line&quot;, 
+              height = &quot;300px&quot;, 
+              width  = &quot;750px&quot;, 
+              scale  = &quot;continuous&quot;)</code></pre>
+<div id="in-the-court-of-the-dragon" class="section level2">
+<h2>In the Court of the Dragon</h2>
+<div id="htmlwidget-3" class="streamgraph html-widget" style="width:750px;height:300px;"></div>
+<div id="htmlwidget-2c60352b0a62d4150ab5-legend" style="width:750px" class="streamgraph html-widget-legend"><center><label style='padding-right:5px' for='htmlwidget-2c60352b0a62d4150ab5-select'></label><select id='htmlwidget-2c60352b0a62d4150ab5-select' style='visibility:hidden;'></select></center></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"data":{"key":["anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust"],"value":[0.4,0.3,0.5,0.2,0.1,0.1,0.9,0.2,0.3,0.5,0.4,0.2,0.1,0.5,0.4,0.5,0.3,0.3,0.9,0.5,1,0.5,0.9,0.5,0.8,0.7,0.6,0.9,0.8,0.8,0.9,0.5,0.2,0.7,0.5,1.2,0,0.3,0.9,1.5,0.1,0.3,0.3,0.1,0.1,0,0.6,0.2,0.3,0.2,0.2,0.2,0.1,0.1,0.2,0.1,0,0.4,0.5,0,0.4,0.8,0.4,0.2,0.3,0.3,1.1,0.2,0.3,0.5,0.3,0.2,0.4,0.7,0.5,0.8,0.4,0.4,1.2,2,1,1,0.7,0.6,0.7,0.3,0.6,0.4,0.5,0.4,0.8,0.2,0.1,0.3,0.2,0.3,0,0.3,0.6,1.5,0.3,0.2,0.9,0.6,0.4,0.2,1,0.2,0.3,0.3,0.4,0.3,0.3,0.3,0.3,0.2,0.4,0.5,1,1.5,0.3,0,0.3,0,0.4,0,0.4,0.1,0.1,0.1,0.3,0.1,0,0,0.2,0,0,0,0.4,0,0.9,1,0.6,0.5,0.7,0.5,0.4,0.3,0.6,0.5,0.7,0.3,0.1,0.7,0.2,0.7,0.2,0.5,0.4,1],"date":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]},"markers":null,"annotations":null,"offset":"silhouette","interactive":true,"interpolate":"cardinal","palette":"Spectral","text":"black","tooltip":"black","x_tick_interval":10,"x_tick_units":null,"x_tick_format":",.0f","y_tick_count":5,"y_tick_format":",g","top":20,"right":40,"bottom":30,"left":50,"legend":false,"legend_label":"","fill":"brewer","label_col":"black","x_scale":"continuous","sort":true,"order":"none"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="the-street-of-the-four-winds" class="section level2">
+<h2>The Street of the Four Winds</h2>
+<div id="htmlwidget-4" class="streamgraph html-widget" style="width:750px;height:300px;"></div>
+<div id="htmlwidget-10ad3380433a63d8596c-legend" style="width:750px" class="streamgraph html-widget-legend"><center><label style='padding-right:5px' for='htmlwidget-10ad3380433a63d8596c-select'></label><select id='htmlwidget-10ad3380433a63d8596c-select' style='visibility:hidden;'></select></center></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"data":{"key":["anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anger","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","anticipation","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","disgust","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","fear","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","joy","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","sadness","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","surprise","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust","trust"],"value":[0,0.1,0.2,0.1,0.4,0.1,0.3,0.2,0.1,0.6,0.1,0.2,0.3,0.111111111111111,0.2,0.2,0.3,0.1,0,0.1,0.1,0.5,0.1,0.3,0.3,0.6,0,0.444444444444444,0,0.4,0.4,0.1,0.2,0.1,0.2,0.1,0.3,0.5,0.1,0.1,0.1,0,0,0.3,0.4,0,0,0.1,0.1,0.2,0.1,0.4,0.2,0.3,0.2,0.222222222222222,0.3,0,0.4,0.2,0,0.4,0.2,0.2,0.3,0.5,0.1,0.1,0,0.333333333333333,0,0.3,0.5,0,0.2,0.1,0,0.1,0.2,0.4,0.2,0.2,0.3,0.111111111111111,0.1,0,0,0,0.1,0.2,0,0.3,0.1,0.2,0,0.2,0,0.111111111111111,0.2,0,0.3,0.6,0.3,0.2,0.2,0.1,0.1,0.4,0.1,0.2,0.1,0.333333333333333],"date":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,1,2,3,4,5,6,7,8,9,10,11,12,13,14,1,2,3,4,5,6,7,8,9,10,11,12,13,14,1,2,3,4,5,6,7,8,9,10,11,12,13,14,1,2,3,4,5,6,7,8,9,10,11,12,13,14,1,2,3,4,5,6,7,8,9,10,11,12,13,14,1,2,3,4,5,6,7,8,9,10,11,12,13,14,1,2,3,4,5,6,7,8,9,10,11,12,13,14]},"markers":null,"annotations":null,"offset":"silhouette","interactive":true,"interpolate":"cardinal","palette":"Spectral","text":"black","tooltip":"black","x_tick_interval":10,"x_tick_units":null,"x_tick_format":",.0f","y_tick_count":5,"y_tick_format":",g","top":20,"right":40,"bottom":30,"left":50,"legend":false,"legend_label":"","fill":"brewer","label_col":"black","x_scale":"continuous","sort":true,"order":"none"},"evals":[],"jsHooks":[]}</script>
+<p>No wonder this graphical representation is so hype. It simply looks amazingly good and transfer a bit of the emotions (and tension) at play in the two stories. In the Court of the Dragon is a real emotional rodeo and finishes in a true firework of fear and sadness. On the other hand, The Street of the Four Winds appear less intense. Just look at the scale, values are like three times lower.</p>
+<p>Of course I cannot comment further here without spoiler. I think you will have to figure out the rest for yourselves. Go get the book!</p>
+</div>
+</div>
+<div id="what-do-i-think" class="section level1">
+<h1>What do I think</h1>
+<p>Looking back, I have to admit it is definitively much easier to work with the <code>tidytext</code> package. Although my coding skills certainly have improved a lot; no one can honestly consider four year old code (really?) without being slightly ashamed (I’ve been told that is called experience)–everything runs so much better now. You can easily extract any text as a table structuring it as token-per-row. It makes it tidy and allows you to pipe it into the tidyverse. It integrates perfectly with the <code>gutenberg</code> package too and that’s a real good news.</p>
+<p>The tidyverse contains so many excellent visualization tools that give you the ability to express complex ideas and communicate with clarity, precision and efficiency. A good visualization also tells a story through the graphical depiction of statistical information. This way you can communicate a persuasive and compelling narrative. Yes, I believe visualization needs to tell a story to the audience. In this case, we’ve basically been doing the opposite trying to render the narrative of these stories in a simple visualization.</p>
+<p>Although no visualization is ever going to be as good a narrative as a novel to me, I’m quite satisfied with the result here.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/syuzhet/">syuzhet</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/streamgraph/">streamgraph</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/tidytext/">tidytext</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/visualization-and-clustering-for-single-cell-analysis/" data-tooltip="Visualization and Clustering for Single-Cell Analysis">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/02/the-king-in-yellow/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/02/the-king-in-yellow/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/02/the-king-in-yellow/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/visualization-and-clustering-for-single-cell-analysis/" data-tooltip="Visualization and Clustering for Single-Cell Analysis">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/02/the-king-in-yellow/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/02/the-king-in-yellow/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/02/the-king-in-yellow/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2020%2F02%2Fthe-king-in-yellow%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2020%2F02%2Fthe-king-in-yellow%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2020%2F02%2Fthe-king-in-yellow%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&quot;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/logo/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
