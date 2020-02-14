@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Natural Language Processing on In Code We Trust</title>
@@ -6,10 +6,19 @@
     <description>Recent content in Natural Language Processing on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 May 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/natural-language-processing/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The King in Yellow</title>
+      <link>/2020/02/the-king-in-yellow/</link>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/02/the-king-in-yellow/</guid>
+      <description>AI can&amp;rsquo;t bet humans at sentiments, but they can help analyze them.</description>
+    </item>
     
     <item>
       <title>How to Select a Reading Depending on your State of Mind</title>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>In Code We Trust</title>
@@ -6,10 +6,19 @@
     <description>Recent content on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The King in Yellow</title>
+      <link>/2020/02/the-king-in-yellow/</link>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/02/the-king-in-yellow/</guid>
+      <description>AI can&amp;rsquo;t bet humans at sentiments, but they can help analyze them.</description>
+    </item>
     
     <item>
       <title>Visualization and Clustering for Single-Cell Analysis</title>
@@ -129,7 +138,7 @@ clustRcheck This package&amp;ndash;currently hosted on GitHub&amp;ndash;contains
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/page/useful-resources/</guid>
-      <description> Other websites  Bob Rudis&amp;rsquo;s blog, most beautiful visualizations Damiano Fantini&amp;rsquo;s blog, useful R and python code Hadley Wickham&amp;rsquo;s website, the R bible Julia Silge&amp;rsquo;s blog, a truly inspirational one  Diverse books  An introduction to statistical learning, a must have Practical Data Science with R, basic principles and real use cases R Graphics Cookbook, for ggplot2 heroes R in a Nutshell, quick reference for beginners  </description>
+      <description>Other websites  Bob Rudis&amp;rsquo;s blog, most beautiful visualizations Damiano Fantini&amp;rsquo;s blog, useful R and python code Hadley Wickham&amp;rsquo;s website, the R bible Julia Silge&amp;rsquo;s blog, a truly inspirational one  Diverse books  An introduction to statistical learning, a must have Practical Data Science with R, basic principles and real use cases R Graphics Cookbook, for ggplot2 heroes R in a Nutshell, quick reference for beginners  </description>
     </item>
     
   </channel>
