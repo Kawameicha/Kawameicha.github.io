@@ -3,22 +3,87 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/benchmarking/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/caret/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/factoextra/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/ggally/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/ggfortify/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/hrbrthemes/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/natural-language-processing/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <loc>/tags/mlbench/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/recipes/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/rsample/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/supervised-learning/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/tidyverse/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2020/03/whats-a-good-model/</loc>
+    <lastmod>2020-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/natural-language-processing/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
@@ -29,11 +94,6 @@
   
   <url>
     <loc>/tags/syuzhet/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
@@ -103,11 +163,6 @@
   </url>
   
   <url>
-    <loc>/categories/supervised-learning/</loc>
-    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/deep-learning/</loc>
     <lastmod>2018-03-24T00:00:00+00:00</lastmod>
   </url>
@@ -119,11 +174,6 @@
   
   <url>
     <loc>/tags/lime/</loc>
-    <lastmod>2018-03-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/recipes/</loc>
     <lastmod>2018-03-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -154,11 +204,6 @@
   
   <url>
     <loc>/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</loc>
-    <lastmod>2018-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/tidyverse/</loc>
     <lastmod>2018-01-09T00:00:00+00:00</lastmod>
   </url>
   

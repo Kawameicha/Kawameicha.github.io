@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.58.3 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="Benchmarking binary classification models for cancer screening.">
+
+
+<meta property="og:description" content="Benchmarking binary classification models for cancer screening.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What&#39;s a Good Model">
+<meta name="twitter:title" content="What&#39;s a Good Model">
+<meta property="og:url" content="/2020/03/whats-a-good-model/">
+<meta property="twitter:url" content="/2020/03/whats-a-good-model/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="Benchmarking binary classification models for cancer screening.">
+<meta name="twitter:description" content="Benchmarking binary classification models for cancer screening.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2020-03-09T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-03-09T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Supervised Learning">
+    
+      <meta property="article:section" content="Benchmarking">
+    
+  
+  
+    
+      <meta property="article:tag" content="tidyverse">
+    
+      <meta property="article:tag" content="hrbrthemes">
+    
+      <meta property="article:tag" content="mlbench">
+    
+      <meta property="article:tag" content="factoextra">
+    
+      <meta property="article:tag" content="GGally">
+    
+      <meta property="article:tag" content="ggfortify">
+    
+      <meta property="article:tag" content="rsample">
+    
+      <meta property="article:tag" content="recipes">
+    
+      <meta property="article:tag" content="caret">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="http://3.bp.blogspot.com/_2qS5vhd017U/SXzdZE6oxyI/AAAAAAAAA3o/t1BgyFhYZSc/S220/page0_blog_entry70-Pink&#43;Ribbon&#43;Icon.png">
+  <meta property="twitter:image" content="http://3.bp.blogspot.com/_2qS5vhd017U/SXzdZE6oxyI/AAAAAAAAA3o/t1BgyFhYZSc/S220/page0_blog_entry70-Pink&#43;Ribbon&#43;Icon.png">
+
+
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Choriocarcinoma_-2-_very_high_mag.jpg/1200px-Choriocarcinoma_-2-_very_high_mag.jpg">
+  <meta property="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Choriocarcinoma_-2-_very_high_mag.jpg/1200px-Choriocarcinoma_-2-_very_high_mag.jpg">
+
+
+
+
+  <meta property="og:image" content="/logo/bio.png">
+  <meta property="twitter:image" content="/logo/bio.png">
+
+
+    <title>What&#39;s a Good Model</title>
+
+    <link rel="icon" href="logo/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="/2020/03/whats-a-good-model/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-sitemap"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-vcard"></i>
+      
+      <span class="sidebar-button-desc">About Me</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin-square"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Choriocarcinoma_-2-_very_high_mag.jpg/1200px-Choriocarcinoma_-2-_very_high_mag.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      What&#39;s a Good Model
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-03-09T00:00:00Z">
+        
+  
+  
+  
+  
+    Mar 9, 2020
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/supervised-learning">Supervised Learning</a>, 
+    
+      <a class="category-link" href="/categories/benchmarking">Benchmarking</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>If you ever happen to present abnormal findings on cancer screening, chances are further investigations will be ordered. The surgical removing of a piece of the suspicious lump will allow examination under the microscope after the specimen has been processed and histological sections have been placed onto glass slides. A pathologist will study the tissue and look for manifestations of disease in order to identify malignancy. As you can guess the process is quite time consuming as each sample has to be investigated and scored individually.</p>
+<p>Actually, we face a typical binary (or binomial) classification problem, where the task is to classify the elements of a dataset into two groups. The <code>mlbench</code> package contains such a dataset that can be used to evaluate possible automation. The Wisconsin Breast Cancer Database contains clinical cases with several attributes and one target class. In the medical field, accuracy is usually not enough and we will be looking for the probability estimates of each class as we need to gauge the model’s confidence about the predicted classification.</p>
+<div id="whats-up-doc" class="section level1">
+<h1>What’s up, doc</h1>
+<p>As part of <code>mlbench</code> the data is close at hand once you’ve loaded the package.</p>
+<pre class="r"><code>data(BreastCancer)</code></pre>
+<p>Let’s have a look inside.</p>
+<pre class="r"><code>glimpse(BreastCancer)
+## Observations: 699
+## Variables: 11
+## $ Id              &lt;chr&gt; &quot;1000025&quot;, &quot;1002945&quot;, &quot;1015425&quot;, &quot;1016277&quot;, &quot;1017023&quot;…
+## $ Cl.thickness    &lt;ord&gt; 5, 5, 3, 6, 4, 8, 1, 2, 2, 4, 1, 2, 5, 1, 8, 7, 4, 4,…
+## $ Cell.size       &lt;ord&gt; 1, 4, 1, 8, 1, 10, 1, 1, 1, 2, 1, 1, 3, 1, 7, 4, 1, 1…
+## $ Cell.shape      &lt;ord&gt; 1, 4, 1, 8, 1, 10, 1, 2, 1, 1, 1, 1, 3, 1, 5, 6, 1, 1…
+## $ Marg.adhesion   &lt;ord&gt; 1, 5, 1, 1, 3, 8, 1, 1, 1, 1, 1, 1, 3, 1, 10, 4, 1, 1…
+## $ Epith.c.size    &lt;ord&gt; 2, 7, 2, 3, 2, 7, 2, 2, 2, 2, 1, 2, 2, 2, 7, 6, 2, 2,…
+## $ Bare.nuclei     &lt;fct&gt; 1, 10, 2, 4, 1, 10, 10, 1, 1, 1, 1, 1, 3, 3, 9, 1, 1,…
+## $ Bl.cromatin     &lt;fct&gt; 3, 3, 3, 3, 3, 9, 3, 3, 1, 2, 3, 2, 4, 3, 5, 4, 2, 3,…
+## $ Normal.nucleoli &lt;fct&gt; 1, 2, 1, 7, 1, 7, 1, 1, 1, 1, 1, 1, 4, 1, 5, 3, 1, 1,…
+## $ Mitoses         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 4, 1, 1, 1,…
+## $ Class           &lt;fct&gt; benign, benign, benign, benign, benign, malignant, be…</code></pre>
+<p>So we have a total of 699 cases and 10 attributes. I don’t want to go into details, but all 9 predictors (<code>Id</code> will not help) are related to either cells directly or the structure in their vicinity. Most importantly, each variable was converted into primitive numerical attributes with values ranging from 0 through 10.</p>
+<p>Without wishing to sound alarmist, I noted the documentation mentions a couple of missing values.</p>
+<pre class="r"><code>BreastCancer %&gt;% 
+  map_df(~100*round(sum(is.na(.))/length(.), 4)) %&gt;% 
+  gather(key = &quot;feature&quot;, value = &quot;missing_per&quot;) %&gt;% 
+  filter(missing_per &gt; 0)
+## # A tibble: 1 x 2
+##   feature     missing_per
+##   &lt;chr&gt;             &lt;dbl&gt;
+## 1 Bare.nuclei        2.29</code></pre>
+<p>Okay, we are only speaking about a few missing values for the <code>Bare.nuclei</code> attribute.</p>
+<p>Let’s sum up and correct this dataset. There is a need to:</p>
+<ul>
+<li>remove <code>Id</code> as these values have no predictive power;</li>
+<li><code>mutate_at</code> to <code>as.numeric</code> all numeric attributes;</li>
+<li><code>replace_na</code> missing values, by class is better.</li>
+</ul>
+<pre class="r"><code>BreastCancer &lt;- BreastCancer %&gt;% 
+  select(-Id) %&gt;% 
+  mutate_at(vars(!matches(&quot;Class&quot;)), as.numeric) %&gt;%
+  group_by(Class) %&gt;% 
+  mutate(Bare.nuclei = replace_na(Bare.nuclei, median(Bare.nuclei, na.rm = TRUE))) %&gt;%
+  ungroup()</code></pre>
+<p>Voilà!</p>
+</div>
+<div id="i-do-love-a-good-visualization" class="section level1">
+<h1>I do love a good visualization</h1>
+<p>I cannot help but always feel the need to visualize my data. A couple of primitive attributes so nicely encoded into a numerical scale automatically arouse me to take action. How about principal components analysis.</p>
+<pre class="r"><code>pca &lt;- BreastCancer %&gt;% 
+  select(-Class) %&gt;%
+  prcomp(center = TRUE,
+         scale  = TRUE)</code></pre>
+<p>Was this dimensionality reduction worth it? We can extract the eigenvalues of the principal dimensions and plot them against the number of dimensions to visualize the amount of the variation explained by each principal component. <code>viz_eig()</code> from the <code>factoextra</code> package does this all at once.</p>
+<pre class="r"><code>fviz_eig(pca, main = &quot;&quot;) +
+  theme_ipsum()</code></pre>
+<p><img src="/post/2020-03-09-what-s-a-good-model_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Looks like a big yes to me and I presume this will look great once plotted. I’ve added directly the 95% confidence ellipses. They represent an iso-contour and defines the region that contains 95% of all samples that can be drawn from the underlying Gaussian distribution.</p>
+<pre class="r"><code>pca %&gt;% 
+  autoplot(data   = BreastCancer, 
+           colour = &quot;Class&quot;, 
+           alpha  = .7) +
+  stat_ellipse(mapping = aes(color = Class)) +
+  theme_ipsum() +
+  scale_color_ipsum() +
+  theme(legend.position = &quot;bottom&quot;)</code></pre>
+<p><img src="/post/2020-03-09-what-s-a-good-model_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Without much surprise, there is a clear horizontal stratification of the cases. Malignant specimens normally score higher in each individual attribute. Each one of them individually, however, isn’t conclusive. But once statistically converted using principal component analysis, these observations of possibly correlated variables reveal an almost perfect delimitation of the two classes.</p>
+<p>Hmm, correlated variables. That is something worth looking into as well. We can use the <code>GGally</code> package to explore our attributes. By now I believe you realized I’m using the excellent new <code>hrbrthemes</code> package to theme my plots. Unfortunately, a <code>ggpairs</code> object is not a ggplot, so the <code>+</code> notation is not directly applicable in any way. A simple workaround is to override the ggplot theme.</p>
+<p>Here, so we have it conveniently fixed for the rest of this post as well.</p>
+<pre class="r"><code>ggplot &lt;- function(...) ggplot2::ggplot(...) + 
+  theme_ipsum() +
+  scale_color_ipsum() +
+  scale_fill_ipsum()
+
+# This is specific to GGally only
+unlockBinding(&quot;ggplot&quot;,parent.env(asNamespace(&quot;GGally&quot;)))
+assign(&quot;ggplot&quot;,ggplot,parent.env(asNamespace(&quot;GGally&quot;)))</code></pre>
+<p>Oh, I forgot to mention! I’ll select only attributes that <code>starts_with(&quot;C&quot;)</code> as trying to render them all together would inevitably lead to a tragedy here. Feel free to comment out this line while working on a fancy high resolution screen.</p>
+<pre class="r"><code>BreastCancer %&gt;%
+  select(starts_with(&quot;C&quot;)) %&gt;%
+  ggpairs(mapping = aes(colour = Class, alpha =.7))</code></pre>
+<p><img src="/post/2020-03-09-what-s-a-good-model_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>There is a lot of valuable information anyway; I wasn’t kidding about the high resolution screen. First our classes are not perfectly balanced, although this shouldn’t be an issue as both benign and malignant are sufficiently well represented. We can see individual attributes allow a good classification of the most extreme cases but there is definitively a danger zone in between, where one wouldn’t be enough anymore. Unsurprisingly, most attributes are highly correlated. Simply look at the <code>Cell.shape</code> versus <code>Cell.size</code> correlation of .907. This is something to keep in mind when building models.</p>
+</div>
+<div id="preprocessing-data-with-recipes" class="section level1">
+<h1>Preprocessing data with recipes</h1>
+<p>There is normally so much to do and this is probably the most important step when considering building a model. Everything has to be handled with a lot of minutia and most of the time it requires to get your hands dirty.</p>
+<p>In this example, however, the dataset is already clean and preprocessing it will include only minimal intervention. Let’s start splitting the data using <code>rsample</code> into both a training and testing sets.</p>
+<pre class="r"><code># First, some seeds
+set.seed(123)
+
+# Split test/training sets
+train_test_split &lt;- initial_split(BreastCancer, prop = 0.8)
+
+# Quick sanity check
+train_test_split
+## &lt;560/139/699&gt;</code></pre>
+<p>Okay, now split these into train and test.</p>
+<pre class="r"><code>train_tbl &lt;- training(train_test_split)
+test_tbl &lt;- testing(train_test_split)</code></pre>
+<p>Despite being a somehow simplistic preprocessing, I like the way a recipe keeps it clean and tidy. This one will:</p>
+<ul>
+<li>center and then scale numerical attributes;</li>
+<li>if necessary remove sparse and unbalanced ones;</li>
+<li>if necessary remove absolute correlation greater .9.</li>
+</ul>
+<pre class="r"><code>rec_obj &lt;- recipe(Class ~ ., data = train_tbl) %&gt;%
+  step_center(all_predictors(), -all_outcomes()) %&gt;%
+  step_scale(all_predictors(), -all_outcomes()) %&gt;%
+  step_nzv(all_predictors()) %&gt;%
+  step_corr(all_predictors(), threshold = .9) %&gt;% 
+  prep(data = train_tbl)</code></pre>
+<p>Time to bake the two sets. I choose to bake into a <code>data.frame</code> as caret doesn’t play well with tibbles.</p>
+<pre class="r"><code>x_train &lt;- bake(rec_obj, new_data = train_tbl, composition = &quot;data.frame&quot;) %&gt;%
+  select(-Class)
+x_test &lt;- bake(rec_obj, new_data = test_tbl, composition = &quot;data.frame&quot;) %&gt;% 
+  select(-Class)</code></pre>
+<p>Lastly we need to pull the target class. This is needed to train and of course to test the models.</p>
+<pre class="r"><code>y_train &lt;- pull(train_tbl, Class)
+y_test &lt;- pull(test_tbl, Class)</code></pre>
+<p>You’ll have noticed that we’ve lost one attribute by now. We got rid of <code>Cell.size</code> as the correlation with <code>Cell.shape</code> was above the .9 threshold we define in our recipe. Getting rid of such attributes is good practice. Two variables so highly correlated will obviously impart nearly exactly the same information to the model. Including both would actually weaken the model. These are not adding incremental information and instead, are infusing the model with noise. Not a good thing.</p>
+</div>
+<div id="benchmarking-different-models" class="section level1">
+<h1>Benchmarking different models</h1>
+<p>Now the second most important step is what model to consider. Our Goal is to automate the recognition of the two classes based on the different attributes. Per our first observations, the task seems fairly easy but as we are talking about medical application, accuracy isn’t enough. We need a model that is also confident about its prediction. There is no way anyone can tell you right off the bad which model will perform best for a specific task and it makes sense to benchmark different ideas.</p>
+<p>I propose we look into the following models.</p>
+<ul>
+<li>Some general ideas first
+<ul>
+<li><code>glm</code> (generalized linear model) a flexible generalization of ordinary linear regression;</li>
+<li><code>lda</code> (linear discriminant analysis) a generalization of Fisher’s linear discriminant;</li>
+<li><code>knn</code> (<em>k</em>-nearest neighbors algorithm) a non-parametric method used for classification;</li>
+<li><code>rpart</code> (classification and regression trees) a generalization of optimal discriminant analysis.</li>
+</ul></li>
+<li>Then we do bagging and boosting
+<ul>
+<li><code>rf</code> (random forest) is an ensemble learning method for classification;</li>
+<li><code>glmboost</code> (Boosted Generalized Linear Model) a gradient boosting for optimizing arbitrary loss functions.</li>
+</ul></li>
+<li>Also probabilities and hyperplanes
+<ul>
+<li><code>naive_bayes</code> (naive Bayes classifier) an implementation of the naive Bayes classifier;</li>
+<li><code>svmLinear</code> (support vector machine) uses hyperplane to separates the classes.</li>
+</ul></li>
+<li>And a neural network
+<ul>
+<li><code>nnet</code> is a neural networks with a single hidden layer.</li>
+</ul></li>
+</ul>
+<p>So let’s save a list we can use to benchmark them all quickly. We’ll use the <code>caret</code> package so values here are the corresponding models’ methods.</p>
+<pre class="r"><code>models &lt;- list(&quot;glm&quot;, &quot;lda&quot;, &quot;knn&quot;, &quot;rpart&quot;, &quot;rf&quot;, &quot;glmboost&quot;, &quot;naive_bayes&quot;, &quot;svmLinear&quot;, &quot;nnet&quot;)</code></pre>
+<p>We will gauge the performance using a receiver operating characteristic curve, or ROC curve, that illustrates the diagnostic ability of a binary classifier system as its discrimination threshold is varied.</p>
+<p>In order to measure model performance we will look into sensitivity and specificity. Sensitivity, or true-positive rate, measures the proportion of actual positives that are correctly identified as such, whereas specificity measures the proportion of actual negatives that are correctly identified as such. The false-positive rate can be calculated as (1 − specificity).</p>
+<p>For data with two classes, there are specialized functions for measuring model performance. The <code>twoClassSummary</code> function computes this directly.</p>
+<pre class="r"><code>ctrl &lt;- trainControl(summaryFunction = twoClassSummary, classProbs = TRUE)</code></pre>
+<p>Now we simply need to define a function that will take these models and train them using the <code>caret</code> package. The <code>train</code> function can be used to evaluate the effect of model tuning parameters on performance using resampling and choose the optimal model across these parameters.</p>
+<p>Here we will use a simple 10-fold cross-validation to benchmark. The number of levels for each tuning parameters that should be tested is and we will let the function choose the optimal model tuning parameters.</p>
+<pre class="r"><code>train_model &lt;- function(model) {
+  train(x = x_train,
+        y = y_train,
+        method = model,
+        tuneLength = 5,
+        metric = &quot;ROC&quot;,
+        trControl = ctrl)$resample %&gt;%
+    add_column(model = model)
+}</code></pre>
+<p>All set, let’s map this to our different models. This is where the real benchmark happens.</p>
+<pre class="r"><code>benchmark &lt;- models %&gt;% 
+  map_df(train_model)</code></pre>
+<p>Once done we can visualize the results as a simple boxplot to determine which model suits our application best.</p>
+<pre class="r"><code>benchmark %&gt;% 
+  select(-Resample) %&gt;% 
+  pivot_longer(-model, names_to = &quot;metric&quot;, values_to = &quot;value&quot;) %&gt;% 
+  ggplot(aes(x = model, y = value, fill = model, alpha = .7)) +
+  geom_boxplot() +
+  theme(legend.position = &quot;none&quot;,
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank()) +
+  facet_wrap(~metric, ncol = 1, scales = &quot;free&quot;)</code></pre>
+<p><img src="/post/2020-03-09-what-s-a-good-model_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>There is no real winner–although rpart is clearly lagging behind–and all models seem to perform well, scoring ROC really high. Looking at sensitivity and specificity helps making the most sensible choice. I would personally argue that the random forest does an overall really good job archiving both high sensitivity and specificity.</p>
+</div>
+<div id="i-really-like-random-forests" class="section level1">
+<h1>I really like random forests</h1>
+<p>Ensemble methods, like a random forest, train multiple models instead of only one, reducing the risk of overfitting the data to almost none, and then collectively vote to decide the predicted output for new data. I tend to use them a lot, like here to predict <a href="https://christoph.freier.fr/2018/11/my-heart-will-go-down/">survival of passengers on the Titanic</a>. Additionally, random forests can be used to rank the importance of variables in a natural way, which makes them very useful when the goal isn’t only the best prediction, but also to have an explainable model.</p>
+<p>The <code>train</code> function made some fine parameter tuning for us. But of course it doesn’t hurt to have a look at this now in order to make sure this is correct. Let’s train our model of choice again.</p>
+<pre class="r"><code>rdmFor &lt;- train(x = x_train,
+                y = y_train,
+                method = &quot;rf&quot;,
+                tuneLength = 5,
+                metric = &quot;ROC&quot;,
+                trControl = ctrl)</code></pre>
+<p>And have a look at the metrics. I’ll get rid of what <code>ends_with(&quot;SD&quot;)</code> as this isn’t super useful right now.</p>
+<pre class="r"><code>rdmFor$results %&gt;% 
+  select(-ends_with(&quot;SD&quot;)) %&gt;% 
+  pivot_longer(-mtry, names_to = &quot;metric&quot;, values_to = &quot;value&quot;) %&gt;% 
+  ggplot(aes(x = mtry, y = value, group = metric, color = metric)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = &quot;bottom&quot;,
+        legend.title = element_blank(),
+        axis.title.y = element_blank()) +
+  scale_color_ipsum()</code></pre>
+<p><img src="/post/2020-03-09-what-s-a-good-model_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Of course there is an issue with <code>mtry</code>. This represent the number of variables randomly sampled as candidates at each split. As we go for classification, the ideal value should be around <code>sqrt(p)</code> where <code>p</code> is number of attributes. Since we only have 8 of them here, it’s obvious that the best fit would be either 2 or 3.</p>
+<p>Last but not the least, we do have some cases aside to test our model. Let’s predict the class for these samples.</p>
+<pre class="r"><code>rf.pred &lt;- predict.train(rdmFor, newdata = x_test)</code></pre>
+<p>And it’s best to have a look at the confusion matrix which comes with all the relevant metrics we need to conclude.</p>
+<pre class="r"><code>confusionMatrix(data = y_test, reference = rf.pred)
+## Confusion Matrix and Statistics
+## 
+##            Reference
+## Prediction  benign malignant
+##   benign        88         2
+##   malignant      7        42
+##                                         
+##                Accuracy : 0.9353        
+##                  95% CI : (0.8806, 0.97)
+##     No Information Rate : 0.6835        
+##     P-Value [Acc &gt; NIR] : 4.976e-13     
+##                                         
+##                   Kappa : 0.8548        
+##                                         
+##  Mcnemar&#39;s Test P-Value : 0.1824        
+##                                         
+##             Sensitivity : 0.9263        
+##             Specificity : 0.9545        
+##          Pos Pred Value : 0.9778        
+##          Neg Pred Value : 0.8571        
+##              Prevalence : 0.6835        
+##          Detection Rate : 0.6331        
+##    Detection Prevalence : 0.6475        
+##       Balanced Accuracy : 0.9404        
+##                                         
+##        &#39;Positive&#39; Class : benign        
+## </code></pre>
+<p>That’s really satisfying! Of course we’ve lost a bit in sensitivity and specificity but we are still well above 90%.</p>
+<p>We observe the worse drop in sensitivity as we land at only 92.63%. This comes from mislabeling 7 benign samples as malignant. So while this model is really specific, correctly detecting malignancy in 95.45% of the cases, its lacks a bit in sensitivity. Although we could play a bit more with the different models, it’s important to recognize that sensitivity and specificity exist in a state of balance. Increased sensitivity–the ability to correctly identify people who have the disease–usually comes at the expense of reduced specificity (meaning more false-positives). Likewise, high specificity–when a test does a good job of ruling out people who don’t have the disease–usually means that the test has lower sensitivity (more false-negatives).</p>
+<p>It’s also very important to keep in mind that different pathologist might score their samples slightly different. In order to be reasonably able to extrapolate this model we need to be careful with a potential overfit.</p>
+</div>
+<div id="whats-a-good-test-it-depends" class="section level1">
+<h1>What’s a good test? It depends</h1>
+<p>Let’s illustrate this with airport security. To ensure that truly dangerous items cannot be brought on board, scanners at security prioritize sensitivity and will flag almost anything that seems like it could be dangerous. But that leads to lower specificity and the system is prone to false alarms. For cancer screening high sensitivity is desirable as missing cases of actual cancer could lead to delays in treatment. However, specificity is very relevant as well as false-positive results will create anxiety and unnecessary follow-up.</p>
+<p>The ideal test is one that has both high sensitivity and high specificity, but the value of a test depends on the situation. With both sensitivity and specificity above 90% our test would be considered to have good diagnostic performance. But depending on the applications and the target population it is important to answer this question: if I test positive, what are the chances that I actually have cancer. That’s called the positive predictive value and the result depends on how common the condition is in the population being tested.</p>
+<p>This is particularly a problem when we are talking about screening and if the prevalence of disease in the population is usually quite low. That’s one of the reasons why screening everyone for disease is so fraught; such tests inevitably flag many people who have nothing to worry about and turn them into patients. You wouldn’t believe how many times I got stopped at the airport security while carrying nothing more than a suspicious lip balm. This is why the societal impact of algorithms as been compared to <a href="https://en.wikipedia.org/wiki/Weapons_of_Math_Destruction">weapons of math destruction</a>.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/tidyverse/">tidyverse</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/hrbrthemes/">hrbrthemes</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/mlbench/">mlbench</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/factoextra/">factoextra</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/ggally/">GGally</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/ggfortify/">ggfortify</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/rsample/">rsample</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/recipes/">recipes</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/caret/">caret</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/02/the-king-in-yellow/" data-tooltip="The King in Yellow">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/03/whats-a-good-model/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/03/whats-a-good-model/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/03/whats-a-good-model/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/02/the-king-in-yellow/" data-tooltip="The King in Yellow">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/03/whats-a-good-model/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/03/whats-a-good-model/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/03/whats-a-good-model/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2020%2F03%2Fwhats-a-good-model%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2020%2F03%2Fwhats-a-good-model%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2020%2F03%2Fwhats-a-good-model%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/logo/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -6,10 +6,91 @@
     <description>Recent content in Tags on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>caret</title>
+      <link>/tags/caret/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/caret/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>factoextra</title>
+      <link>/tags/factoextra/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/factoextra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GGally</title>
+      <link>/tags/ggally/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggally/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggfortify</title>
+      <link>/tags/ggfortify/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggfortify/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hrbrthemes</title>
+      <link>/tags/hrbrthemes/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/hrbrthemes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mlbench</title>
+      <link>/tags/mlbench/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/mlbench/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>recipes</title>
+      <link>/tags/recipes/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/recipes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rsample</title>
+      <link>/tags/rsample/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rsample/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyverse/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>streamgraph</title>
@@ -111,15 +192,6 @@
     </item>
     
     <item>
-      <title>recipes</title>
-      <link>/tags/recipes/</link>
-      <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/recipes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>gridExtra</title>
       <link>/tags/gridextra/</link>
       <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
@@ -134,15 +206,6 @@
       <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/lubridate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidyverse</title>
-      <link>/tags/tidyverse/</link>
-      <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     
