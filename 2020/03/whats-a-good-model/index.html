@@ -477,7 +477,7 @@ y_test &lt;- pull(test_tbl, Class)</code></pre>
 <li><code>nnet</code> is a neural networks with a single hidden layer.</li>
 </ul></li>
 </ul>
-<p>So let’s save a list we can use to benchmark them all quickly. We’ll use the <code>caret</code> package so values here are the corresponding models’ methods.</p>
+<p>Let’s save a list we can use to benchmark them all quickly. We’ll use the <code>caret</code> package so values here are the corresponding models’ methods.</p>
 <pre class="r"><code>models &lt;- list(&quot;glm&quot;, &quot;lda&quot;, &quot;knn&quot;, &quot;rpart&quot;, &quot;rf&quot;, &quot;glmboost&quot;, &quot;naive_bayes&quot;, &quot;svmLinear&quot;, &quot;nnet&quot;)</code></pre>
 <p>We will gauge the performance using a receiver operating characteristic curve, or ROC curve, that illustrates the diagnostic ability of a binary classifier system as its discrimination threshold is varied.</p>
 <p>In order to measure model performance we will look into sensitivity and specificity. Sensitivity, or true-positive rate, measures the proportion of actual positives that are correctly identified as such, whereas specificity measures the proportion of actual negatives that are correctly identified as such. The false-positive rate can be calculated as (1 − specificity).</p>
