@@ -129,6 +129,24 @@
     </item>
     
     <item>
+      <title>genefilter</title>
+      <link>/tags/genefilter/</link>
+      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/genefilter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RColorBrewer</title>
+      <link>/tags/rcolorbrewer/</link>
+      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rcolorbrewer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Rphenograph</title>
       <link>/tags/rphenograph/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
@@ -152,6 +170,15 @@
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/umap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>viridis</title>
+      <link>/tags/viridis/</link>
+      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/viridis/</guid>
       <description></description>
     </item>
     

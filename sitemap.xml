@@ -123,6 +123,16 @@
   </url>
   
   <url>
+    <loc>/tags/genefilter/</loc>
+    <lastmod>2019-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/rcolorbrewer/</loc>
+    <lastmod>2019-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/rphenograph/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url>
@@ -134,6 +144,11 @@
   
   <url>
     <loc>/tags/umap/</loc>
+    <lastmod>2019-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/viridis/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url>
   
