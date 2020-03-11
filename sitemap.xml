@@ -163,6 +163,11 @@
   </url>
   
   <url>
+    <loc>/tags/gridextra/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2018/11/my-heart-will-go-down/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url>
@@ -178,7 +183,27 @@
   </url>
   
   <url>
+    <loc>/tags/rattle/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/reshape2/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/rpart/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/rpart.plot/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/titanic/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -209,11 +234,6 @@
   
   <url>
     <loc>/categories/descriptive-statistics/</loc>
-    <lastmod>2018-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/gridextra/</loc>
     <lastmod>2018-01-09T00:00:00+00:00</lastmod>
   </url>
   

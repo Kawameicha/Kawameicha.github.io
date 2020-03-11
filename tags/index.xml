@@ -192,6 +192,15 @@
     </item>
     
     <item>
+      <title>gridExtra</title>
+      <link>/tags/gridextra/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/gridextra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>randomForest</title>
       <link>/tags/randomforest/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
@@ -201,11 +210,47 @@
     </item>
     
     <item>
+      <title>rattle</title>
+      <link>/tags/rattle/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rattle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reshape2</title>
+      <link>/tags/reshape2/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/reshape2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>rpart</title>
       <link>/tags/rpart/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/rpart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rpart.plot</title>
+      <link>/tags/rpart.plot/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rpart.plot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>titanic</title>
+      <link>/tags/titanic/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/titanic/</guid>
       <description></description>
     </item>
     
@@ -224,15 +269,6 @@
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/lime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gridExtra</title>
-      <link>/tags/gridextra/</link>
-      <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/gridextra/</guid>
       <description></description>
     </item>
     

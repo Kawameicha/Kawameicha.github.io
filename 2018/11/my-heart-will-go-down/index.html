@@ -38,9 +38,25 @@
   
   
     
+      <meta property="article:tag" content="tidyverse">
+    
+      <meta property="article:tag" content="RColorBrewer">
+    
+      <meta property="article:tag" content="titanic">
+    
+      <meta property="article:tag" content="reshape2">
+    
+      <meta property="article:tag" content="gridExtra">
+    
       <meta property="article:tag" content="corrplot">
     
+      <meta property="article:tag" content="rsample">
+    
       <meta property="article:tag" content="rpart">
+    
+      <meta property="article:tag" content="rattle">
+    
+      <meta property="article:tag" content="rpart.plot">
     
       <meta property="article:tag" content="randomForest">
     
@@ -329,18 +345,18 @@ train_tit_raw &lt;- titanic_train</code></pre>
 glimpse(train_tit_raw)
 ## Observations: 891
 ## Variables: 12
-## $ PassengerId &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…
-## $ Survived    &lt;int&gt; 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1…
-## $ Pclass      &lt;int&gt; 3, 1, 3, 1, 3, 3, 1, 3, 3, 2, 3, 1, 3, 3, 3, 2, 3, 2…
-## $ Name        &lt;chr&gt; &quot;Braund, Mr. Owen Harris&quot;, &quot;Cumings, Mrs. John Bradl…
-## $ Sex         &lt;chr&gt; &quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;…
-## $ Age         &lt;dbl&gt; 22, 38, 26, 35, 35, NA, 54, 2, 27, 14, 4, 58, 20, 39…
-## $ SibSp       &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 3, 0, 1, 1, 0, 0, 1, 0, 0, 4, 0…
-## $ Parch       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 1, 0, 0, 5, 0, 0, 1, 0…
-## $ Ticket      &lt;chr&gt; &quot;A/5 21171&quot;, &quot;PC 17599&quot;, &quot;STON/O2. 3101282&quot;, &quot;113803…
-## $ Fare        &lt;dbl&gt; 7.2500, 71.2833, 7.9250, 53.1000, 8.0500, 8.4583, 51…
-## $ Cabin       &lt;chr&gt; &quot;&quot;, &quot;C85&quot;, &quot;&quot;, &quot;C123&quot;, &quot;&quot;, &quot;&quot;, &quot;E46&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;G…
-## $ Embarked    &lt;chr&gt; &quot;S&quot;, &quot;C&quot;, &quot;S&quot;, &quot;S&quot;, &quot;S&quot;, &quot;Q&quot;, &quot;S&quot;, &quot;S&quot;, &quot;S&quot;, &quot;C&quot;, &quot;S…</code></pre>
+## $ PassengerId &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17…
+## $ Survived    &lt;int&gt; 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, …
+## $ Pclass      &lt;int&gt; 3, 1, 3, 1, 3, 3, 1, 3, 3, 2, 3, 1, 3, 3, 3, 2, 3, 2, 3, …
+## $ Name        &lt;chr&gt; &quot;Braund, Mr. Owen Harris&quot;, &quot;Cumings, Mrs. John Bradley (F…
+## $ Sex         &lt;chr&gt; &quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;ma…
+## $ Age         &lt;dbl&gt; 22, 38, 26, 35, 35, NA, 54, 2, 27, 14, 4, 58, 20, 39, 14,…
+## $ SibSp       &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 3, 0, 1, 1, 0, 0, 1, 0, 0, 4, 0, 1, …
+## $ Parch       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 1, 0, 0, 5, 0, 0, 1, 0, 0, …
+## $ Ticket      &lt;chr&gt; &quot;A/5 21171&quot;, &quot;PC 17599&quot;, &quot;STON/O2. 3101282&quot;, &quot;113803&quot;, &quot;3…
+## $ Fare        &lt;dbl&gt; 7.2500, 71.2833, 7.9250, 53.1000, 8.0500, 8.4583, 51.8625…
+## $ Cabin       &lt;chr&gt; &quot;&quot;, &quot;C85&quot;, &quot;&quot;, &quot;C123&quot;, &quot;&quot;, &quot;&quot;, &quot;E46&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;G6&quot;, &quot;…
+## $ Embarked    &lt;chr&gt; &quot;S&quot;, &quot;C&quot;, &quot;S&quot;, &quot;S&quot;, &quot;S&quot;, &quot;Q&quot;, &quot;S&quot;, &quot;S&quot;, &quot;S&quot;, &quot;C&quot;, &quot;S&quot;, &quot;S…</code></pre>
 <ul>
 <li><code>PassengerID</code> has to be a random unique identifier, and has no impact on the outcome variable. We can happily ignore it for this work.</li>
 <li><code>Survived</code> variable is our outcome or dependent variable. It is a binary nominal datatype of 1 for survived and 0 for did not survive.</li>
@@ -692,9 +708,25 @@ confMatrix_rf$overall[1]
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
+  <a class="tag tag--primary tag--small" href="/tags/tidyverse/">tidyverse</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/rcolorbrewer/">RColorBrewer</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/titanic/">titanic</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/reshape2/">reshape2</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/gridextra/">gridExtra</a>
+
   <a class="tag tag--primary tag--small" href="/tags/corrplot/">corrplot</a>
 
+  <a class="tag tag--primary tag--small" href="/tags/rsample/">rsample</a>
+
   <a class="tag tag--primary tag--small" href="/tags/rpart/">rpart</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/rattle/">rattle</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/rpart.plot/">rpart.plot</a>
 
   <a class="tag tag--primary tag--small" href="/tags/randomforest/">randomForest</a>
 
