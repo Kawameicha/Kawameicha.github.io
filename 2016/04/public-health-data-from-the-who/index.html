@@ -33,7 +33,7 @@
     
       <meta property="article:section" content="Descriptive Statistics">
     
-      <meta property="article:section" content="Rstats">
+      <meta property="article:section" content="Beautiful Evidence">
     
   
   
@@ -292,7 +292,7 @@
     
       <a class="category-link" href="/categories/descriptive-statistics">Descriptive Statistics</a>, 
     
-      <a class="category-link" href="/categories/rstats">Rstats</a>
+      <a class="category-link" href="/categories/beautiful-evidence">Beautiful Evidence</a>
     
   
 
@@ -332,11 +332,11 @@ install_github(&quot;expersso/WHO&quot;)</code></pre>
 <pre class="r"><code># Retrieve series, codes, and descriptions
 codes &lt;- get_codes()
 str(codes)
-## Classes &#39;tbl_df&#39; and &#39;data.frame&#39;:   3284 obs. of  3 variables:
+## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    3308 obs. of  3 variables:
 ##  $ label  : chr  &quot;MDG_0000000001&quot; &quot;MDG_0000000003&quot; &quot;MDG_0000000005&quot; &quot;MDG_0000000006&quot; ...
 ##  $ display: chr  &quot;Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)&quot; &quot;Adolescent birth rate (per 1000 women aged 15-19 years)&quot; &quot;Contraceptive prevalence (%)&quot; &quot;Unmet need for family planning (%)&quot; ...
-##  $ url    : chr  &quot;http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=1&quot; &quot;http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=4669&quot; &quot;http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=5&quot; &quot;http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=6&quot; ...</code></pre>
-<p>So far they are 3284 datasets available, which are all easily retrieved through the <code>get_data</code> function. But first we need to pick-up series of interest. Let’s say we want to analyze breast cancer data and search for them among the series with a regular expression.</p>
+##  $ url    : chr  &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/1&quot; &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/4669&quot; &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/5&quot; &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/6&quot; ...</code></pre>
+<p>So far they are 3308 datasets available, which are all easily retrieved through the <code>get_data</code> function. But first we need to pick-up series of interest. Let’s say we want to analyze breast cancer data and search for them among the series with a regular expression.</p>
 <pre class="r"><code># Search for series about breast cancer
 breastCancer &lt;- codes[grep(&quot;[Bb]reast [Cc]ancer&quot;, codes$display),]
 breastCancer$display
