@@ -71,8 +71,8 @@
 
 
 
-  <meta property="og:image" content="http://3.bp.blogspot.com/_2qS5vhd017U/SXzdZE6oxyI/AAAAAAAAA3o/t1BgyFhYZSc/S220/page0_blog_entry70-Pink&#43;Ribbon&#43;Icon.png">
-  <meta property="twitter:image" content="http://3.bp.blogspot.com/_2qS5vhd017U/SXzdZE6oxyI/AAAAAAAAA3o/t1BgyFhYZSc/S220/page0_blog_entry70-Pink&#43;Ribbon&#43;Icon.png">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/logo/post/microscope.png">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/logo/post/microscope.png">
 
 
   <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Choriocarcinoma_-2-_very_high_mag.jpg/1200px-Choriocarcinoma_-2-_very_high_mag.jpg">
@@ -325,6 +325,7 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p>If you ever happen to present abnormal findings on cancer screening, chances are further investigations will be ordered. The surgical removing of a piece of the suspicious lump will allow examination under the microscope after the specimen has been processed and histological sections have been placed onto glass slides. A pathologist will study the tissue and look for manifestations of disease in order to identify malignancy. As you can guess the process is quite time consuming as each sample has to be investigated and scored individually.</p>
@@ -335,8 +336,8 @@
 <pre class="r"><code>data(BreastCancer)</code></pre>
 <p>Let’s have a look inside.</p>
 <pre class="r"><code>glimpse(BreastCancer)
-## Observations: 699
-## Variables: 11
+## Rows: 699
+## Columns: 11
 ## $ Id              &lt;chr&gt; &quot;1000025&quot;, &quot;1002945&quot;, &quot;1015425&quot;, &quot;1016277&quot;, &quot;1017023&quot;…
 ## $ Cl.thickness    &lt;ord&gt; 5, 5, 3, 6, 4, 8, 1, 2, 2, 4, 1, 2, 5, 1, 8, 7, 4, 4,…
 ## $ Cell.size       &lt;ord&gt; 1, 4, 1, 8, 1, 10, 1, 1, 1, 2, 1, 1, 3, 1, 7, 4, 1, 1…
@@ -392,7 +393,11 @@
   stat_ellipse(mapping = aes(color = Class)) +
   theme_ipsum() +
   scale_color_ipsum() +
-  theme(legend.position = &quot;bottom&quot;)</code></pre>
+  theme(legend.position = &quot;bottom&quot;)
+## Warning: `select_()` is deprecated as of dplyr 0.7.0.
+## Please use `select()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
 <p><img src="/post/2020-03-09-what-s-a-good-model_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Without much surprise, there is a clear horizontal stratification of the cases. Malignant specimens normally score higher in each individual attribute. Each one of them individually, however, isn’t conclusive. But once statistically converted using principal component analysis, these observations of possibly correlated variables reveal an almost perfect delimitation of the two classes.</p>
 <p>Hmm, correlated variables. That is something worth looking into as well. We can use the <code>GGally</code> package to explore our attributes. By now I believe you realized I’m using the excellent new <code>hrbrthemes</code> package to theme my plots. Unfortunately, a <code>ggpairs</code> object is not a ggplot, so the <code>+</code> notation is not directly applicable in any way. A simple workaround is to override the ggplot theme.</p>
@@ -405,7 +410,7 @@
 # This is specific to GGally only
 unlockBinding(&quot;ggplot&quot;,parent.env(asNamespace(&quot;GGally&quot;)))
 assign(&quot;ggplot&quot;,ggplot,parent.env(asNamespace(&quot;GGally&quot;)))</code></pre>
-<p>Oh, I forgot to mention! I’ll select only attributes that <code>starts_with(&quot;C&quot;)</code> as trying to render them all together would inevitably lead to a tragedy here. Feel free to comment out this line while working on a fancy high resolution screen.</p>
+<p>Oh, I forgot to mention! I’ll select only attributes that <code>starts_with("C")</code> as trying to render them all together would inevitably lead to a tragedy here. Feel free to comment out this line while working on a fancy high resolution screen.</p>
 <pre class="r"><code>BreastCancer %&gt;%
   select(starts_with(&quot;C&quot;)) %&gt;%
   ggpairs(mapping = aes(colour = Class, alpha =.7))</code></pre>
@@ -424,6 +429,7 @@ train_test_split &lt;- initial_split(BreastCancer, prop = 0.8)
 
 # Quick sanity check
 train_test_split
+## &lt;Training/Validation/Total&gt;
 ## &lt;560/139/699&gt;</code></pre>
 <p>Okay, now split these into train and test.</p>
 <pre class="r"><code>train_tbl &lt;- training(train_test_split)
@@ -520,7 +526,7 @@ y_test &lt;- pull(test_tbl, Class)</code></pre>
                 tuneLength = 5,
                 metric = &quot;ROC&quot;,
                 trControl = ctrl)</code></pre>
-<p>And have a look at the metrics. I’ll get rid of what <code>ends_with(&quot;SD&quot;)</code> as this isn’t super useful right now.</p>
+<p>And have a look at the metrics. I’ll get rid of what <code>ends_with("SD")</code> as this isn’t super useful right now.</p>
 <pre class="r"><code>rdmFor$results %&gt;% 
   select(-ends_with(&quot;SD&quot;)) %&gt;% 
   pivot_longer(-mtry, names_to = &quot;metric&quot;, values_to = &quot;value&quot;) %&gt;% 
