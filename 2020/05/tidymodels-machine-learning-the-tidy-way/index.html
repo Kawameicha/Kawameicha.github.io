@@ -96,6 +96,19 @@
 
     
       
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-166670924-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
     
     
   </head>
@@ -318,7 +331,7 @@
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<p>Did your mind ever paced back and forth and your eyes gazed blankly at the screen as you anxiously asked yourself: –how can so many different pieces fit together? –can it be uniform enough for all the models? –what about the many parameters to play with? –how to keep everything in line in a workflow? If you are modeling this a familiar image and your heart probably begins to pound violently as you anxiously play this scenario in your head.</p>
+<p>Did your mind ever paced back and forth and your eyes gazed blankly at the screen as you anxiously asked yourself: –how can so many different pieces fit together? –can it be uniform enough for all the models? –what about the many parameters to play with? –how to keep everything in line in a workflow? If you are modeling, this is a familiar image and your heart probably begins to pound violently as you anxiously play this scenario in your head.</p>
 <p>After maturing for a few years, with snippets of it being released as they were developed, tidymodels is finally there. Similarly to the tidyverse, you can load the entire tidymodels suite of packages by typing <code>library(tidymodels)</code>. And similarly to the tidyverse, it’s a complete toolbox whether you’ve decided to try out a full party of models or spend a quiet night alone fine tuning your favorite one. Let’s dive into it using the Boston housing dataset.</p>
 <div id="your-first-day-as-an-estate-agent" class="section level1">
 <h1>Your first day as an estate agent</h1>
@@ -358,10 +371,10 @@
 <li><code>lstat</code> percentage of lower status of the population</li>
 <li><code>medv</code> median value of owner-occupied homes in $1000s</li>
 </ul>
-<p>The prices of the house indicated by the variable <code>medv</code> is the target variable and the remaining are the feature variables based on which we will predict the value of a house.</p>
+<p>The prices of the house indicated by the variable <code>medv</code> is the target variable, and the remaining are the feature variables based on which we will predict the value of a house.</p>
 <p>Let’s plant seed for reproducibility.</p>
 <pre class="r"><code>set.seed(42)</code></pre>
-<p>It’s important to split the dataset into training and testing data. The data can be split using <code>initial_split</code>. I’ll use 80% for training, that is fit the model and tune its parameters, and set aside 20% for testing, when we will evaluate the model’s performance.</p>
+<p>It’s important to split the dataset into training and testing data. The data can be split using <code>initial_split</code>. I’ll use 80% for training, fit the model and tune its parameters, and set aside 20% for testing, when we will evaluate the model’s performance.</p>
 <pre class="r"><code>boston_split &lt;- BostonHousing %&gt;% 
   initial_split(prop = .8)</code></pre>
 <p>We need to pull them both.</p>
@@ -372,7 +385,7 @@ test_tbl &lt;- testing(boston_split)</code></pre>
 </div>
 <div id="the-three-questions" class="section level1">
 <h1>The three questions</h1>
-<p>No matter what you’re dealing with, most datasets in real life aren’t provided ready to use. While working with <code>mlbench</code> you shouldn’t need to be prepared for the worst but numeric aren’t neatly scaled or centered in their natural state and some might even be correlated.</p>
+<p>No matter what you’re dealing with, in real life most datasets aren’t provided ready to use. While working with <code>mlbench</code> you shouldn’t need to be prepared for the worst, but numeric aren’t neatly scaled or centered in their natural state and some might even be correlated.</p>
 <pre class="r"><code>rec_obj &lt;- train_tbl %&gt;% 
   recipe(medv ~ .) %&gt;%
   step_center(all_numeric(), -all_outcomes()) %&gt;%
@@ -425,7 +438,7 @@ test_tbl &lt;- testing(boston_split)</code></pre>
   set_args(mtry = tune(), trees = tune()) %&gt;%
   set_engine(&quot;ranger&quot;, importance = &quot;impurity&quot;) %&gt;%
   set_mode(&quot;regression&quot;) </code></pre>
-<p>Establishing a workflows that encompasses the main stages of the process is a great way to ensure you keep on track and provide that extra healthy safety layer.</p>
+<p>Establishing a workflow that encompasses the main stages of the process is a great way to ensure you keep on track and provide that extra healthy safety layer.</p>
 <pre class="r"><code>rf_workflow &lt;- workflow() %&gt;%
   add_recipe(rec_obj) %&gt;%
   add_model(rf_model)</code></pre>
@@ -487,7 +500,7 @@ test_tbl &lt;- testing(boston_split)</code></pre>
 ##  9 train/test split  29.0    40  30.8
 ## 10 train/test split  18.1    49  14.4
 ## # … with 91 more rows</code></pre>
-<p>It’s obvious predictions were made on the test set only as there are 101 rows. The performance is very good, with a RMSE of 4.9 and Rsq of 0.79.</p>
+<p>These are obviously predictions made on the test set only as there are 101 rows total. The performance is very good, with a RMSE of 4.9 and Rsq of 0.79.</p>
 <p>We can pipe this into ggplot2 to visualize the residuals.</p>
 <pre class="r"><code>rf_fit %&gt;% 
   collect_predictions() %&gt;% 
@@ -498,11 +511,11 @@ test_tbl &lt;- testing(boston_split)</code></pre>
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank())</code></pre>
 <p><img src="/post/2020-05-14-tidymodels-machine-learning-the-tidy-ay_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<p>Overall it’s good. But the model tends to somehow overprice the cheapest houses and clearly underprice the most luxurious properties. It would certainly help to collect more data on the lower and higher ends to further improve the result. Alternatively, we could filter out the most exteme cases to get a better estimation of how far off we are on average for the most common houses.</p>
+<p>Overall it’s good. But the model tends to somehow overprice the cheapest houses and clearly underprice the most luxurious properties. It would certainly help to collect more data on the lower and higher ends to further improve the result. Alternatively, we could filter out the most extreme cases to get a better estimation of how far off we are on average for the most common houses.</p>
 </div>
 <div id="wrap-it-up" class="section level1">
 <h1>Wrap it up</h1>
-<p>Okay once we’ve evaluated the model and are happy with predictions we definitively want to train it again, this time on the full dataset, to then use it and predict the values for new data. Well, we will <code>fit</code>, simply.</p>
+<p>Okay, once we’ve evaluated the model and are happy with predictions we definitively want to train it again, this time on the full dataset, to then use it and predict the values for new data. Well, we will <code>fit</code>, simply.</p>
 <pre class="r"><code>rf_fin &lt;- rf_workflow %&gt;% 
   fit(BostonHousing)</code></pre>
 <p>Being able to explain the model to, let’s say the management team from bostonrealestate.com or the field agents, is primordial. Various elements from a workflow object can be extracted via <code>workflow_extractors</code>. Here we pull the fit.</p>
@@ -525,7 +538,7 @@ test_tbl &lt;- testing(boston_split)</code></pre>
         )</code></pre>
 <p><img src="/post/2020-05-14-tidymodels-machine-learning-the-tidy-ay_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>The average number of rooms per dwelling and percentage of lower status of the population are the most important variables when it comes to predicting the price of a house in Boston.</p>
-<p>Awesome, now you can simply go ahead with this random forest or set another engine within your workflow. It’s really up to you and so easy change your mind. That’s really the most amazing part of a tidy wokflow.</p>
+<p>Awesome, now you can simply go ahead with this random forest or set another engine within your workflow. It’s really up to you and so easy to change your mind. That’s really the most amazing part of a tidy workflow.</p>
 </div>
 
               
