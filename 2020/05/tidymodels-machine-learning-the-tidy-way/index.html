@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.70.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="Embracing the new modeling pipeline in town: tidymodels.">
+
+
+<meta property="og:description" content="Embracing the new modeling pipeline in town: tidymodels.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tidymodels: Machine Learning the Tidy Way">
+<meta name="twitter:title" content="Tidymodels: Machine Learning the Tidy Way">
+<meta property="og:url" content="/2020/05/tidymodels-machine-learning-the-tidy-way/">
+<meta property="twitter:url" content="/2020/05/tidymodels-machine-learning-the-tidy-way/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="Embracing the new modeling pipeline in town: tidymodels.">
+<meta name="twitter:description" content="Embracing the new modeling pipeline in town: tidymodels.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2020-05-14T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-05-14T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Supervised Learning">
+    
+      <meta property="article:section" content="Random Forest">
+    
+  
+  
+    
+      <meta property="article:tag" content="tidyverse">
+    
+      <meta property="article:tag" content="tidymodels">
+    
+      <meta property="article:tag" content="hrbrthemes">
+    
+      <meta property="article:tag" content="mlbench">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/logo/post/laptop-house.png">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/logo/post/laptop-house.png">
+
+
+  <meta property="og:image" content="https://www.bostonmagazine.com/wp-content/uploads/sites/2/2014/11/homesforsale.jpg">
+  <meta property="twitter:image" content="https://www.bostonmagazine.com/wp-content/uploads/sites/2/2014/11/homesforsale.jpg">
+
+
+
+
+  <meta property="og:image" content="/logo/bio.png">
+  <meta property="twitter:image" content="/logo/bio.png">
+
+
+    <title>Tidymodels: Machine Learning the Tidy Way</title>
+
+    <link rel="icon" href="logo/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="/2020/05/tidymodels-machine-learning-the-tidy-way/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&quot;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-sitemap"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-vcard"></i>
+      
+      <span class="sidebar-button-desc">About Me</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin-square"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('https://www.bostonmagazine.com/wp-content/uploads/sites/2/2014/11/homesforsale.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Tidymodels: Machine Learning the Tidy Way
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-05-14T00:00:00Z">
+        
+  
+  
+  
+  
+    May 14, 2020
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/supervised-learning">Supervised Learning</a>, 
+    
+      <a class="category-link" href="/categories/random-forest">Random Forest</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Did your mind ever paced back and forth and your eyes gazed blankly at the screen as you anxiously asked yourself: –how can so many different pieces fit together? –can it be uniform enough for all the models? –what about the many parameters to play with? –how to keep everything in line in a workflow? If you are modeling this a familiar image and your heart probably begins to pound violently as you anxiously play this scenario in your head.</p>
+<p>After maturing for a few years, with snippets of it being released as they were developed, tidymodels is finally there. Similarly to the tidyverse, you can load the entire tidymodels suite of packages by typing <code>library(tidymodels)</code>. And similarly to the tidyverse, it’s a complete toolbox whether you’ve decided to try out a full party of models or spend a quiet night alone fine tuning your favorite one. Let’s dive into it using the Boston housing dataset.</p>
+<div id="your-first-day-as-an-estate-agent" class="section level1">
+<h1>Your first day as an estate agent</h1>
+<p>The data lives, among many other famous datasets, in the <code>mlbench</code> package.</p>
+<pre class="r"><code>data(BostonHousing)</code></pre>
+<p>In this post, I want to go over some general guidelines to consider when building a machine learning workflow. But if you’re an estate agent, this is gold and can be used to build a pricing model for other houses in the area.</p>
+<pre class="r"><code>glimpse(BostonHousing)
+## Rows: 506
+## Columns: 14
+## $ crim    &lt;dbl&gt; 0.00632, 0.02731, 0.02729, 0.03237, 0.06905, 0.02985, 0.08829…
+## $ zn      &lt;dbl&gt; 18.0, 0.0, 0.0, 0.0, 0.0, 0.0, 12.5, 12.5, 12.5, 12.5, 12.5, …
+## $ indus   &lt;dbl&gt; 2.31, 7.07, 7.07, 2.18, 2.18, 2.18, 7.87, 7.87, 7.87, 7.87, 7…
+## $ chas    &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ nox     &lt;dbl&gt; 0.538, 0.469, 0.469, 0.458, 0.458, 0.458, 0.524, 0.524, 0.524…
+## $ rm      &lt;dbl&gt; 6.575, 6.421, 7.185, 6.998, 7.147, 6.430, 6.012, 6.172, 5.631…
+## $ age     &lt;dbl&gt; 65.2, 78.9, 61.1, 45.8, 54.2, 58.7, 66.6, 96.1, 100.0, 85.9, …
+## $ dis     &lt;dbl&gt; 4.0900, 4.9671, 4.9671, 6.0622, 6.0622, 6.0622, 5.5605, 5.950…
+## $ rad     &lt;dbl&gt; 1, 2, 2, 3, 3, 3, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4…
+## $ tax     &lt;dbl&gt; 296, 242, 242, 222, 222, 222, 311, 311, 311, 311, 311, 311, 3…
+## $ ptratio &lt;dbl&gt; 15.3, 17.8, 17.8, 18.7, 18.7, 18.7, 15.2, 15.2, 15.2, 15.2, 1…
+## $ b       &lt;dbl&gt; 396.90, 396.90, 392.83, 394.63, 396.90, 394.12, 395.60, 396.9…
+## $ lstat   &lt;dbl&gt; 4.98, 9.14, 4.03, 2.94, 5.33, 5.21, 12.43, 19.15, 29.93, 17.1…
+## $ medv    &lt;dbl&gt; 24.0, 21.6, 34.7, 33.4, 36.2, 28.7, 22.9, 27.1, 16.5, 18.9, 1…</code></pre>
+<ul>
+<li><code>crim</code> per capita crime rate by town</li>
+<li><code>zn</code> proportion of residential land zoned for lots over 25,000 sq. ft</li>
+<li><code>indus</code> proportion of non-retail business acres per town</li>
+<li><code>chas</code> Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)</li>
+<li><code>nox</code> nitric oxide concentration (parts per 10 million)</li>
+<li><code>rm</code> average number of rooms per dwelling</li>
+<li><code>age</code> proportion of owner-occupied units built prior to 1940</li>
+<li><code>dis</code> weighted distances to five Boston employment centers</li>
+<li><code>rad</code> index of accessibility to radial highways</li>
+<li><code>tax</code> full-value property tax rate per $10,000</li>
+<li><code>ptratio</code> pupil-teacher ratio by town</li>
+<li><code>b</code> proxi for proportion of African American by town</li>
+<li><code>lstat</code> percentage of lower status of the population</li>
+<li><code>medv</code> median value of owner-occupied homes in $1000s</li>
+</ul>
+<p>The prices of the house indicated by the variable <code>medv</code> is the target variable and the remaining are the feature variables based on which we will predict the value of a house.</p>
+<p>Let’s plant seed for reproducibility.</p>
+<pre class="r"><code>set.seed(42)</code></pre>
+<p>It’s important to split the dataset into training and testing data. The data can be split using <code>initial_split</code>. I’ll use 80% for training, that is fit the model and tune its parameters, and set aside 20% for testing, when we will evaluate the model’s performance.</p>
+<pre class="r"><code>boston_split &lt;- BostonHousing %&gt;% 
+  initial_split(prop = .8)</code></pre>
+<p>We need to pull them both.</p>
+<pre class="r"><code>train_tbl &lt;- training(boston_split)
+test_tbl &lt;- testing(boston_split)</code></pre>
+<p>And we will want to cross-validate. <code>vfold_cv</code> helps to create a cross-validated version of the training set. Default is 10 partitions, which is great.</p>
+<pre class="r"><code>folds &lt;- vfold_cv(train_tbl)</code></pre>
+</div>
+<div id="the-three-questions" class="section level1">
+<h1>The three questions</h1>
+<p>No matter what you’re dealing with, most datasets in real life aren’t provided ready to use. While working with <code>mlbench</code> you shouldn’t need to be prepared for the worst but numeric aren’t neatly scaled or centered in their natural state and some might even be correlated.</p>
+<pre class="r"><code>rec_obj &lt;- train_tbl %&gt;% 
+  recipe(medv ~ .) %&gt;%
+  step_center(all_numeric(), -all_outcomes()) %&gt;%
+  step_scale(all_numeric(), -all_outcomes()) %&gt;%
+  step_corr(all_numeric(), -all_outcomes()) %&gt;% 
+  prep(data = train_tbl)</code></pre>
+<p>We certainly want to review what will happen to the data.</p>
+<pre class="r"><code>rec_obj
+## Data Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor         13
+## 
+## Training data contained 405 data points and no missing data.
+## 
+## Operations:
+## 
+## Centering for crim, zn, indus, nox, rm, age, dis, rad, ... [trained]
+## Scaling for crim, zn, indus, nox, rm, age, dis, rad, ... [trained]
+## Correlation filter removed tax [trained]</code></pre>
+<p>Turns out <code>tax</code> is above the default (.9) and will get discarded, whereas all other predictors will be directed to scaling and centering. <code>juice</code> can reveal this by extracting the pre-processed data.</p>
+<pre class="r"><code>rec_obj %&gt;%
+  prep(train_tbl) %&gt;%
+  juice()
+## # A tibble: 405 x 13
+##      crim      zn  indus chas     nox     rm     age    dis    rad ptratio     b
+##     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+##  1 -0.408  0.249  -1.25  0     -0.105  0.392 -0.0623 0.0998 -0.963  -1.44  0.432
+##  2 -0.406 -0.514  -0.547 0     -0.702  0.171  0.420  0.517  -0.846  -0.269 0.432
+##  3 -0.406 -0.514  -1.26  0     -0.797  0.184 -0.291  1.04   -0.729   0.153 0.402
+##  4 -0.399  0.0157 -0.430 0     -0.226 -0.415 -0.0130 0.800  -0.495  -1.49  0.418
+##  5 -0.392  0.0157 -0.430 0     -0.226 -0.186  1.03   0.986  -0.495  -1.49  0.432
+##  6 -0.384  0.0157 -0.430 0     -0.226 -0.960  1.16   1.05   -0.495  -1.49  0.321
+##  7 -0.389  0.0157 -0.430 0     -0.226 -0.426  0.666  1.29   -0.495  -1.49  0.322
+##  8 -0.382  0.0157 -0.430 0     -0.226  0.108  0.962  1.17   -0.495  -1.49  0.384
+##  9 -0.395  0.0157 -0.430 0     -0.226 -0.419  0.561  1.12   -0.495  -1.49  0.432
+## 10 -0.398  0.0157 -0.430 0     -0.226 -0.591 -0.984  0.748  -0.495  -1.49  0.363
+## # … with 395 more rows, and 2 more variables: lstat &lt;dbl&gt;, medv &lt;dbl&gt;</code></pre>
+<p>Progressing through an analysis, you’ll no doubt have to choose a model. <code>parsnip</code> tries to remove the hurdles by providing similar interfaces to different models. If you go for a random forest and would like to adjust the number of trees there are different argument names to remember:</p>
+<ul>
+<li><code>randomForest::randomForest</code> uses <code>ntree</code>,</li>
+<li><code>ranger::ranger</code> uses <code>num.trees</code>,</li>
+<li>Spark’s <code>sparklyr::ml_random_forest</code> uses <code>num_trees.</code></li>
+</ul>
+<p>Which most conveniently becomes <code>trees</code> with <code>parsnip</code>. Here we are going to set the engine (<code>set_engine</code>) to <code>ranger</code> and tune <code>mtry</code> as well within <code>set_args</code>.</p>
+<pre class="r"><code>rf_model &lt;- rand_forest() %&gt;%
+  set_args(mtry = tune(), trees = tune()) %&gt;%
+  set_engine(&quot;ranger&quot;, importance = &quot;impurity&quot;) %&gt;%
+  set_mode(&quot;regression&quot;) </code></pre>
+<p>Establishing a workflows that encompasses the main stages of the process is a great way to ensure you keep on track and provide that extra healthy safety layer.</p>
+<pre class="r"><code>rf_workflow &lt;- workflow() %&gt;%
+  add_recipe(rec_obj) %&gt;%
+  add_model(rf_model)</code></pre>
+<p>Finally, there’s one last important step before fitting the model: tuning. Let’s specify in a grid the values we want to try for <code>mtry</code> and <code>trees</code>.</p>
+<pre class="r"><code>rf_grid &lt;- expand.grid(mtry  = 1:10, 
+                       trees = c(250, 500, 750))</code></pre>
+<p>Time for the CPU do its magic. It will use the recipe and model we’ve been working on and <code>tune_grid</code> will compute a set of performance metrics (<code>rmse</code> and <code>rsq</code>) across 10 resamples of the data.</p>
+<pre class="r"><code>rf_tune &lt;- rf_workflow %&gt;%
+  tune_grid(resamples = folds,
+            grid      = rf_grid,
+            metrics   = metric_set(rmse, rsq))</code></pre>
+<p>For the most curious mind <code>collect_metrics</code> extracts and formats the produced results. We can pipe this into a plot.</p>
+<pre class="r"><code>rf_tune %&gt;% 
+  collect_metrics() %&gt;% 
+  filter(.metric == &quot;rmse&quot;) %&gt;% 
+  mutate_at(&quot;trees&quot;, as.factor) %&gt;% 
+  ggplot(aes(mtry, mean, color = trees)) +
+  geom_point(alpha = .7) +
+  geom_line() +
+  theme_ipsum() +
+  scale_color_ipsum() +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  scale_x_continuous(n.breaks = 10)</code></pre>
+<p><img src="/post/2020-05-14-tidymodels-machine-learning-the-tidy-ay_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Or if you feel a bit lazy, you can use <code>select_best()</code> to find the tuning parameter combination with the best performance values.</p>
+<pre class="r"><code>rf_param &lt;- rf_tune %&gt;%
+  select_best(metric = &quot;rmse&quot;)</code></pre>
+</div>
+<div id="build-it-on" class="section level1">
+<h1>Build it on</h1>
+<p>How you answer all of these questions depends on your data, model, and the difficulty of the task, but now we’re ready to actually fit the final model. After determining the best parameters, <code>finalize_workflow</code> comes in handy to plug these parameters into the workflow.</p>
+<pre class="r"><code>rf_workflow &lt;- rf_workflow %&gt;%
+  finalize_workflow(rf_param)</code></pre>
+<p>Finally, this complete workflow is injected with the full dataset via <code>last_fit</code>.</p>
+<pre class="r"><code>rf_fit &lt;- rf_workflow %&gt;%
+  last_fit(boston_split)</code></pre>
+<p>This is absolutely right. Since we supplied the split object when we fitted the workflow, metrics will be evaluated on the test set only. Metrics and predictions are now close at hand.</p>
+<pre class="r"><code>rf_fit %&gt;% 
+  collect_metrics()
+## # A tibble: 2 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard       4.90 
+## 2 rsq     standard       0.792</code></pre>
+<pre class="r"><code>rf_fit %&gt;% 
+  collect_predictions()
+## # A tibble: 101 x 4
+##    id               .pred  .row  medv
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+##  1 train/test split  36.0     3  34.7
+##  2 train/test split  36.0     4  33.4
+##  3 train/test split  33.4     5  36.2
+##  4 train/test split  21.0    16  19.9
+##  5 train/test split  19.9    20  18.2
+##  6 train/test split  15.4    24  14.5
+##  7 train/test split  15.6    33  13.2
+##  8 train/test split  14.7    35  13.5
+##  9 train/test split  29.0    40  30.8
+## 10 train/test split  18.1    49  14.4
+## # … with 91 more rows</code></pre>
+<p>It’s obvious predictions were made on the test set only as there are 101 rows. The performance is very good, with a RMSE of 4.9 and Rsq of 0.79.</p>
+<p>We can pipe this into ggplot2 to visualize the residuals.</p>
+<pre class="r"><code>rf_fit %&gt;% 
+  collect_predictions() %&gt;% 
+  ggplot(aes(medv, medv - .pred)) +
+  geom_point(alpha = .7) +
+  theme_ipsum() +
+  geom_abline(intercept = 0, slope = 0, linetype=&quot;dashed&quot;) +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())</code></pre>
+<p><img src="/post/2020-05-14-tidymodels-machine-learning-the-tidy-ay_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Overall it’s good. But the model tends to somehow overprice the cheapest houses and clearly underprice the most luxurious properties. It would certainly help to collect more data on the lower and higher ends to further improve the result. Alternatively, we could filter out the most exteme cases to get a better estimation of how far off we are on average for the most common houses.</p>
+</div>
+<div id="wrap-it-up" class="section level1">
+<h1>Wrap it up</h1>
+<p>Okay once we’ve evaluated the model and are happy with predictions we definitively want to train it again, this time on the full dataset, to then use it and predict the values for new data. Well, we will <code>fit</code>, simply.</p>
+<pre class="r"><code>rf_fin &lt;- rf_workflow %&gt;% 
+  fit(BostonHousing)</code></pre>
+<p>Being able to explain the model to, let’s say the management team from bostonrealestate.com or the field agents, is primordial. Various elements from a workflow object can be extracted via <code>workflow_extractors</code>. Here we pull the fit.</p>
+<pre class="r"><code>rf_obj &lt;- pull_workflow_fit(rf_fin)$fit</code></pre>
+<p>And since a picture is worth a thousand words we can present the variable importance.</p>
+<pre class="r"><code>tibble(var = rf_obj$variable.importance,
+       nam = rf_obj$variable.importance %&gt;% names(),
+       ) %&gt;% 
+  ggplot(aes(var, reorder(nam, var))) +
+  geom_bar(stat  = &#39;identity&#39;, 
+           alpha = .7, 
+           width = .8
+           ) +
+  theme_ipsum() +
+  geom_abline(intercept = 0, slope = 0, linetype=&quot;dashed&quot;) +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank()
+        )</code></pre>
+<p><img src="/post/2020-05-14-tidymodels-machine-learning-the-tidy-ay_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>The average number of rooms per dwelling and percentage of lower status of the population are the most important variables when it comes to predicting the price of a house in Boston.</p>
+<p>Awesome, now you can simply go ahead with this random forest or set another engine within your workflow. It’s really up to you and so easy change your mind. That’s really the most amazing part of a tidy wokflow.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/tidyverse/">tidyverse</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/tidymodels/">tidymodels</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/hrbrthemes/">hrbrthemes</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/mlbench/">mlbench</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/03/whats-a-good-model/" data-tooltip="What&#39;s a Good Model">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/05/tidymodels-machine-learning-the-tidy-way/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/05/tidymodels-machine-learning-the-tidy-way/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/05/tidymodels-machine-learning-the-tidy-way/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/03/whats-a-good-model/" data-tooltip="What&#39;s a Good Model">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/05/tidymodels-machine-learning-the-tidy-way/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/05/tidymodels-machine-learning-the-tidy-way/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/05/tidymodels-machine-learning-the-tidy-way/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2020%2F05%2Ftidymodels-machine-learning-the-tidy-way%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2020%2F05%2Ftidymodels-machine-learning-the-tidy-way%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2020%2F05%2Ftidymodels-machine-learning-the-tidy-way%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/logo/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&quot;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/logo/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
