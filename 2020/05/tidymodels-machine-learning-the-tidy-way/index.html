@@ -494,7 +494,7 @@ test_tbl &lt;- testing(boston_split)</code></pre>
   ggplot(aes(medv, medv - .pred)) +
   geom_point(alpha = .7) +
   theme_ipsum() +
-  geom_abline(intercept = 0, slope = 0, linetype=&quot;dashed&quot;) +
+  geom_abline(intercept = 0, slope = 0, linetype = &quot;dashed&quot;) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank())</code></pre>
 <p><img src="/post/2020-05-14-tidymodels-machine-learning-the-tidy-ay_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
@@ -517,7 +517,6 @@ test_tbl &lt;- testing(boston_split)</code></pre>
            width = .8
            ) +
   theme_ipsum() +
-  geom_abline(intercept = 0, slope = 0, linetype=&quot;dashed&quot;) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.title.x = element_blank(),
