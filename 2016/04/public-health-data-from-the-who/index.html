@@ -59,8 +59,8 @@
 
 
 
-  <meta property="og:image" content="http://www.bionicsscientific.com/images/WHO-logo.jpg">
-  <meta property="twitter:image" content="http://www.bionicsscientific.com/images/WHO-logo.jpg">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/logo/post/heartbeat.png">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/logo/post/heartbeat.png">
 
 
   <meta property="og:image" content="https://agcdn-2mrybbgckm7omi0k.netdna-ssl.com/wp-content/uploads/2017/04/alphagamma-who-internships-2017-opportunities.jpg">
@@ -326,6 +326,7 @@ if (!doNotTrack) {
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p>I’ve been looking for a simple and reliable access to public health data for a while now. Eventually, I bumped into the <code>WHO</code> package, which allows downloading directly from the <a href="http://www.who.int/en/">World Health Organization’s</a> <a href="http://www.who.int/gho/en/">Global Health Observatory</a> in a dynamic and reproducible way. The data is accessible after you installed the package either from the CRAN or GitHub.</p>
@@ -345,11 +346,11 @@ install_github(&quot;expersso/WHO&quot;)</code></pre>
 <pre class="r"><code># Retrieve series, codes, and descriptions
 codes &lt;- get_codes()
 str(codes)
-## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    3308 obs. of  3 variables:
-##  $ label  : chr  &quot;MDG_0000000001&quot; &quot;MDG_0000000003&quot; &quot;MDG_0000000005&quot; &quot;MDG_0000000006&quot; ...
-##  $ display: chr  &quot;Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)&quot; &quot;Adolescent birth rate (per 1000 women aged 15-19 years)&quot; &quot;Contraceptive prevalence (%)&quot; &quot;Unmet need for family planning (%)&quot; ...
-##  $ url    : chr  &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/1&quot; &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/4669&quot; &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/5&quot; &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/6&quot; ...</code></pre>
-<p>So far they are 3308 datasets available, which are all easily retrieved through the <code>get_data</code> function. But first we need to pick-up series of interest. Let’s say we want to analyze breast cancer data and search for them among the series with a regular expression.</p>
+## tibble [3,315 × 3] (S3: tbl_df/tbl/data.frame)
+##  $ label  : chr [1:3315] &quot;MDG_0000000001&quot; &quot;MDG_0000000003&quot; &quot;MDG_0000000005&quot; &quot;MDG_0000000006&quot; ...
+##  $ display: chr [1:3315] &quot;Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)&quot; &quot;Adolescent birth rate (per 1000 women aged 15-19 years)&quot; &quot;Contraceptive prevalence (%)&quot; &quot;Unmet need for family planning (%)&quot; ...
+##  $ url    : chr [1:3315] &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/1&quot; &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/4669&quot; &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/5&quot; &quot;https://www.who.int/data/gho/indicator-metadata-registry/imr-details/6&quot; ...</code></pre>
+<p>So far they are 3315 datasets available, which are all easily retrieved through the <code>get_data</code> function. But first we need to pick-up series of interest. Let’s say we want to analyze breast cancer data and search for them among the series with a regular expression.</p>
 <pre class="r"><code># Search for series about breast cancer
 breastCancer &lt;- codes[grep(&quot;[Bb]reast [Cc]ancer&quot;, codes$display),]
 breastCancer$display

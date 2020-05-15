@@ -59,8 +59,8 @@
 
 
 
-  <meta property="og:image" content="https://www.eastwest.org/am-site/media/creditdebit-icon.png">
-  <meta property="twitter:image" content="https://www.eastwest.org/am-site/media/creditdebit-icon.png">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/logo/post/wallet.png">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/logo/post/wallet.png">
 
 
   <meta property="og:image" content="https://www.kiplinger.com/kipimages/pages/16132.jpg">
@@ -326,6 +326,7 @@ if (!doNotTrack) {
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p>I’ve been doing basic accounting for a while now and last year I discovered the simple, yet powerful application <a href="http://debitandcreditapp.com">Debit &amp; Credit</a>. I always thought it was a bit of a hassle, but ever since I’ve started to use it, I’ve been keeping track of every single expense. It does exactly what it tells: keeping financial records and never accessing my data. Of course this isn’t rocket science but it’s useful.</p>
@@ -358,16 +359,16 @@ if (!doNotTrack) {
 <p>Here is what a sample output looks like for <code>n = 10</code>.</p>
 <pre class="r"><code>generatedebit()
 ##          Days  Description   Category Payee   Tag  Account Amount
-## 1  2016-03-13   Debit Card      Bills     J Green Barclays   -215
-## 2  2016-03-25   Debit Card     Travel     N Green Barclays    -82
-## 3  2016-05-01  Credit Card     Travel     S  &lt;NA&gt;     HSBC    -87
-## 4  2016-06-04 Direct Debit     Travel     T Green     HSBC     -1
-## 5  2016-06-21   Debit Card       Food     S  &lt;NA&gt; Barclays   -134
-## 6  2016-07-22  Credit Card      Taxes     Q Green Barclays   -199
-## 7  2016-08-19   Debit Card   Leisures     K  &lt;NA&gt;     HSBC    -71
-## 8  2016-09-13   Debit Card      Taxes     B Green     HSBC   -123
-## 9  2016-12-03   Debit Card Restaurant     E Green Barclays    -22
-## 10 2016-12-21   Debit Card       Food     K  &lt;NA&gt;     HSBC   -179</code></pre>
+## 1  2016-02-14 Direct Debit Restaurant     I  Blue Barclays    -46
+## 2  2016-02-27   Debit Card     Health     K Green Barclays    -30
+## 3  2016-03-20  Credit Card       Food     N  &lt;NA&gt; Barclays   -113
+## 4  2016-04-04   Debit Card     Travel     O  &lt;NA&gt; Barclays   -231
+## 5  2016-05-24   Debit Card      Bills     K  &lt;NA&gt; Barclays   -171
+## 6  2016-06-11   Debit Card   Leisures     K  &lt;NA&gt;     HSBC     -8
+## 7  2016-08-21   Debit Card     Travel     I  &lt;NA&gt;     HSBC   -181
+## 8  2016-08-23   Debit Card   Leisures     A  &lt;NA&gt; Barclays   -146
+## 9  2016-11-02     Transfer      Taxes     I  &lt;NA&gt; Barclays    -29
+## 10 2016-11-13   Debit Card      Bills     T  &lt;NA&gt; Barclays    -59</code></pre>
 <p>Of course, it’s really good to spend money for all these shiny things, but we need to receive revenue for that. Let’s add another function that generates fake credits. Less <code>sample</code> uses there as I always get my money directly transferred to my account.</p>
 <pre class="r"><code>generatecredit &lt;- function(n = 12, amount = 3500, start = &#39;2016/01/01&#39;, end = &#39;2016/12/31&#39;) {
   # Define function that automatically generates credits
@@ -509,7 +510,7 @@ for(i in 1:length(drCr$Days)-1) {
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
 <p>Basic accounting is needed to plan for your future income and expenditures, and I found it to be extremely helpful if you use it as a guideline for your mid-term and long term financial goals. Any bank let you export your transactions that you can use in any accounting application.</p>
-<p>On real data, you might have to use <code>lubridate</code> to read the dates properly and if necessary remove the <code>,</code> from amounts using <code>gsub(&quot;,&quot;, &quot;&quot;, drCr$Amount)</code> before reading them as numeric <code>as.numeric(drCr$Amount)</code> as it wouldn’t work otherwise.</p>
+<p>On real data, you might have to use <code>lubridate</code> to read the dates properly and if necessary remove the <code>,</code> from amounts using <code>gsub(",", "", drCr$Amount)</code> before reading them as numeric <code>as.numeric(drCr$Amount)</code> as it wouldn’t work otherwise.</p>
 <p>Great! Hopefully I’ve convinced you that with very little elbow grease, it’s really easy to do it yourself in R. Actually, it will even save you the money you’d have paid for the accounting application. So it’s already worth it for you savings!</p>
 </div>
 
