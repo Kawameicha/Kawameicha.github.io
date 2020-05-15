@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>lime on In Code We Trust</title>
-    <link>/tags/lime/</link>
+    <link>https://kawameicha.github.io/tags/lime/</link>
     <description>Recent content in lime on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/lime/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kawameicha.github.io/tags/lime/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>To Eat, or not to Eat, that is the Question</title>
-      <link>/2018/03/to-eat-or-not-to-eat-that-is-the-question/</link>
+      <link>https://kawameicha.github.io/2018/03/to-eat-or-not-to-eat-that-is-the-question/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/03/to-eat-or-not-to-eat-that-is-the-question/</guid>
+      <guid>https://kawameicha.github.io/2018/03/to-eat-or-not-to-eat-that-is-the-question/</guid>
       <description>Using deep learning to predict edibility of mushrooms.</description>
     </item>
     
