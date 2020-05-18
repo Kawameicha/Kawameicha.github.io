@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gridExtra on In Code We Trust</title>
-    <link>/tags/gridextra/</link>
+    <link>https://kawameicha.github.io/tags/gridextra/</link>
     <description>Recent content in gridExtra on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/gridextra/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kawameicha.github.io/tags/gridextra/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>My Heart Will Go Down</title>
-      <link>/2018/11/my-heart-will-go-down/</link>
+      <link>https://kawameicha.github.io/2018/11/my-heart-will-go-down/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/11/my-heart-will-go-down/</guid>
+      <guid>https://kawameicha.github.io/2018/11/my-heart-will-go-down/</guid>
       <description>All has been said, so let&amp;rsquo;s call it an introduction to machine learning.</description>
     </item>
     
     <item>
       <title>Road Accidents and Safety Data in the United Kingdom</title>
-      <link>/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</link>
+      <link>https://kawameicha.github.io/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</link>
       <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</guid>
+      <guid>https://kawameicha.github.io/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</guid>
       <description>10 years and 3.3 million accidented vehicles in the UK.</description>
     </item>
     
     <item>
       <title>German Federal Election&#39;s Regional Differences</title>
-      <link>/2017/10/german-federal-elections-regional-differences/</link>
+      <link>https://kawameicha.github.io/2017/10/german-federal-elections-regional-differences/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/10/german-federal-elections-regional-differences/</guid>
+      <guid>https://kawameicha.github.io/2017/10/german-federal-elections-regional-differences/</guid>
       <description>Resurgence of far-right Germany or the &amp;lsquo;return of the Nazis&amp;rsquo;.</description>
     </item>
     

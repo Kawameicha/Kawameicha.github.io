@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>randomForest on In Code We Trust</title>
-    <link>/tags/randomforest/</link>
+    <link>https://kawameicha.github.io/tags/randomforest/</link>
     <description>Recent content in randomForest on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/randomforest/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kawameicha.github.io/tags/randomforest/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>My Heart Will Go Down</title>
-      <link>/2018/11/my-heart-will-go-down/</link>
+      <link>https://kawameicha.github.io/2018/11/my-heart-will-go-down/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/11/my-heart-will-go-down/</guid>
+      <guid>https://kawameicha.github.io/2018/11/my-heart-will-go-down/</guid>
       <description>All has been said, so let&amp;rsquo;s call it an introduction to machine learning.</description>
     </item>
     

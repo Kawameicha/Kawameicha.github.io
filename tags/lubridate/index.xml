@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>lubridate on In Code We Trust</title>
-    <link>/tags/lubridate/</link>
+    <link>https://kawameicha.github.io/tags/lubridate/</link>
     <description>Recent content in lubridate on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 09 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/lubridate/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kawameicha.github.io/tags/lubridate/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Road Accidents and Safety Data in the United Kingdom</title>
-      <link>/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</link>
+      <link>https://kawameicha.github.io/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</link>
       <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</guid>
+      <guid>https://kawameicha.github.io/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</guid>
       <description>10 years and 3.3 million accidented vehicles in the UK.</description>
     </item>
     
     <item>
       <title>Bombs Away!</title>
-      <link>/2017/06/bombs-away/</link>
+      <link>https://kawameicha.github.io/2017/06/bombs-away/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/06/bombs-away/</guid>
+      <guid>https://kawameicha.github.io/2017/06/bombs-away/</guid>
       <description>North Korea is well known for its hairstyle fashion and rocket science.</description>
     </item>
     
     <item>
       <title>Beginners&#39; Guide to Financial Report with R</title>
-      <link>/2017/05/beginners-guide-to-financial-report-with-r/</link>
+      <link>https://kawameicha.github.io/2017/05/beginners-guide-to-financial-report-with-r/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/beginners-guide-to-financial-report-with-r/</guid>
+      <guid>https://kawameicha.github.io/2017/05/beginners-guide-to-financial-report-with-r/</guid>
       <description>If you can read a nutrition label, you can do a basic financial statements.</description>
     </item>
     
