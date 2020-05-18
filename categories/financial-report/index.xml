@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Financial Report on In Code We Trust</title>
-    <link>https://kawameicha.github.io/categories/financial-report/</link>
+    <link>/categories/financial-report/</link>
     <description>Recent content in Financial Report on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://kawameicha.github.io/categories/financial-report/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/financial-report/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Beginners&#39; Guide to Financial Report with R</title>
-      <link>https://kawameicha.github.io/2017/05/beginners-guide-to-financial-report-with-r/</link>
+      <link>/2017/05/beginners-guide-to-financial-report-with-r/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/2017/05/beginners-guide-to-financial-report-with-r/</guid>
+      <guid>/2017/05/beginners-guide-to-financial-report-with-r/</guid>
       <description>If you can read a nutrition label, you can do a basic financial statements.</description>
     </item>
     

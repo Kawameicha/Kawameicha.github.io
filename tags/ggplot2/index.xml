@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ggplot2 on In Code We Trust</title>
-    <link>https://kawameicha.github.io/tags/ggplot2/</link>
+    <link>/tags/ggplot2/</link>
     <description>Recent content in ggplot2 on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 04 Jun 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://kawameicha.github.io/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bombs Away!</title>
-      <link>https://kawameicha.github.io/2017/06/bombs-away/</link>
+      <link>/2017/06/bombs-away/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/2017/06/bombs-away/</guid>
+      <guid>/2017/06/bombs-away/</guid>
       <description>North Korea is well known for its hairstyle fashion and rocket science.</description>
     </item>
     
     <item>
       <title>Beginners&#39; Guide to Financial Report with R</title>
-      <link>https://kawameicha.github.io/2017/05/beginners-guide-to-financial-report-with-r/</link>
+      <link>/2017/05/beginners-guide-to-financial-report-with-r/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/2017/05/beginners-guide-to-financial-report-with-r/</guid>
+      <guid>/2017/05/beginners-guide-to-financial-report-with-r/</guid>
       <description>If you can read a nutrition label, you can do a basic financial statements.</description>
     </item>
     
     <item>
       <title>Wikipedia Hall of Fame</title>
-      <link>https://kawameicha.github.io/2016/06/wikipedia-hall-of-fame/</link>
+      <link>/2016/06/wikipedia-hall-of-fame/</link>
       <pubDate>Sun, 12 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/2016/06/wikipedia-hall-of-fame/</guid>
+      <guid>/2016/06/wikipedia-hall-of-fame/</guid>
       <description>An all time humanity&amp;rsquo;s pantheon: popularity analyse in wikipedia.</description>
     </item>
     
     <item>
       <title>How to Select a Reading Depending on your State of Mind</title>
-      <link>https://kawameicha.github.io/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</link>
+      <link>/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</link>
       <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</guid>
+      <guid>/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</guid>
       <description>A me too sentiment analysis and natural language processing post.</description>
     </item>
     
     <item>
       <title>Public Health Data from the WHO</title>
-      <link>https://kawameicha.github.io/2016/04/public-health-data-from-the-who/</link>
+      <link>/2016/04/public-health-data-from-the-who/</link>
       <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/2016/04/public-health-data-from-the-who/</guid>
+      <guid>/2016/04/public-health-data-from-the-who/</guid>
       <description>Everything you&amp;rsquo;ll ever need to analyze public health data, well almost.</description>
     </item>
     
