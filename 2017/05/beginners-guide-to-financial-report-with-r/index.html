@@ -63,8 +63,8 @@
   <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/logo/post/wallet.png">
 
 
-  <meta property="og:image" content="https://www.kiplinger.com/kipimages/pages/16132.jpg">
-  <meta property="twitter:image" content="https://www.kiplinger.com/kipimages/pages/16132.jpg">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/money.png">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/money.png">
 
 
 
@@ -275,7 +275,7 @@ if (!doNotTrack) {
   <div class="post-header-cover
               text-left
               post-header-cover--partial"
-       style="background-image:url('https://www.kiplinger.com/kipimages/pages/16132.jpg')"
+       style="background-image:url('https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/money.png')"
        data-behavior="5">
     
       <div class="post-header main-content-wrap text-left">
@@ -358,17 +358,17 @@ if (!doNotTrack) {
 <p>I voluntarily add some metadata too, like a description, categories, and some sample payees so as to make it look more like a real exported all account summary. Let’s assume I’ve put some tags as well and I have accounts opened at two different institutions.</p>
 <p>Here is what a sample output looks like for <code>n = 10</code>.</p>
 <pre class="r"><code>generatedebit()
-##          Days  Description   Category Payee   Tag  Account Amount
-## 1  2016-02-14 Direct Debit Restaurant     I  Blue Barclays    -46
-## 2  2016-02-27   Debit Card     Health     K Green Barclays    -30
-## 3  2016-03-20  Credit Card       Food     N  &lt;NA&gt; Barclays   -113
-## 4  2016-04-04   Debit Card     Travel     O  &lt;NA&gt; Barclays   -231
-## 5  2016-05-24   Debit Card      Bills     K  &lt;NA&gt; Barclays   -171
-## 6  2016-06-11   Debit Card   Leisures     K  &lt;NA&gt;     HSBC     -8
-## 7  2016-08-21   Debit Card     Travel     I  &lt;NA&gt;     HSBC   -181
-## 8  2016-08-23   Debit Card   Leisures     A  &lt;NA&gt; Barclays   -146
-## 9  2016-11-02     Transfer      Taxes     I  &lt;NA&gt; Barclays    -29
-## 10 2016-11-13   Debit Card      Bills     T  &lt;NA&gt; Barclays    -59</code></pre>
+##          Days Description   Category Payee   Tag  Account Amount
+## 1  2016-01-04  Debit Card      Taxes     H  &lt;NA&gt; Barclays    -45
+## 2  2016-02-22  Debit Card       Food     A  &lt;NA&gt;     HSBC   -111
+## 3  2016-05-12  Debit Card     Travel     Q  &lt;NA&gt; Barclays    -31
+## 4  2016-08-14  Debit Card       Food     N  &lt;NA&gt;     HSBC   -230
+## 5  2016-10-17  Debit Card      Bills     D  &lt;NA&gt; Barclays   -173
+## 6  2016-10-19 Credit Card      Taxes     N  &lt;NA&gt; Barclays   -123
+## 7  2016-10-30  Debit Card     Travel     T Green Barclays   -117
+## 8  2016-11-27  Debit Card   Leisures     N  &lt;NA&gt; Barclays   -180
+## 9  2016-12-05  Debit Card Restaurant     I  &lt;NA&gt; Barclays   -170
+## 10 2016-12-24 Credit Card      Bills     I  &lt;NA&gt; Barclays   -234</code></pre>
 <p>Of course, it’s really good to spend money for all these shiny things, but we need to receive revenue for that. Let’s add another function that generates fake credits. Less <code>sample</code> uses there as I always get my money directly transferred to my account.</p>
 <pre class="r"><code>generatecredit &lt;- function(n = 12, amount = 3500, start = &#39;2016/01/01&#39;, end = &#39;2016/12/31&#39;) {
   # Define function that automatically generates credits
