@@ -519,16 +519,11 @@ test_tbl &lt;- testing(PimaIndiansDiabetes_split)</code></pre>
 <p>Remember that we used a space-filling parameter grids for the parameters to try, so it might not be easy to pick up the right combination from the plot and probably better to let the computer pick it up for us.</p>
 <pre class="r"><code>xgb_tune %&gt;%
   show_best(metric = &quot;roc_auc&quot;) %&gt;%
+  select(.metric:std_err) %&gt;%
   knitr::kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="right">mtry</th>
-<th align="right">min_n</th>
-<th align="right">tree_depth</th>
-<th align="right">learn_rate</th>
-<th align="right">loss_reduction</th>
-<th align="right">sample_size</th>
 <th align="left">.metric</th>
 <th align="left">.estimator</th>
 <th align="right">mean</th>
@@ -538,12 +533,6 @@ test_tbl &lt;- testing(PimaIndiansDiabetes_split)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="right">14</td>
-<td align="right">0.0398646</td>
-<td align="right">0.0e+00</td>
-<td align="right">0.9159548</td>
 <td align="left">roc_auc</td>
 <td align="left">binary</td>
 <td align="right">0.8326303</td>
@@ -551,12 +540,6 @@ test_tbl &lt;- testing(PimaIndiansDiabetes_split)</code></pre>
 <td align="right">0.0219971</td>
 </tr>
 <tr class="even">
-<td align="right">7</td>
-<td align="right">11</td>
-<td align="right">4</td>
-<td align="right">0.0000049</td>
-<td align="right">0.0e+00</td>
-<td align="right">0.8133847</td>
 <td align="left">roc_auc</td>
 <td align="left">binary</td>
 <td align="right">0.8269298</td>
@@ -564,12 +547,6 @@ test_tbl &lt;- testing(PimaIndiansDiabetes_split)</code></pre>
 <td align="right">0.0244281</td>
 </tr>
 <tr class="odd">
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">6</td>
-<td align="right">0.0000069</td>
-<td align="right">6.0e-07</td>
-<td align="right">0.6583394</td>
 <td align="left">roc_auc</td>
 <td align="left">binary</td>
 <td align="right">0.8232086</td>
@@ -577,12 +554,6 @@ test_tbl &lt;- testing(PimaIndiansDiabetes_split)</code></pre>
 <td align="right">0.0233504</td>
 </tr>
 <tr class="even">
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">14</td>
-<td align="right">0.0000108</td>
-<td align="right">1.9e-06</td>
-<td align="right">0.6174678</td>
 <td align="left">roc_auc</td>
 <td align="left">binary</td>
 <td align="right">0.8231515</td>
@@ -590,12 +561,6 @@ test_tbl &lt;- testing(PimaIndiansDiabetes_split)</code></pre>
 <td align="right">0.0247107</td>
 </tr>
 <tr class="odd">
-<td align="right">4</td>
-<td align="right">6</td>
-<td align="right">9</td>
-<td align="right">0.0427406</td>
-<td align="right">5.0e-07</td>
-<td align="right">0.7710309</td>
 <td align="left">roc_auc</td>
 <td align="left">binary</td>
 <td align="right">0.8229426</td>
