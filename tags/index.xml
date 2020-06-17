@@ -6,7 +6,7 @@
     <description>Recent content in Tags on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kawameicha.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>hrbrthemes</title>
       <link>https://kawameicha.github.io/tags/hrbrthemes/</link>
-      <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://kawameicha.github.io/tags/hrbrthemes/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>mlbench</title>
       <link>https://kawameicha.github.io/tags/mlbench/</link>
-      <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://kawameicha.github.io/tags/mlbench/</guid>
       <description></description>
@@ -32,7 +32,7 @@
     <item>
       <title>tidymodels</title>
       <link>https://kawameicha.github.io/tags/tidymodels/</link>
-      <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://kawameicha.github.io/tags/tidymodels/</guid>
       <description></description>
@@ -41,9 +41,18 @@
     <item>
       <title>tidyverse</title>
       <link>https://kawameicha.github.io/tags/tidyverse/</link>
-      <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://kawameicha.github.io/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vip</title>
+      <link>https://kawameicha.github.io/tags/vip/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kawameicha.github.io/tags/vip/</guid>
       <description></description>
     </item>
     
