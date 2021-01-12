@@ -2,354 +2,350 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on In Code We Trust</title>
-    <link>https://kawameicha.github.io/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://kawameicha.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hrbrthemes</title>
-      <link>https://kawameicha.github.io/tags/hrbrthemes/</link>
+      <link>/tags/hrbrthemes/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/hrbrthemes/</guid>
+      <guid>/tags/hrbrthemes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mlbench</title>
-      <link>https://kawameicha.github.io/tags/mlbench/</link>
+      <link>/tags/mlbench/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/mlbench/</guid>
+      <guid>/tags/mlbench/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tidymodels</title>
-      <link>https://kawameicha.github.io/tags/tidymodels/</link>
+      <link>/tags/tidymodels/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/tidymodels/</guid>
+      <guid>/tags/tidymodels/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tidyverse</title>
-      <link>https://kawameicha.github.io/tags/tidyverse/</link>
+      <link>/tags/tidyverse/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/tidyverse/</guid>
+      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vip</title>
-      <link>https://kawameicha.github.io/tags/vip/</link>
+      <link>/tags/vip/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/vip/</guid>
+      <guid>/tags/vip/</guid>
       <description></description>
     </item>
     
     <item>
       <title>caret</title>
-      <link>https://kawameicha.github.io/tags/caret/</link>
+      <link>/tags/caret/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/caret/</guid>
+      <guid>/tags/caret/</guid>
       <description></description>
     </item>
     
     <item>
       <title>factoextra</title>
-      <link>https://kawameicha.github.io/tags/factoextra/</link>
+      <link>/tags/factoextra/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/factoextra/</guid>
+      <guid>/tags/factoextra/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GGally</title>
-      <link>https://kawameicha.github.io/tags/ggally/</link>
+      <link>/tags/ggally/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/ggally/</guid>
+      <guid>/tags/ggally/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ggfortify</title>
-      <link>https://kawameicha.github.io/tags/ggfortify/</link>
+      <link>/tags/ggfortify/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/ggfortify/</guid>
+      <guid>/tags/ggfortify/</guid>
       <description></description>
     </item>
     
     <item>
       <title>recipes</title>
-      <link>https://kawameicha.github.io/tags/recipes/</link>
+      <link>/tags/recipes/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/recipes/</guid>
+      <guid>/tags/recipes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>rsample</title>
-      <link>https://kawameicha.github.io/tags/rsample/</link>
+      <link>/tags/rsample/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/rsample/</guid>
+      <guid>/tags/rsample/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gutenbergr</title>
-      <link>https://kawameicha.github.io/tags/gutenbergr/</link>
+      <link>/tags/gutenbergr/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/gutenbergr/</guid>
+      <guid>/tags/gutenbergr/</guid>
       <description></description>
     </item>
     
     <item>
       <title>streamgraph</title>
-      <link>https://kawameicha.github.io/tags/streamgraph/</link>
+      <link>/tags/streamgraph/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/streamgraph/</guid>
+      <guid>/tags/streamgraph/</guid>
       <description></description>
     </item>
     
     <item>
       <title>syuzhet</title>
-      <link>https://kawameicha.github.io/tags/syuzhet/</link>
+      <link>/tags/syuzhet/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/syuzhet/</guid>
+      <guid>/tags/syuzhet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tidytext</title>
-      <link>https://kawameicha.github.io/tags/tidytext/</link>
+      <link>/tags/tidytext/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/tidytext/</guid>
+      <guid>/tags/tidytext/</guid>
       <description></description>
     </item>
     
     <item>
       <title>genefilter</title>
-      <link>https://kawameicha.github.io/tags/genefilter/</link>
+      <link>/tags/genefilter/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/genefilter/</guid>
+      <guid>/tags/genefilter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>RColorBrewer</title>
-      <link>https://kawameicha.github.io/tags/rcolorbrewer/</link>
+      <link>/tags/rcolorbrewer/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/rcolorbrewer/</guid>
+      <guid>/tags/rcolorbrewer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rphenograph</title>
-      <link>https://kawameicha.github.io/tags/rphenograph/</link>
+      <link>/tags/rphenograph/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/rphenograph/</guid>
+      <guid>/tags/rphenograph/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rtsne</title>
-      <link>https://kawameicha.github.io/tags/rtsne/</link>
+      <link>/tags/rtsne/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/rtsne/</guid>
+      <guid>/tags/rtsne/</guid>
       <description></description>
     </item>
     
     <item>
       <title>umap</title>
-      <link>https://kawameicha.github.io/tags/umap/</link>
+      <link>/tags/umap/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/umap/</guid>
+      <guid>/tags/umap/</guid>
       <description></description>
     </item>
     
     <item>
       <title>viridis</title>
-      <link>https://kawameicha.github.io/tags/viridis/</link>
+      <link>/tags/viridis/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/viridis/</guid>
+      <guid>/tags/viridis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>corrplot</title>
-      <link>https://kawameicha.github.io/tags/corrplot/</link>
+      <link>/tags/corrplot/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/corrplot/</guid>
+      <guid>/tags/corrplot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gridExtra</title>
-      <link>https://kawameicha.github.io/tags/gridextra/</link>
+      <link>/tags/gridextra/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/gridextra/</guid>
+      <guid>/tags/gridextra/</guid>
       <description></description>
     </item>
     
     <item>
       <title>randomForest</title>
-      <link>https://kawameicha.github.io/tags/randomforest/</link>
+      <link>/tags/randomforest/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/randomforest/</guid>
+      <guid>/tags/randomforest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>rattle</title>
-      <link>https://kawameicha.github.io/tags/rattle/</link>
+      <link>/tags/rattle/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/rattle/</guid>
+      <guid>/tags/rattle/</guid>
       <description></description>
     </item>
     
     <item>
       <title>reshape2</title>
-      <link>https://kawameicha.github.io/tags/reshape2/</link>
+      <link>/tags/reshape2/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/reshape2/</guid>
+      <guid>/tags/reshape2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>rpart</title>
-      <link>https://kawameicha.github.io/tags/rpart/</link>
+      <link>/tags/rpart/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/rpart/</guid>
+      <guid>/tags/rpart/</guid>
       <description></description>
     </item>
     
     <item>
       <title>rpart.plot</title>
-      <link>https://kawameicha.github.io/tags/rpart.plot/</link>
+      <link>/tags/rpart.plot/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/rpart.plot/</guid>
+      <guid>/tags/rpart.plot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>titanic</title>
-      <link>https://kawameicha.github.io/tags/titanic/</link>
+      <link>/tags/titanic/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/titanic/</guid>
+      <guid>/tags/titanic/</guid>
       <description></description>
     </item>
     
     <item>
       <title>keras</title>
-      <link>https://kawameicha.github.io/tags/keras/</link>
+      <link>/tags/keras/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/keras/</guid>
+      <guid>/tags/keras/</guid>
       <description></description>
     </item>
     
     <item>
       <title>lime</title>
-      <link>https://kawameicha.github.io/tags/lime/</link>
+      <link>/tags/lime/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/lime/</guid>
+      <guid>/tags/lime/</guid>
       <description></description>
     </item>
     
     <item>
       <title>lubridate</title>
-      <link>https://kawameicha.github.io/tags/lubridate/</link>
+      <link>/tags/lubridate/</link>
       <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/lubridate/</guid>
+      <guid>/tags/lubridate/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ggrepel</title>
-      <link>https://kawameicha.github.io/tags/ggrepel/</link>
+      <link>/tags/ggrepel/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/ggrepel/</guid>
+      <guid>/tags/ggrepel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ggmap</title>
-      <link>https://kawameicha.github.io/tags/ggmap/</link>
+      <link>/tags/ggmap/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/ggmap/</guid>
+      <guid>/tags/ggmap/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ggplot2</title>
-      <link>https://kawameicha.github.io/tags/ggplot2/</link>
+      <link>/tags/ggplot2/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/ggplot2/</guid>
+      <guid>/tags/ggplot2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>dplyr</title>
-      <link>https://kawameicha.github.io/tags/dplyr/</link>
+      <link>/tags/dplyr/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/dplyr/</guid>
+      <guid>/tags/dplyr/</guid>
       <description></description>
     </item>
     
     <item>
       <title>maps</title>
-      <link>https://kawameicha.github.io/tags/maps/</link>
+      <link>/tags/maps/</link>
       <pubDate>Sun, 12 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/maps/</guid>
+      <guid>/tags/maps/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WHO</title>
-      <link>https://kawameicha.github.io/tags/who/</link>
+      <link>/tags/who/</link>
       <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/tags/who/</guid>
+      <guid>/tags/who/</guid>
       <description></description>
     </item>
     

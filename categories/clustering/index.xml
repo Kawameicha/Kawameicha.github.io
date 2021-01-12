@@ -2,21 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Clustering on In Code We Trust</title>
-    <link>https://kawameicha.github.io/categories/clustering/</link>
+    <link>/categories/clustering/</link>
     <description>Recent content in Clustering on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Nov 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://kawameicha.github.io/categories/clustering/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 27 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="/categories/clustering/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Visualization and Clustering for Single-Cell Analysis</title>
-      <link>https://kawameicha.github.io/2019/11/visualization-and-clustering-for-single-cell-analysis/</link>
+      <link>/2019/11/visualization-and-clustering-for-single-cell-analysis/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kawameicha.github.io/2019/11/visualization-and-clustering-for-single-cell-analysis/</guid>
+      <guid>/2019/11/visualization-and-clustering-for-single-cell-analysis/</guid>
       <description>What if there is no prediction: the challenge of unsupervised learning.</description>
     </item>
     
