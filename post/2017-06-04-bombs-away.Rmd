@@ -1,0 +1,261 @@
+---
+title: "Bombs Away!"
+author: "Christoph Freier"
+date: 2017-06-04
+categories: ["Descriptive Statistics", "Geographic Visualization"]
+tags: ["ggmap", "ggplot2", "lubridate"]
+summary: "North Korea is well known for its hairstyle fashion and rocket science."
+thumbnailImage: http://vignette4.wikia.nocookie.net/warcommander/images/a/a3/MissileSilo1.damaged.png/revision/latest/scale-to-width-down/175?cb=20140612223257
+coverimage: http://anonymous-news.com/wp-content/uploads/2017/11/North-Korea.jpg
+coverSize: "partial"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+
+library(curl)
+library(readxl)
+library(lubridate)
+library(plyr)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+library(ggmap)
+```
+
+Okay, my [last post](http://christoph.freier.fr/2017/05/beginners-guide-to-financial-report-with-r/) wasn't really rocket science but did you ever heard about the [James Martin Center for Nonproliferation Studies North Korea Missile Test Database](http://www.nti.org/analysis/articles/cns-north-korea-missile-test-database/)? This is the "first database to record flight tests of all missiles launched by North Korea capable of delivering a payload of at least 500 kilograms (1102.31 pounds) a distance of at least 300 kilometers (186.4 miles)."
+
+Unfortunately, it has become quite clear that the North Korea's missile program has accelerated and made substantial progress over the past couple of years. And as usual, plotting things really helps to make one's mind up. By documenting all such tests since the first one occurred in April 1984, this kind of dataset helps us to take the measure of North Korea's missile program recent acceleration.
+
+One last detail, as North Korea never stops to experiment, the database is being routinely updated.
+
+# How to recover the most current data
+
+Many people still save their data into Microsoft Excel files. This is an unhappy choice for many reasons but a lot were already written about this topic. Unfortunately, this is what we have to deal with here. So choices to read the file are somehow limited. I personally like to use the `readxl` package.
+
+I told you the database is being regularly updated. If we want to get the latest version of the file we need to use the `curl` package to download it directly from the website.
+
+```{r, warning = FALSE, message = FALSE}
+# Some settings
+temp <- tempfile()
+url <- "https://www.nti.org/documents/2137/north_korea_missile_test_database.xlsx"
+
+# Then download it
+curl_download(url, temp)
+
+# And read it
+nkMissile <- read_excel(temp, sheet = 1)
+```
+
+We get the following information about the tests.
+
+```{r, warning = FALSE, message = FALSE}
+colnames(nkMissile)
+```
+
+The `F1` is the test identification number, then comes the test date, the missile type, the facility where it was fired from, flight information like apogee and distance, and some additional information which consists of a short written summary of the test.
+
+# Is the frequency of tests increasing over time?
+
+Quite a hot topic, right? Let's add a `Year` tag.
+
+```{r, warning = FALSE, message = FALSE}
+nkMissile$Year <- year(nkMissile$Date)
+```
+
+Also interesting would be to know who was in charge at the time of the test. It requires us to add a `Leader` tag and for that we'll need to create intervals with `lubridate`. Date where found on [wikipedia](https://en.wikipedia.org/wiki/Main_Page), as usual.
+
+```{r, warning = FALSE, message = FALSE}
+KimIlsung <- ymd("1972-12-28") %--% ymd("1994-07-08")
+KimJongil <- ymd("1994-07-08") %--% ymd("2011-12-17")
+KimJongun <- ymd("2011-12-17") %--% today()
+```
+
+Let's match it to the test date.
+
+```{r, warning = FALSE, message = FALSE}
+nkMissile$Leader <- ifelse(nkMissile$Date %within% KimIlsung == TRUE, "Kim Il-sung",
+                           ifelse(nkMissile$Date %within% KimJongil == TRUE, "Kim Jong-il",
+                           ifelse(nkMissile$Date %within% KimJongun == TRUE, "Kim Jong-un", NA)))
+```
+
+And here we go.
+
+```{r, warning = FALSE, message = FALSE}
+nkMissile %>%
+  ddply(.(Leader, Year), summarise,
+        total = length(F1)) %>%
+  ggplot(aes(x = Year, y = total, fill = Leader)) +
+  geom_bar(stat = "identity", alpha = .7, position = position_dodge()) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1") +
+  labs(x = NULL, y = "Number of missiles tested",
+       title = "North Korea's missile program over time",
+       subtitle = "A family story") +
+  theme(legend.title = element_blank())
+```
+
+We can easily get the total number of tests per leader if we reorganize.
+
+```{r, warning = FALSE, message = FALSE}
+nkMissile %>%
+  ddply(.(Leader), summarise,
+        Missile = length(F1))
+```
+
+I think we have a clear winner! Kim Jong-un scores a truly impressive `r nkMissile %>% filter(Leader == "Kim Jong-un") %>% nrow()` missiles tested. And this truly rocket lover made it in half the time his predecessors reigned. That is what I'd call program acceleration. But what about potential progress over the past couple of years?
+
+# Did you say rocket science?
+
+Let's now have a look at the missiles themselves. How many different models do they have. Easy one.
+
+```{r, warning = FALSE, message = FALSE}
+unique(nkMissile$`Missile Name`)
+```
+
+Mmm, 17 unique names. This is something none of the brewer palette chart can handle. We need to create some more.
+
+```{r, warning = FALSE, message = FALSE}
+# Define the length
+colourCount <- length(unique(nkMissile$`Missile Name`))
+
+# And adapt the 'Set3' palette
+getPalette <- colorRampPalette(brewer.pal(9, "Set3"))
+```
+
+This now allows us to visualize all the 16 missiles and the unknown type. So we can visualize which missile was tested by all three leaders.
+
+```{r, warning = FALSE, message = FALSE}
+nkMissile %>%
+  ddply(.(Leader, `Missile Type`, `Missile Name`), summarise,
+        total = length(F1)) %>%
+  ggplot(aes(x = Leader, y = total, fill = `Missile Name`)) +
+  geom_bar(stat = "identity", alpha = .7, position = position_dodge()) +
+  theme_minimal() +
+  scale_fill_manual(values = getPalette(colourCount)) +
+  labs(x = NULL, y = NULL,
+       title = "Missiles tested by North Korean leaders",
+       subtitle = "(One is more creative!)") +
+  theme(legend.title = element_blank())
+```
+
+I must confess, probably like most of you, I never built a rocket myself and I do not really know a lot about missile science. I think we could try to organize them into types to get the big picture easily.
+
+```{r, warning = FALSE, message = FALSE}
+nkMissile %>%
+  ddply(.(Leader, `Missile Type`, `Missile Name`), summarise,
+        total = length(F1)) %>%
+  ggplot(aes(x = `Missile Type`, y = total, fill = `Missile Name`)) +
+  geom_bar(stat = "identity", alpha = .7, position = position_dodge()) +
+  theme_minimal() +
+  scale_fill_manual(values = getPalette(colourCount)) +
+  labs(x = NULL, y = NULL,
+       title = "Tested types of missile",
+       subtitle = "And respective names") +
+  theme(legend.title = element_blank(), axis.text.x = element_text(angle = 45)) +
+  facet_wrap(~Leader, ncol = 3) +
+  theme(strip.text.x = element_text(face="bold"),
+        strip.background = element_blank())
+```
+
+Well okay, one can reasonably assume that the unknown name would most certainly belong to one of those five types. It clearly appears that Kim Jong-un is far more creative and explores many more types of missiles than its predecessors. Whereas, Kim Il-sung and Kim Jong-il restricted themselves to ~2-3 types only, he is the only one testing all of them. He also seems to have a clear preference for the SRBM type. Is there maybe a reason for that?
+
+# How far can they travel?
+
+I'm afraid I have some bad news for you now. Distance aren't available for all of them. So we can only work on a subset here. In addition to that, we have to do some cleaning as they all contain 'km', and therefore must have been handled as factors. Lastly, we have to convert to numeric. As I told you the .xlsx file is an unhappy choice. So it looks weird, I know.
+
+```{r, warning = FALSE, message = FALSE}
+# Select missiles for which we have travel distance only
+nkDistance <- subset(nkMissile, grepl("km", `Distance Travelled`))
+
+# Get rid of the ' km' and ','
+nkDistance$`Distance Travelled` <- gsub(" km", "", nkDistance$`Distance Travelled`)
+nkDistance$`Distance Travelled` <- gsub(",", "", nkDistance$`Distance Travelled`)
+
+# Convert to numeric
+nkDistance$`Distance Travelled` <- as.numeric(as.character(nkDistance$`Distance Travelled`))
+```
+
+After this preliminary work we can use the distance and compare missile types.
+
+```{r, warning = FALSE, message = FALSE}
+nkDistance %>%
+  ddply(.(`Missile Type`, `Missile Name`), summarise,
+        dist = mean(`Distance Travelled`)) %>%
+  ggplot(aes(x = `Missile Type`, y = dist, fill = `Missile Name`)) +
+  geom_bar(stat = "identity", alpha = .7, position = position_dodge()) +
+  theme_minimal() +
+  scale_fill_manual(values = getPalette(colourCount)) +
+  labs(x = NULL, y = NULL,
+       title = "What is the distance they can travel",
+       subtitle = "Based on the North Korean tests") +
+  theme(legend.title = element_blank())
+```
+
+No surprise here, they all seem to travel short, intermediate, and medium distance as one could guess as per their name. Of course, if less tested, we rely on less data to estimate the mean, which therefore could not reflect the reality at all. Kim Jong-un favorite flavor of missile, the SRBM type, isn't traveling long distance. Could this possibly be due the the numerous failures?
+
+```{r, warning = FALSE, message = FALSE}
+ddply(nkDistance, .(`Missile Type`, `Missile Name`), summarise,
+      Max.Distance = max(`Distance Travelled`))
+```
+
+No! On the contrary they all seem to work pretty well.
+
+# Okay, planning to visit the country anyway?
+
+Not a good idea, I warn you! If you really have to, what are the places to avoid the most. All of them, yes I know... But if you really, really have to, or want to and even if I doubt someone wants to do tourism there.
+
+If we want to find the places the missile tests are conducted we have to reorganize per `Facility` (and we will keep the `Leader` tag for the facet).
+
+```{r, warning = FALSE, message = FALSE}
+geoMissile <- ddply(nkMissile, .(Leader, `Facility Name`, `Facility Longitude`, `Facility Latitude`), summarise,
+                    total = length(`Facility Location`))
+```
+
+We get a list of all the different sites used by the three leaders and their location.
+
+```{r, warning = FALSE, message = FALSE}
+geoMissile[, 2:4]
+```
+
+One `Unknown` though. See the issue coming? Rather delete it right away.
+
+```{r, warning = FALSE, message = FALSE}
+geoMissile <- geoMissile[-which(geoMissile$`Facility Name` == "Unknown"),]
+```
+
+But that's not enough! See the other issue coming?
+
+```{r, warning = FALSE, message = FALSE}
+class(geoMissile$`Facility Longitude`)
+```
+
+Yes, you know the trick. Better do something right now.
+
+```{r, warning = FALSE, message = FALSE}
+geoMissile$`Facility Longitude` <- as.numeric(as.character(geoMissile$`Facility Longitude`))
+geoMissile$`Facility Latitude` <- as.numeric(as.character(geoMissile$`Facility Latitude`))
+```
+
+Okay, at least we can plot now. Let's do it per `Leader` to really judge the difference.
+
+```{r, warning = FALSE, message = FALSE}
+qmplot(data = geoMissile,
+       x = `Facility Longitude`, y = `Facility Latitude`,
+       size = total, maptype = "terrain", col = Leader, alpha = .25) +
+  theme(legend.position = "none") +
+  scale_fill_brewer(palette = "Set1") +
+  facet_wrap(~Leader, ncol = 1) +
+  theme(strip.text.x = element_text(face="bold"),
+        strip.background = element_blank())
+```
+
+This time again, and even if Kim Jong-un does not seem to beat Kim Il-sung and Kim Jong-il in all categories, he is astonishingly perseverant. He is the only one testing all over the country!
+
+# Conclusion
+
+Alright, at a first glance it looks pretty clear. Since Kim Jong-un took over the leadership, missile tests are booming all over the country. He was able to test almost three times more missiles than both previous leaders together. That's clearly an acceleration.
+
+Of course, I'll have to check [wikipedia](https://en.wikipedia.org) now as something is bothering me. What is the difference among all missiles? [MRBM](https://en.wikipedia.org/wiki/Medium-range_ballistic_missile) and [SRBM](https://en.wikipedia.org/wiki/Short-range_ballistic_missile) were used by the first leaders and are still the most tested by Kim Jong-un. Successfully fired some can already reach Japan.
+
+Among Kim Jong-un new toys are some [IRBM](https://en.wikipedia.org/wiki/Intermediate-range_ballistic_missile), [SLBM](https://en.wikipedia.org/wiki/Submarine-launched_ballistic_missile), and [SLV](https://en.wikipedia.org/wiki/Satellite_Launch_Vehicle). Not really good news for the rest of us as these clearly could lead to greater range and speed missiles than the North Korean currently possess, like [ICBM](https://en.wikipedia.org/wiki/Intercontinental_ballistic_missile).

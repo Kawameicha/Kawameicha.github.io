@@ -1,0 +1,140 @@
+---
+title: "Public Health Data from the WHO"
+author: "Christoph Freier"
+date: "2016-04-26"
+coverimage: https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/who.png
+coverSize: "partial"
+summary: "Everything you'll ever need to analyze public health data, well almost."
+tags:
+- WHO
+- ggplot2
+- dplyr
+thumbnailImage: https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/thumbnail/heartbeat.png
+categories:
+- Descriptive Statistics
+- Beautiful Evidence
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+
+library(WHO)
+```
+
+I've been looking for a simple and reliable access to public health data for a while now. Eventually, I bumped into the `WHO` package, which allows downloading directly from the [World Health Organization's](http://www.who.int/en/) [Global Health Observatory](http://www.who.int/gho/en/) in a dynamic and reproducible way. The data is accessible after you installed the package either from the CRAN or GitHub.
+
+```{r, eval = FALSE, warning = FALSE, message = FALSE}
+# From CRAN
+install.packages("WHO")
+
+# From Github
+library(devtools)
+install_github("expersso/WHO")
+```
+
+Nothing fancy and the rest is pretty straightforward too: only two functions necessary.
+
+- the `get_codes` to return a dataframe with series, codes, and descriptions for all available series
+- the `get_data` to retrieve the data from the internet and create directly your dataframe
+
+# How to retrieve series from the WHO
+
+```{r, warning = FALSE, message = FALSE}
+# Retrieve series, codes, and descriptions
+codes <- get_codes()
+str(codes)
+```
+
+So far they are `r length(codes$label)` datasets available, which are all easily retrieved through the `get_data` function. But first we need to pick-up series of interest. Let's say we want to analyze breast cancer data and search for them among the series with a regular expression.
+
+```{r, warning = FALSE, message = FALSE}
+# Search for series about breast cancer
+breastCancer <- codes[grep("[Bb]reast [Cc]ancer", codes$display),]
+breastCancer$display
+```
+
+So we have age-standardized disability-adjusted life years (DALYs), age-standardized death rates, and general availability of breast cancer screening at the primary health care level there. Certainly enough to run some test analyses. Okay let's first fetch the data through the `get_data` function.
+
+```{r, warning = FALSE, message = FALSE}
+# Retrieve the dataframes from the internet
+DALYs <- get_data(breastCancer$label[1])
+deathRates <- get_data(breastCancer$label[2])
+cancerScreening <- get_data(breastCancer$label[3])
+```
+
+# Interlude
+
+Maybe you are relatively new to R. If you recently installed it on your computer and didn't have time to explore the CRAN you might want to run the following code to ensure you have all the required packages installed. All of them are very useful anyway: you won't regret it!
+
+```{r, eval = FALSE, warning = FALSE, message = FALSE}
+# Required packages from CRAN
+.pkgs = c("dplyr", "ggplot2", "RColorBrewer")
+
+# Install required packages from CRAN (if not)
+.inst <- .pkgs %in% installed.packages()
+if(length(.pkgs[!.inst]) > 0) install.packages(.pkgs[!.inst])
+```
+
+After that, be sure to load them all.
+
+```{r, warning = FALSE, message = FALSE}
+# Load required packages
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+```
+
+# Let's create our dataframe
+
+After loading the data, we surely want to combine our three dataframes together. Male breast cancers are relatively rare, about 1% of all breast cancers only and are usually diagnosed at a more advanced stage. Therefore, I choose to filter them out and to return here the female breast cancers only.
+
+```{r, warning = FALSE, message = FALSE}
+# Filter, combine and group together
+df <- data.frame(deathRates %>%
+                   filter(sex == "Female") %>%
+                   group_by(year, country) %>%
+                   summarise(region, value),
+                 DALYs %>%
+                   filter(sex == "Female") %>%
+                   group_by(year, country) %>%
+                   summarise(value),
+                 cancerScreening %>%
+                   filter(country %in% DALYs$country) %>%
+                   group_by(year, country) %>%
+                   summarise(value))
+```
+
+There is some redundancy in the country and year columns that needs to be removed. A simple way to do that is to use a regular expression again. Once you've selected the redundant columns, it becomes easy to clean the dataframe.
+
+```{r, warning = FALSE, message = FALSE}
+# Search and remove redondancy
+sel.cl <- grep("*[yr].[12]", colnames(df), invert = TRUE)
+df <- df[,sel.cl]
+```
+
+Finally, let’s quickly adjust the column's names of our dataframe.
+
+```{r, warning = FALSE, message = FALSE}
+# Rename columns
+colnames(df) <- c("year", "country", "region", "deathRates", "DALYs", "cancerScreening")
+df[1:10,]
+```
+
+# Now what?
+
+Well, how about plotting the data now?
+
+```{r scatterplot, fig.cap = 'A fancy scatterplot.', warning = FALSE, message = FALSE}
+ggplot(df, aes(x = deathRates, y = DALYs, color = region, shape = cancerScreening)) +
+  geom_point() +
+  theme_minimal() +
+  ggtitle("") +
+  xlab("Death rates (per 100,000)") +
+  ylab("DALYs (per 100,000)") +
+  scale_shape_manual(values = c(1:5), name = "Screening") +
+  scale_color_brewer(palette = "Set1", name = "Region") +
+  theme(legend.position = "bottom") +
+  theme(legend.title = element_blank())
+```
+
+Two assumptions were made in figure \@ref(fig:scatterplot): death rates and DALYs were published in 2004, whereas the data about the availability of screening is from 2013. We can reasonably assume that countries with no screening at the primary health care level in 2013 didn't have screening back in 2004 either. But there is no way to be sure that countries organizing screening for breast cancer nowadays were already doing it in 2004. Additionally, there is no data about patient's sex in the breast cancer screening data set. But one can assume that it was a least available to female patients, since they are usually the only population targeted by routine screening for breast cancer.

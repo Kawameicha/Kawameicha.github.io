@@ -1,0 +1,261 @@
+---
+title: "Tidymodels: Machine Learning the Tidy Way"
+author: "Christoph Freier"
+date: "2020-05-14"
+coverimage: https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/boston.png
+coverSize: "partial"
+summary: "Embracing the new modeling pipeline in town: tidymodels."
+tags:
+- tidyverse
+- tidymodels
+- hrbrthemes
+- mlbench
+thumbnailImage: https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/thumbnail/laptop-house.png
+categories:
+- Supervised Learning
+- Random Forest 
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
+
+library(tidyverse)
+library(tidymodels)
+library(hrbrthemes)
+library(mlbench)
+```
+
+Did your mind ever paced back and forth and your eyes gazed blankly at the screen as you anxiously asked yourself: --how can so many different pieces fit together? --can it be uniform enough for all the models? --what about the many parameters to play with? --how to keep everything in line in a workflow? If you are modeling, this is a  familiar image and your heart probably begins to pound violently as you anxiously play this scenario in your head.
+
+After maturing for a few years, with snippets of it being released as they were developed, tidymodels is finally there. Similarly to the tidyverse, you can load the entire tidymodels suite of packages by typing `library(tidymodels)`. And similarly to the tidyverse, it's a complete toolbox whether you've decided to try out a full party of models or spend a quiet night alone fine tuning your favorite one. Let's dive into it using the Boston housing dataset.
+
+# Your first day as an estate agent
+
+The data lives, among many other famous datasets, in the `mlbench` package.
+
+```{r}
+data(BostonHousing)
+```
+
+In this post, I want to go over some general guidelines to consider when building a machine learning workflow. But if you're an estate agent, this is gold and can be used to build a pricing model for other houses in the area.
+
+```{r}
+glimpse(BostonHousing)
+```
+
+- `crim` per capita crime rate by town
+- `zn` proportion of residential land zoned for lots over 25,000 sq. ft
+- `indus` proportion of non-retail business acres per town
+- `chas` Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)
+- `nox` nitric oxide concentration (parts per 10 million)
+- `rm` average number of rooms per dwelling
+- `age` proportion of owner-occupied units built prior to 1940
+- `dis` weighted distances to five Boston employment centers
+- `rad` index of accessibility to radial highways
+- `tax` full-value property tax rate per $10,000
+- `ptratio` pupil-teacher ratio by town
+- `b` proxi for proportion of African American by town
+- `lstat` percentage of lower status of the population
+- `medv` median value of owner-occupied homes in $1000s
+
+The prices of the house indicated by the variable `medv` is the target variable, and the remaining are the feature variables based on which we will predict the value of a house.
+
+Let's plant seed for reproducibility.
+
+```{r}
+set.seed(42)
+```
+
+It's important to split the dataset into training and testing data. The data can be split using `initial_split`. I'll use 80% for training, fit the model and tune its parameters, and set aside 20% for testing, when we will evaluate the model’s performance.
+
+```{r}
+boston_split <- BostonHousing %>% 
+  initial_split(prop = .8)
+```
+
+We need to pull them both.
+
+```{r}
+train_tbl <- training(boston_split)
+test_tbl <- testing(boston_split)
+```
+
+And we will want to cross-validate. `vfold_cv` helps to create a cross-validated version of the training set.  Default is 10 partitions, which is great.
+
+```{r}
+folds <- vfold_cv(train_tbl)
+```
+
+# The three questions
+
+No matter what you're dealing with, in real life most datasets aren't provided ready to use. While working with `mlbench` you shouldn't need to be prepared for the worst, but numeric aren't neatly scaled or centered in their natural state and some might even be correlated. 
+
+```{r}
+rec_obj <- train_tbl %>% 
+  recipe(medv ~ .) %>%
+  step_center(all_numeric(), -all_outcomes()) %>%
+  step_scale(all_numeric(), -all_outcomes()) %>%
+  step_corr(all_numeric(), -all_outcomes()) %>% 
+  prep(data = train_tbl)
+```
+
+We certainly want to review what will happen to the data.
+
+```{r}
+rec_obj
+```
+
+Turns out `tax` is above the default (.9) and will get discarded, whereas all other predictors will be directed to scaling and centering. `juice` can reveal this by extracting the pre-processed data.
+
+```{r}
+rec_obj %>%
+  prep(train_tbl) %>%
+  juice()
+```
+
+Progressing through an analysis, you'll no doubt have to choose a model. `parsnip` tries to remove the hurdles by providing similar interfaces to different models. If you go for a random forest and would like to adjust the number of trees there are different argument names to remember:
+
+- `randomForest::randomForest` uses `ntree`,
+- `ranger::ranger` uses `num.trees`,
+- Spark’s `sparklyr::ml_random_forest` uses `num_trees.`
+
+Which most conveniently becomes `trees` with `parsnip`. Here we are going to set the engine (`set_engine`) to `ranger` and tune `mtry` as well within `set_args`.
+
+```{r}
+rf_model <- rand_forest() %>%
+  set_args(mtry = tune(), trees = tune()) %>%
+  set_engine("ranger", importance = "impurity") %>%
+  set_mode("regression") 
+```
+
+Establishing a workflow that encompasses the main stages of the process is a great way to ensure you keep on track and provide that extra healthy safety layer.
+
+```{r}
+rf_workflow <- workflow() %>%
+  add_recipe(rec_obj) %>%
+  add_model(rf_model)
+```
+
+Finally, there's one last important step before fitting the model: tuning. Let's specify in a grid the values we want to try for `mtry` and `trees`.
+
+```{r}
+rf_grid <- expand.grid(mtry  = 1:10, 
+                       trees = c(250, 500, 750))
+```
+
+Time for the CPU do its magic. It will use the recipe and model we've been working on and `tune_grid` will compute a set of performance metrics (`rmse` and `rsq`) across 10 resamples of the data.
+
+```{r}
+rf_tune <- rf_workflow %>%
+  tune_grid(resamples = folds,
+            grid      = rf_grid,
+            metrics   = metric_set(rmse, rsq))
+```
+
+For the most curious mind `collect_metrics` extracts and formats the produced results. We can pipe this into a plot.
+
+```{r}
+rf_tune %>% 
+  collect_metrics() %>% 
+  filter(.metric == "rmse") %>% 
+  mutate_at("trees", as.factor) %>% 
+  ggplot(aes(mtry, mean, color = trees)) +
+  geom_point(alpha = .7) +
+  geom_line() +
+  theme_ipsum() +
+  scale_color_ipsum() +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  scale_x_continuous(n.breaks = 10)
+```
+
+Or if you feel a bit lazy, you can use `select_best()` to find the tuning parameter combination with the best performance values.
+
+```{r}
+rf_param <- rf_tune %>%
+  select_best(metric = "rmse")
+```
+
+# Build it on
+
+How you answer all of these questions depends on your data, model, and the difficulty of the task, but now we’re ready to actually fit the final model. After determining the best parameters, `finalize_workflow` comes in handy to plug these parameters into the workflow.
+
+```{r}
+rf_workflow <- rf_workflow %>%
+  finalize_workflow(rf_param)
+```
+
+Finally, this complete workflow is injected with the full dataset via `last_fit`.
+
+```{r}
+rf_fit <- rf_workflow %>%
+  last_fit(boston_split)
+```
+
+This is absolutely right. Since we supplied the split object when we fitted the workflow, metrics will be evaluated on the test set only. Metrics and predictions are now close at hand.
+
+```{r}
+rf_fit %>% 
+  collect_metrics()
+```
+
+```{r}
+rf_fit %>% 
+  collect_predictions()
+```
+
+These are obviously predictions made on the test set only as there are 101 rows total. The performance is very good, with a RMSE of `r rf_fit %>% collect_metrics() %>% filter(.metric == "rmse") %>% select(.estimate) %>% round(2)` and Rsq of `r rf_fit %>% collect_metrics() %>% filter(.metric == "rsq") %>% select(.estimate) %>% round(2)`.
+
+We can pipe this into ggplot2 to visualize the residuals.
+
+```{r}
+rf_fit %>% 
+  collect_predictions() %>% 
+  ggplot(aes(medv, medv - .pred)) +
+  geom_point(alpha = .7) +
+  theme_ipsum() +
+  geom_abline(intercept = 0, slope = 0, linetype = "dashed") +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+```
+
+Overall it's good. But the model tends to somehow overprice the cheapest houses and clearly underprice the most luxurious properties. It would certainly help to collect more data on the lower and higher ends to further improve the result. Alternatively, we could filter out the most extreme cases to get a better estimation of how far off we are on average for the most common houses.
+
+# Wrap it up
+
+Okay, once we've evaluated the model and are happy with predictions we definitively want to train it again, this time on the full dataset, to then use it and predict the values for new data. Well, we will `fit`, simply.
+
+```{r}
+rf_fin <- rf_workflow %>% 
+  fit(BostonHousing)
+```
+
+Being able to explain the model to, let's say the management team from bostonrealestate.com or the field agents, is primordial. Various elements from a workflow object can be extracted via `workflow_extractors`. Here we pull the fit.
+
+```{r}
+rf_obj <- pull_workflow_fit(rf_fin)$fit
+```
+
+And since a picture is worth a thousand words we can present the variable importance.
+
+```{r}
+tibble(var = rf_obj$variable.importance,
+       nam = rf_obj$variable.importance %>% names(),
+       ) %>% 
+  ggplot(aes(var, reorder(nam, var))) +
+  geom_bar(stat  = 'identity', 
+           alpha = .7, 
+           width = .8
+           ) +
+  theme_ipsum() +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank()
+        )
+```
+
+The average number of rooms per dwelling and percentage of lower status of the population are the most important variables when it comes to predicting the price of a house in Boston.
+
+Awesome, now you can simply go ahead with this random forest or set another engine within your workflow. It's really up to you and so easy to change your mind. That's really the most amazing part of a tidy workflow.
