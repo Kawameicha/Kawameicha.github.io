@@ -6,7 +6,25 @@
     <description>Recent content in Categories on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beautiful Evidence</title>
+      <link>/categories/beautiful-evidence/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/beautiful-evidence/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Descriptive Statistics</title>
+      <link>/categories/descriptive-statistics/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/descriptive-statistics/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Supervised Learning</title>
       <link>/categories/supervised-learning/</link>
@@ -76,24 +94,6 @@
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/deep-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Beautiful Evidence</title>
-      <link>/categories/beautiful-evidence/</link>
-      <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/beautiful-evidence/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Descriptive Statistics</title>
-      <link>/categories/descriptive-statistics/</link>
-      <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/descriptive-statistics/</guid>
       <description></description>
     </item>
     

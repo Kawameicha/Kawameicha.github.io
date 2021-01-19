@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.80.0 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="A walk through my year, quite figuratively.">
+
+
+<meta property="og:description" content="A walk through my year, quite figuratively.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="It has been a Dog&#39;s Life">
+<meta name="twitter:title" content="It has been a Dog&#39;s Life">
+<meta property="og:url" content="/2021/01/it-has-been-a-dogs-life/">
+<meta property="twitter:url" content="/2021/01/it-has-been-a-dogs-life/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="A walk through my year, quite figuratively.">
+<meta name="twitter:description" content="A walk through my year, quite figuratively.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2021-01-19T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-01-19T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Descriptive Statistics">
+    
+      <meta property="article:section" content="Beautiful Evidence">
+    
+  
+  
+    
+      <meta property="article:tag" content="XML">
+    
+      <meta property="article:tag" content="tidyverse">
+    
+      <meta property="article:tag" content="lubridate">
+    
+      <meta property="article:tag" content="hrbrthemes">
+    
+      <meta property="article:tag" content="ggtext">
+    
+      <meta property="article:tag" content="viridis">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/thumbnail/dog.png">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/thumbnail/dog.png">
+
+
+  <meta property="og:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/mia.png">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/mia.png">
+
+
+
+
+  <meta property="og:image" content="/image/bio.png">
+  <meta property="twitter:image" content="/image/bio.png">
+
+
+    <title>It has been a Dog&#39;s Life</title>
+
+    <link rel="icon" href="image/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="../../../2021/01/it-has-been-a-dogs-life/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="../../../css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-166670924-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="../../../image/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="../../../#about">
+          <img class="sidebar-profile-picture" src="../../../image/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&quot;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-sitemap"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-vcard"></i>
+      
+      <span class="sidebar-button-desc">About Me</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin-square"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/mia.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      It has been a Dog&#39;s Life
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-01-19T00:00:00Z">
+        
+  
+  
+  
+  
+    Jan 19, 2021
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="../../../categories/descriptive-statistics">Descriptive Statistics</a>, 
+    
+      <a class="category-link" href="../../../categories/beautiful-evidence">Beautiful Evidence</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+<script src="../../../rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>2020 was a devastating year. The damage to health, wealth, and well-being is enormous and so much have changed. For everyone. People have been sick or even died. Some are out of work and struggling to pay their bills. Meanwhile millions of children are missing out on time in school. Major events like this pandemic end up defining an era and a whole generation that lives through it will never forget how it affected them. And we are not out of the woods quite yet.</p>
+<p>Despite the first headlines in the newspapers, I started the year like any other, ignorant of the problems that loomed ahead. Not unlike so many others, I ended up unexpectedly spending most of my time at home. Because of this strange turn of events, I was offered a chance to start living a well-balanced life. January is the time for a year end review. I look forward to using this post walking you through my year via a very simple proxy: every little step I’ve made toward 2021.</p>
+<div id="how-to-extract-the-data" class="section level1">
+<h1>How to extract the data</h1>
+<p>I do not use third-party apps or devices to do so but my iPhone alone already does a pretty good job at recording how much I walk. Exporting the Health app data isn’t very difficult, and can be summed up in only three steps:</p>
+<ul>
+<li>Launch the Health app</li>
+<li>Tap on your profile picture</li>
+<li>Tap on ‘Export All Health Data’</li>
+</ul>
+<p>There is no need to be a database demon to extract useful information from this file. The <code>XML</code> package makes it easy to read. You probably won’t have the data in the same directory as me though.</p>
+<pre class="r"><code>healthApp &lt;- xmlParse(&#39;~/Downloads/apple_health_export/Export.xml&#39;)[&#39;//Record&#39;] %&gt;% 
+  XML:::xmlAttrsToDataFrame()</code></pre>
+<p>This is the information my iPhone has recorded about me. Every day, every hour, and for years now.</p>
+<pre class="r"><code>summary(healthApp)
+##      type            sourceName        sourceVersion         device         
+##  Length:90932       Length:90932       Length:90932       Length:90932      
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##      unit           creationDate        startDate           endDate         
+##  Length:90932       Length:90932       Length:90932       Length:90932      
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##     value          
+##  Length:90932      
+##  Class :character  
+##  Mode  :character</code></pre>
+<p>It will make things easier down the road if we transform the information stored and split it into new columns.</p>
+<pre class="r"><code>healthRecord &lt;- healthApp %&gt;% 
+  mutate(value = as.numeric(value),
+         date = ymd_hms(endDate)) %&gt;% 
+  select(type, unit, date, value) %&gt;% 
+  mutate(year = year(date),
+         month = month(date),
+         label_m = month(date, label = TRUE),
+         day = day(date),
+         label_d = wday(date, label = TRUE, week_start = 1),
+         hour = hour(date),
+         date = as_date(date))</code></pre>
+<pre class="r"><code>glimpse(healthRecord)
+## Rows: 90,932
+## Columns: 10
+## $ type    &lt;chr&gt; &quot;HKQuantityTypeIdentifierStepCount&quot;, &quot;HKQuantityTypeIdentifie…
+## $ unit    &lt;chr&gt; &quot;count&quot;, &quot;count&quot;, &quot;count&quot;, &quot;count&quot;, &quot;count&quot;, &quot;count&quot;, &quot;count&quot;…
+## $ date    &lt;date&gt; 2016-01-16, 2016-01-16, 2016-01-16, 2016-01-16, 2016-01-16, …
+## $ value   &lt;dbl&gt; 367, 503, 477, 486, 291, 397, 44, 8, 10, 43, 40, 429, 478, 77…
+## $ year    &lt;dbl&gt; 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2…
+## $ month   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ label_m &lt;ord&gt; Jan, Jan, Jan, Jan, Jan, Jan, Jan, Jan, Jan, Jan, Jan, Jan, J…
+## $ day     &lt;int&gt; 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 1…
+## $ label_d &lt;ord&gt; Sat, Sat, Sat, Sat, Sat, Sat, Sat, Sat, Sat, Sat, Sat, Sat, S…
+## $ hour    &lt;int&gt; 1, 2, 2, 2, 2, 2, 2, 3, 4, 4, 5, 20, 20, 20, 20, 20, 20, 20, …</code></pre>
+<p>Right, that’s all we need to explore my steps over the years.</p>
+</div>
+<div id="how-does-2020-differ-from-other-years" class="section level1">
+<h1>How does 2020 differ from other years</h1>
+<p>There is no easy answer to that question, but at least I can show how it affected me personally.</p>
+<pre class="r"><code>healthRecord %&gt;% 
+  filter(type %in% c(&#39;HKQuantityTypeIdentifierStepCount&#39;, &#39;HKQuantityTypeIdentifierDistanceWalkingRunning&#39;)) %&gt;% 
+  group_by(year, unit) %&gt;% 
+  filter(year %&gt;% between(2017, 2020)) %&gt;% 
+  summarize(value = sum(value) %&gt;% round()) %&gt;% 
+  pivot_wider(year, names_from = unit) %&gt;% 
+  rename(steps = count) %&gt;% 
+  knitr::kable(align = &#39;r&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">steps</th>
+<th align="right">km</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2017</td>
+<td align="right">2066294</td>
+<td align="right">1387</td>
+</tr>
+<tr class="even">
+<td align="right">2018</td>
+<td align="right">1735584</td>
+<td align="right">1191</td>
+</tr>
+<tr class="odd">
+<td align="right">2019</td>
+<td align="right">1745685</td>
+<td align="right">1216</td>
+</tr>
+<tr class="even">
+<td align="right">2020</td>
+<td align="right">1217777</td>
+<td align="right">817</td>
+</tr>
+</tbody>
+</table>
+<p>So I’ve walked less. Yes, that doesn’t come as a big surprise. I’ve stopped going to work and my work implied a lot of traveling across Europe. There has been a lockdown in Germany and all shops and restaurants were closed. Long story short: I have always been allowed to go out, but didn’t need as much, and not to usually crowded places, because all were closed. Still, I manage to score over 800km. That’s about enough to cover the distance from Berlin to Paris!</p>
+<p>However, 2020 has seen different phases and the situation was, periodically, semi-normal. The year surely cannot be seen as normal but not always as abnormal as during the lockdown.</p>
+</div>
+<div id="what-does-it-look-like-per-month" class="section level1">
+<h1>What does it look like per month</h1>
+<p>To answer this we need to have a look at the step count, this time per month. This is how 2020 looks like.</p>
+<pre class="r"><code>healthRecord %&gt;% 
+  filter(type == &#39;HKQuantityTypeIdentifierStepCount&#39; &amp; year == 2020) %&gt;%
+  group_by(year, month) %&gt;%
+  summarize(steps = sum(value)) %&gt;%
+  ggplot(aes(x = month, y = steps, colour = as.factor(year))) +
+  geom_line() +
+  scale_color_manual(values = c(&#39;#F0A660&#39;)) +
+  scale_x_continuous(breaks = 1:12, labels = healthRecord$label_m %&gt;% unique()) +
+  theme_ipsum() +
+  theme(axis.text.y = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        legend.position = &#39;none&#39;) +
+  labs(title = &#39;&lt;b&gt;Steps walked per month in&lt;/b&gt; &lt;span style = &quot;color:#F0A660;&quot;&gt;2020&lt;/span&gt;&#39;,
+       caption = &#39;source: step count via Apple Health app&#39;) +
+  theme(plot.title.position = &#39;plot&#39;, 
+        plot.title = element_textbox(size = 12, color = &#39;white&#39;, fill = &#39;#23373B&#39;, box.color = &#39;#23373B&#39;,
+                                     halign = 0.5, linetype = 1, r = unit(5, &#39;pt&#39;), width = unit(1, &#39;npc&#39;),
+                                     padding = margin(2, 0, 1, 0), margin = margin(3, 3, 3, 3)))</code></pre>
+<p><img src="../../../post/2021-01-19-it-s-a-dog-s-life_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Exactly was I was thinking. There is a lot of up and down. First an unusual sedentary way of life for me. Then, masks, social distancing, and other interventions slowed the spread of the virus and when the warmer days of summer arrived, the situation improved drastically. Slightly off the main topic but worth mentioning, being permanently grounded opened up new possibilities like getting a dog. Noticed the ascent in the summer? That’s me potty training the puppy all day long before a nasty twist. I absolutely cannot tell how, but I got infected with Covid in the park in September.</p>
+<p>To properly annotate the previous plot, we can prepare the following data frame.</p>
+<pre class="r"><code>annotation &lt;- healthRecord %&gt;% 
+  filter(type == &#39;HKQuantityTypeIdentifierStepCount&#39; &amp; year == 2020 &amp; month %in% c(2:4, 7:9)) %&gt;% 
+  group_by(month) %&gt;%
+  summarize(steps = sum(value)) %&gt;% 
+  mutate(label = c(&#39;Covid in Berlin&#39;, &#39;First restrictions&#39;, &#39;Lockdown&#39;, &#39;Adopted a dog&#39;, &#39;Potty training&#39;, &#39;Got Covid&#39;),
+         color = &#39;#F0A660&#39;,
+         vjust = c(-30000, 30000, 30000, 30000, -30000, -30000))</code></pre>
+<p>Finally, we surely want the full picture with previous years and annotations added.</p>
+<pre class="r"><code>healthRecord %&gt;% 
+  filter(type == &#39;HKQuantityTypeIdentifierStepCount&#39; &amp; year %&gt;% between(2017, 2020)) %&gt;%
+  group_by(year, month) %&gt;%
+  summarize(steps = sum(value)) %&gt;%
+  ggplot(aes(x = month, y = steps, colour = as.factor(year))) +
+  geom_line() +
+  scale_color_manual(values = c(&#39;lightgrey&#39;, &#39;lightgrey&#39;, &#39;lightgrey&#39;, &#39;#F0A660&#39;)) +
+  scale_x_continuous(breaks = 1:12, labels = healthRecord$label_m %&gt;% unique()) +
+  theme_ipsum() +
+  theme(axis.text.y = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        legend.position = &#39;none&#39;) +
+  annotate(&#39;point&#39;, x = annotation$month, y = annotation$steps,
+           size = 3, shape = 21, fill = &quot;#F0A660&quot;, color = &#39;white&#39;) +
+  annotate(&#39;text&#39;, x = annotation$month, y = annotation$steps + annotation$vjust, 
+           label = annotation$label, color = annotation$color) +
+  labs(title = &#39;&lt;b&gt;Steps walked per month:&lt;/b&gt; &lt;span style = &quot;color:#F0A660;&quot;&gt;2020 *annus memorandus*&lt;/span&gt; vs. &lt;span style = &quot;color:lightgrey;&quot;&gt;three previous years&lt;/span&gt;&#39;,
+       caption = &#39;source: step count via Apple Health app&#39;) +
+  theme(plot.title.position = &#39;plot&#39;, 
+        plot.title = element_textbox(size = 12, color = &#39;white&#39;, fill = &#39;#23373B&#39;, box.color = &#39;#23373B&#39;,
+                                     halign = 0.5, linetype = 1, r = unit(5, &#39;pt&#39;), width = unit(1, &#39;npc&#39;),
+                                     padding = margin(2, 0, 1, 0), margin = margin(3, 3, 3, 3)))</code></pre>
+<p><img src="../../../post/2021-01-19-it-s-a-dog-s-life_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>There are two important points I want to make. First, the sublime <code>hrbrthemes</code> with some fine-tuning is real hot stuff and <code>ggtext</code>, a more recent discovery, helps a lot with titles, colors, and annotations. Second, once nicely presented, the effect of the virus becomes so clear and notable. It’s like these pictures of restaurants that only seat people at every other table or streets empty but for a few surgically masked passerby.</p>
+<p>What I mean is that on this plot I can see the virus as clearly as with an electron microscope.</p>
+</div>
+<div id="what-does-it-mean-to-adopt-a-dog" class="section level1">
+<h1>What does it mean to adopt a dog</h1>
+<p>Quite a lot of work, surely, but a lot of fun and joy all the same. Risk of catching a potentially deadly virus aside, obviously.</p>
+<p>Can I show you this on a plot as well. Certainly. This is somehow more challenging but heatmaps can be a very good alternative to visualize time series, especially when the time frame is repeating, like here months and weeks. The tricky part is to generate the missing time stamps. When I didn’t move, at night mostly, my iPhone recorded nothing and as a consequence my heatmaps contain information holes. Fortunately, the <code>tidyverse</code> proposes the <code>complete</code> function that turns implicit missing values into explicit ones.</p>
+<p>The rest is pretty straight forward. I used a nice <code>viridis</code> color scheme and <code>facet_grid</code> to visualize the last two years, hour by hour.</p>
+<pre class="r"><code>healthRecord %&gt;%
+  filter(type == &#39;HKQuantityTypeIdentifierStepCount&#39; &amp; year %&gt;% between(2019, 2020)) %&gt;%
+  select(year, label_m, label_d, hour, value) %&gt;% 
+  complete(year, label_m, label_d, hour, fill = list(value = 0)) %&gt;%
+  group_by(year, label_m, label_d, hour) %&gt;% 
+  summarize(steps = sum(value)) %&gt;% 
+  ggplot(aes(x = label_d, y = hour, fill = log2(steps)))+
+  geom_tile(color = &#39;white&#39;, size = .3) + 
+  scale_fill_viridis(option =&quot;D&quot;, na.value = &quot;#450466&quot;,) +
+  scale_y_reverse(breaks = c(6, 12, 18), labels = c(&#39;6am&#39;, &#39;noon&#39;, &#39;6pm&#39;)) +
+  facet_grid(year~label_m) +
+  theme_ipsum() +
+  labs(title = &quot;&lt;b&gt;Steps walked per hour:&lt;/b&gt; &lt;span style = &#39;color:#F0A660;&#39;&gt;2020 *annus memorandus*&lt;/span&gt; vs. &lt;span style = &#39;color:lightgrey;&#39;&gt;2019&lt;/span&gt;&quot;,
+       caption = &#39;source: step count via Apple Health app&#39;) +
+  theme(plot.title.position = &quot;plot&quot;,
+        plot.title = element_textbox(
+          size = 12,
+          color = &quot;white&quot;, fill = &quot;#23373B&quot;, box.color = &quot;#23373B&quot;,
+          halign = 0.5, linetype = 1, r = unit(5, &quot;pt&quot;), width = unit(1, &quot;npc&quot;),
+          padding = margin(2, 0, 1, 0), margin = margin(3, 3, 3, 3))) +
+  theme(panel.grid.major = element_blank(),
+        legend.position = &quot;none&quot;,
+        axis.text.x = element_text(angle = 90, size = 6),
+        axis.text.y = element_text(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        strip.text.y = element_blank(),
+        panel.spacing = unit(.1, &quot;lines&quot;))</code></pre>
+<p><img src="../../../post/2021-01-19-it-s-a-dog-s-life_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Again, you don’t need a magnifying glass to see the absolute mess my life was in 2019 (upper part). Chaos that still reigns, albeit with less intensity, during the first half of 2020 (lower part). During the last days of July and the whole of August, I went to the park every hour. One cannot underestimate how often a puppy needs to pee, trust me on this one. But really mind blowing is the pattern that emerges after that, starting in September and continuing throughout the last part of the year. There are three bands, each one precisely when I walk my dog: around breakfast time, lunch, and dinner.</p>
+<p>More than a well balanced-life, a dog means operations are planned to the last minute of a 24-hour day.</p>
+</div>
+<div id="there-is-good-news-coming-in-2021" class="section level1">
+<h1>There is good news coming in 2021</h1>
+<p>My only regret is that I do not have a precise tracking of my sleeping time. There is some kind of recording on the iPhone but it doesn’t seem to be extremely reliable. That’s a shame as one of my highlights of 2020 was the book <a href="https://en.wikipedia.org/wiki/Why_We_Sleep">why we sleep</a> by Matthew Walker and I took advantage of the time at home to improve my sleep as well. I clearly feel healthier and more productive but cannot show a side-by-side comparison with my sleep pattern. However, I can tell from the heatmaps that toward 2020, my evenings become quieter and quieter as I started reserving this time for more sleep.</p>
+<p>I always find reasons to be hopeful. On the Covid front, the vaccination campaigns started and about mid-year, should reach the scale where they’ll have a global impact. Although restrictions and social distancing won’t disappear it will help to live a life much closer to normal than it is now. On a more personal note, I realize that the dog and me managed to fight the sedentary way of life working from home implies and we finished the year pretty strong. Overall, there is a total of 2.96 million steps visualized on the heatmaps which represent quite an achievement. What now? Well onward. 2021, here I am!</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/xml/">XML</a>
+
+  <a class="tag tag--primary tag--small" href="../../../tags/tidyverse/">tidyverse</a>
+
+  <a class="tag tag--primary tag--small" href="../../../tags/lubridate/">lubridate</a>
+
+  <a class="tag tag--primary tag--small" href="../../../tags/hrbrthemes/">hrbrthemes</a>
+
+  <a class="tag tag--primary tag--small" href="../../../tags/ggtext/">ggtext</a>
+
+  <a class="tag tag--primary tag--small" href="../../../tags/viridis/">viridis</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2020/06/hypertune-xgboost-with-tidymodels/" data-tooltip="Hypertune XGBoost with tidymodels">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2021/01/it-has-been-a-dogs-life/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2021/01/it-has-been-a-dogs-life/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=../../../2021/01/it-has-been-a-dogs-life/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2020/06/hypertune-xgboost-with-tidymodels/" data-tooltip="Hypertune XGBoost with tidymodels">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2021/01/it-has-been-a-dogs-life/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2021/01/it-has-been-a-dogs-life/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=../../../2021/01/it-has-been-a-dogs-life/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2021%2F01%2Fit-has-been-a-dogs-life%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2021%2F01%2Fit-has-been-a-dogs-life%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2021%2F01%2Fit-has-been-a-dogs-life%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="../../../image/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&quot;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/image/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="../../../js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2021\/01\/it-has-been-a-dogs-life\/';
+          
+            this.page.identifier = '\/2021\/01\/it-has-been-a-dogs-life\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'incodewetrust';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

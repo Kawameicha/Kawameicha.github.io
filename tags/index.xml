@@ -6,13 +6,58 @@
     <description>Recent content in Tags on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ggtext</title>
+      <link>/tags/ggtext/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggtext/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>hrbrthemes</title>
       <link>/tags/hrbrthemes/</link>
-      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/hrbrthemes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lubridate</title>
+      <link>/tags/lubridate/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lubridate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>viridis</title>
+      <link>/tags/viridis/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/viridis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>XML</title>
+      <link>/tags/xml/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/xml/</guid>
       <description></description>
     </item>
     
@@ -31,15 +76,6 @@
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/tidymodels/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidyverse</title>
-      <link>/tags/tidyverse/</link>
-      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     
@@ -188,15 +224,6 @@
     </item>
     
     <item>
-      <title>viridis</title>
-      <link>/tags/viridis/</link>
-      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/viridis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>corrplot</title>
       <link>/tags/corrplot/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
@@ -283,15 +310,6 @@
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/lime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lubridate</title>
-      <link>/tags/lubridate/</link>
-      <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/lubridate/</guid>
       <description></description>
     </item>
     
