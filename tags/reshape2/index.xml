@@ -6,15 +6,14 @@
     <description>Recent content in reshape2 on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/reshape2/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/reshape2/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My Heart Will Go Down</title>
       <link>/2018/11/my-heart-will-go-down/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/2018/11/my-heart-will-go-down/</guid>
       <description>All has been said, so let&amp;rsquo;s call it an introduction to machine learning.</description>
     </item>
-    
   </channel>
 </rss>

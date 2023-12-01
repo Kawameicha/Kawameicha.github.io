@@ -6,15 +6,14 @@
     <description>Recent content in Financial Report on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate><atom:link href="/categories/financial-report/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/financial-report/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Beginners&#39; Guide to Financial Report with R</title>
       <link>/2017/05/beginners-guide-to-financial-report-with-r/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>/2017/05/beginners-guide-to-financial-report-with-r/</guid>
       <description>If you can read a nutrition label, you can do a basic financial statements.</description>
     </item>
-    
   </channel>
 </rss>

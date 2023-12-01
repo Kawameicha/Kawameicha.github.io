@@ -6,366 +6,287 @@
     <description>Recent content in Tags on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ggtext</title>
       <link>/tags/ggtext/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>/tags/ggtext/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>hrbrthemes</title>
       <link>/tags/hrbrthemes/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>/tags/hrbrthemes/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>lubridate</title>
       <link>/tags/lubridate/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>/tags/lubridate/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>tidyverse</title>
       <link>/tags/tidyverse/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>viridis</title>
       <link>/tags/viridis/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>/tags/viridis/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>XML</title>
       <link>/tags/xml/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>/tags/xml/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>mlbench</title>
       <link>/tags/mlbench/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/mlbench/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>tidymodels</title>
       <link>/tags/tidymodels/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/tidymodels/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>vip</title>
       <link>/tags/vip/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/vip/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>caret</title>
       <link>/tags/caret/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/caret/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>factoextra</title>
       <link>/tags/factoextra/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/factoextra/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>GGally</title>
       <link>/tags/ggally/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/ggally/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ggfortify</title>
       <link>/tags/ggfortify/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/ggfortify/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>recipes</title>
       <link>/tags/recipes/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/recipes/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>rsample</title>
       <link>/tags/rsample/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/rsample/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>gutenbergr</title>
       <link>/tags/gutenbergr/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/gutenbergr/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>streamgraph</title>
       <link>/tags/streamgraph/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/streamgraph/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>syuzhet</title>
       <link>/tags/syuzhet/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/syuzhet/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>tidytext</title>
       <link>/tags/tidytext/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      
       <guid>/tags/tidytext/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>genefilter</title>
       <link>/tags/genefilter/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      
       <guid>/tags/genefilter/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>RColorBrewer</title>
       <link>/tags/rcolorbrewer/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      
       <guid>/tags/rcolorbrewer/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Rphenograph</title>
       <link>/tags/rphenograph/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      
       <guid>/tags/rphenograph/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Rtsne</title>
       <link>/tags/rtsne/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      
       <guid>/tags/rtsne/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>umap</title>
       <link>/tags/umap/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      
       <guid>/tags/umap/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>corrplot</title>
       <link>/tags/corrplot/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/corrplot/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>gridExtra</title>
       <link>/tags/gridextra/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/gridextra/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>randomForest</title>
       <link>/tags/randomforest/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/randomforest/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>rattle</title>
       <link>/tags/rattle/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/rattle/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>reshape2</title>
       <link>/tags/reshape2/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/reshape2/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>rpart</title>
       <link>/tags/rpart/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/rpart/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>rpart.plot</title>
       <link>/tags/rpart.plot/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/rpart.plot/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>titanic</title>
       <link>/tags/titanic/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/titanic/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>keras</title>
       <link>/tags/keras/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/keras/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>lime</title>
       <link>/tags/lime/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
-      
       <guid>/tags/lime/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ggrepel</title>
       <link>/tags/ggrepel/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>/tags/ggrepel/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ggmap</title>
       <link>/tags/ggmap/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>/tags/ggmap/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ggplot2</title>
       <link>/tags/ggplot2/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>/tags/ggplot2/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>dplyr</title>
       <link>/tags/dplyr/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>/tags/dplyr/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>maps</title>
       <link>/tags/maps/</link>
       <pubDate>Sun, 12 Jun 2016 00:00:00 +0000</pubDate>
-      
       <guid>/tags/maps/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>WHO</title>
       <link>/tags/who/</link>
       <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
-      
       <guid>/tags/who/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

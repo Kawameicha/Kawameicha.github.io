@@ -6,172 +6,137 @@
     <description>Recent content on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>It has been a Dog&#39;s Life</title>
       <link>/2021/01/it-has-been-a-dogs-life/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>/2021/01/it-has-been-a-dogs-life/</guid>
       <description>A walk through my year, quite figuratively.</description>
     </item>
-    
     <item>
       <title>Hypertune XGBoost with tidymodels</title>
       <link>/2020/06/hypertune-xgboost-with-tidymodels/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      
       <guid>/2020/06/hypertune-xgboost-with-tidymodels/</guid>
       <description>Grasp the nettle to reach the top rankings on Kaggle.</description>
     </item>
-    
     <item>
       <title>Tidymodels: Machine Learning the Tidy Way</title>
       <link>/2020/05/tidymodels-machine-learning-the-tidy-way/</link>
       <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
-      
       <guid>/2020/05/tidymodels-machine-learning-the-tidy-way/</guid>
       <description>Embracing the new modeling pipeline in town: tidymodels.</description>
     </item>
-    
     <item>
       <title>What&#39;s a Good Model</title>
       <link>/2020/03/whats-a-good-model/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>/2020/03/whats-a-good-model/</guid>
       <description>Benchmarking binary classification models for cancer screening.</description>
     </item>
-    
     <item>
       <title>The King in Yellow</title>
       <link>/2020/02/the-king-in-yellow/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      
       <guid>/2020/02/the-king-in-yellow/</guid>
       <description>AI can&amp;rsquo;t beat humans at sentiments, but it can help analyze them.</description>
     </item>
-    
     <item>
       <title>Visualization and Clustering for Single-Cell Analysis</title>
       <link>/2019/11/visualization-and-clustering-for-single-cell-analysis/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      
       <guid>/2019/11/visualization-and-clustering-for-single-cell-analysis/</guid>
       <description>What if there is no prediction: the challenge of unsupervised learning.</description>
     </item>
-    
     <item>
       <title>My Heart Will Go Down</title>
       <link>/2018/11/my-heart-will-go-down/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>/2018/11/my-heart-will-go-down/</guid>
       <description>All has been said, so let&amp;rsquo;s call it an introduction to machine learning.</description>
     </item>
-    
     <item>
       <title>To Eat, or not to Eat, that is the Question</title>
       <link>/2018/03/to-eat-or-not-to-eat-that-is-the-question/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
-      
       <guid>/2018/03/to-eat-or-not-to-eat-that-is-the-question/</guid>
       <description>Using deep learning to predict edibility of mushrooms.</description>
     </item>
-    
     <item>
       <title>Road Accidents and Safety Data in the United Kingdom</title>
       <link>/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</link>
       <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
-      
       <guid>/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</guid>
       <description>10 years and 3.3 million accidented vehicles in the UK.</description>
     </item>
-    
     <item>
       <title>German Federal Election&#39;s Regional Differences</title>
       <link>/2017/10/german-federal-elections-regional-differences/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>/2017/10/german-federal-elections-regional-differences/</guid>
       <description>Resurgence of far-right Germany or the &amp;lsquo;return of the Nazis&amp;rsquo;.</description>
     </item>
-    
     <item>
       <title>Bombs Away!</title>
       <link>/2017/06/bombs-away/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>/2017/06/bombs-away/</guid>
       <description>North Korea is well known for its hairstyle fashion and rocket science.</description>
     </item>
-    
     <item>
       <title>Beginners&#39; Guide to Financial Report with R</title>
       <link>/2017/05/beginners-guide-to-financial-report-with-r/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>/2017/05/beginners-guide-to-financial-report-with-r/</guid>
       <description>If you can read a nutrition label, you can do a basic financial statements.</description>
     </item>
-    
     <item>
       <title>Wikipedia Hall of Fame</title>
       <link>/2016/06/wikipedia-hall-of-fame/</link>
       <pubDate>Sun, 12 Jun 2016 00:00:00 +0000</pubDate>
-      
       <guid>/2016/06/wikipedia-hall-of-fame/</guid>
       <description>An all time humanity&amp;rsquo;s pantheon: popularity analyse in wikipedia.</description>
     </item>
-    
     <item>
       <title>How to Select a Reading Depending on your State of Mind</title>
       <link>/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</link>
       <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
-      
       <guid>/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</guid>
       <description>A me too sentiment analysis and natural language processing post.</description>
     </item>
-    
     <item>
       <title>Public Health Data from the WHO</title>
       <link>/2016/04/public-health-data-from-the-who/</link>
       <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
-      
       <guid>/2016/04/public-health-data-from-the-who/</guid>
       <description>Everything you&amp;rsquo;ll ever need to analyze public health data, well almost.</description>
     </item>
-    
     <item>
       <title>About me</title>
       <link>/page/about-me/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/page/about-me/</guid>
       <description>I’m a data scientist and consultant although originally I studied pharmacy and biology, finishing my Pharm.D./Ph.D. with groups in France, Germany, and the United States. Besides, being of an inquisitive nature, I usually get interested in miscellaneous subjects. I cultivate coding skills as well as a marked preference for Unix and R.
 During my Ph.D. I rapidly got submerged in data, so that I eventually had to code on a daily basis.</description>
     </item>
-    
     <item>
       <title>Projects</title>
       <link>/page/projects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/page/projects/</guid>
       <description>Every once in a while, I&amp;rsquo;ve an idea that is worth to create a package about. A list of such projects below.
 indexSort This package&amp;ndash;currently hosted on GitHub&amp;ndash;contains functions to retrieve index sorted data and visually explore .fcs date files from various cell sorters.
 It has been adapted as a plugin for FlowJo and is available via the FlowJo Exchange.
 clustRcheck This package&amp;ndash;currently hosted on GitHub&amp;ndash;contains statistical hypothesis testing for discovering the presence of more than one mode in cluster distributions.</description>
     </item>
-    
     <item>
       <title>Useful Resources</title>
       <link>/page/useful-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/page/useful-resources/</guid>
-      <description>Other websites  Bob Rudis&amp;rsquo;s blog, most beautiful visualizations Damiano Fantini&amp;rsquo;s blog, useful R and python code Hadley Wickham&amp;rsquo;s website, the R bible Julia Silge&amp;rsquo;s blog, a truly inspirational one  Diverse books  An introduction to statistical learning, a must have Practical Data Science with R, basic principles and real use cases R Graphics Cookbook, for ggplot2 heroes R in a Nutshell, quick reference for beginners  </description>
+      <description>Other websites Bob Rudis&amp;rsquo;s blog, most beautiful visualizations Damiano Fantini&amp;rsquo;s blog, useful R and python code Hadley Wickham&amp;rsquo;s website, the R bible Julia Silge&amp;rsquo;s blog, a truly inspirational one Diverse books An introduction to statistical learning, a must have Practical Data Science with R, basic principles and real use cases R Graphics Cookbook, for ggplot2 heroes R in a Nutshell, quick reference for beginners </description>
     </item>
-    
   </channel>
 </rss>

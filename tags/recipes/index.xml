@@ -6,24 +6,21 @@
     <description>Recent content in recipes on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/recipes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/recipes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What&#39;s a Good Model</title>
       <link>/2020/03/whats-a-good-model/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>/2020/03/whats-a-good-model/</guid>
       <description>Benchmarking binary classification models for cancer screening.</description>
     </item>
-    
     <item>
       <title>To Eat, or not to Eat, that is the Question</title>
       <link>/2018/03/to-eat-or-not-to-eat-that-is-the-question/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
-      
       <guid>/2018/03/to-eat-or-not-to-eat-that-is-the-question/</guid>
       <description>Using deep learning to predict edibility of mushrooms.</description>
     </item>
-    
   </channel>
 </rss>
