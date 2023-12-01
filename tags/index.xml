@@ -6,8 +6,36 @@
     <description>Recent content in Tags on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hrbrthemes</title>
+      <link>/tags/hrbrthemes/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>/tags/hrbrthemes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>tidymodels</title>
+      <link>/tags/tidymodels/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>/tags/tidymodels/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>tidytuesday</title>
+      <link>/tags/tidytuesday/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>/tags/tidytuesday/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>/tags/tidyverse/</guid>
+      <description></description>
+    </item>
     <item>
       <title>ggtext</title>
       <link>/tags/ggtext/</link>
@@ -16,24 +44,10 @@
       <description></description>
     </item>
     <item>
-      <title>hrbrthemes</title>
-      <link>/tags/hrbrthemes/</link>
-      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/tags/hrbrthemes/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>lubridate</title>
       <link>/tags/lubridate/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
       <guid>/tags/lubridate/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>tidyverse</title>
-      <link>/tags/tidyverse/</link>
-      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     <item>
@@ -55,13 +69,6 @@
       <link>/tags/mlbench/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       <guid>/tags/mlbench/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>tidymodels</title>
-      <link>/tags/tidymodels/</link>
-      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/tags/tidymodels/</guid>
       <description></description>
     </item>
     <item>

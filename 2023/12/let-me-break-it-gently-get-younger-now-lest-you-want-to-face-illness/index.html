@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.120.4 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Christoph Freier">
+<meta name="keywords" content=", rstats, data science">
+<meta name="description" content="Explore the complexity of the healthcare landscape.">
+
+
+<meta property="og:description" content="Explore the complexity of the healthcare landscape.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let me Break it Gently: Get Younger Now Lest You Want to Face Illness">
+<meta name="twitter:title" content="Let me Break it Gently: Get Younger Now Lest You Want to Face Illness">
+<meta property="og:url" content="/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+<meta property="twitter:url" content="/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+<meta property="og:site_name" content="In Code We Trust">
+<meta property="og:description" content="Explore the complexity of the healthcare landscape.">
+<meta name="twitter:description" content="Explore the complexity of the healthcare landscape.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2023-12-01T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2023-12-01T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Unsupervised Learning">
+    
+      <meta property="article:section" content="Variable Importance">
+    
+  
+  
+    
+      <meta property="article:tag" content="tidyverse">
+    
+      <meta property="article:tag" content="tidymodels">
+    
+      <meta property="article:tag" content="hrbrthemes">
+    
+      <meta property="article:tag" content="tidytuesday">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@ChristophFreier">
+
+
+  <meta name="twitter:creator" content="@ChristophFreier">
+
+
+
+
+
+
+  <meta property="og:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/thumbnail/doctor.png">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/thumbnail/doctor.png">
+
+
+  <meta property="og:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/medical.png">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/medical.png">
+
+
+
+
+  <meta property="og:image" content="/image/bio.png">
+  <meta property="twitter:image" content="/image/bio.png">
+
+
+    <title>Let me Break it Gently: Get Younger Now Lest You Want to Face Illness</title>
+
+    <link rel="icon" href="image/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="../../../2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="../../../css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-166670924-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">In Code We Trust</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="../../../image/bio.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="../../../#about">
+          <img class="sidebar-profile-picture" src="../../../image/bio.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Christoph Freier</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-sitemap"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/useful-resources">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-book"></i>
+      
+      <span class="sidebar-button-desc">Resources</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about-me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-vcard"></i>
+      
+      <span class="sidebar-button-desc">About Me</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin-square"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email me</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('https://raw.githubusercontent.com/Kawameicha/Kawameicha.github.io/master/image/cover/medical.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Let me Break it Gently: Get Younger Now Lest You Want to Face Illness
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2023-12-01T00:00:00Z">
+        
+  
+  
+  
+  
+    Dec 1, 2023
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="../../../categories/unsupervised-learning">Unsupervised Learning</a>, 
+    
+      <a class="category-link" href="../../../categories/variable-importance">Variable Importance</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>Join me on this journey as we delve into the nuances of healthcare analytics, exploring a dataset that mirrors the complexity of the healthcare landscape. On the occasion of the latest virtual <a href="https://rinpharma.com">R/Pharma conference</a>, TidyTuesday released a treasure trove of medical history information with features of 100 simulated patients, unveiling a complex tapestry of health narratives waiting to be deciphered. This type of data never fails to inspire and challenge as we strive for a deeper understanding of the intricate dance between patient history and predictive outcomes.</p>
+<p>What sets this dataset apart is its unapologetic rawness – the authors chose not to tidy up the column names, embracing the chaos akin to real-world healthcare data, offering us an authentic experience in handling information as it comes. At the heart of this dataset lies the 1-year risk prediction of 14 outcomes based on the intricate web of each patient’s medical history features. These predictions are not mere conjectures: they are the result of real logistic regression models meticulously crafted on a foundation built from a vast real-world healthcare dataset.</p>
+<p>Healthcare data holds immense value for a variety of reasons. It can lead to improved patient outcomes, enhanced clinical decision-making, and the development of more effective treatments and therapies. Thanks to advanced data analytics techniques, we can derive meaningful insights from healthcare data: patterns, trends, and correlations to identify potential areas for improving patient care, optimizing operational efficiency, and predicting health outcomes. Therefore, healthcare data can play a crucial role in advancing medical research and innovation, helping providers anticipate and prevent potential health issues by identifying patterns and risk factors specific to each patient.</p>
+<div id="get-your-hands-on-this-dataset" class="section level1">
+<h1>Get your hands on this dataset</h1>
+<p>Alright, imagine you’re standing at the crossroads of Data Street, and you’ve got two exciting paths ahead, each offering a unique option to anyone willing to accept this challenge.</p>
+<p>Option one is like downloading the ultimate theme park pass for data enthusiasts. Grab the TidytuesdayR package – it’s your ticket to a smooth and thrilling data ride. If you’re feeling you’ll want more of this, it’s the hassle-free way to get your hands on a immense collection of datasets without breaking a sweat.</p>
+<pre class="r"><code>tuesdata &lt;- tidytuesdayR::tt_load(&quot;2023-10-24&quot;)
+## OR
+tuesdata &lt;- tidytuesdayR::tt_load(2023, week = 43)
+
+patient_risk_profiles &lt;- tuesdata$patient_risk_profiles</code></pre>
+<p>Option two is head over to GitHub and grab that <code>.csv</code> file directly right from the source. With a bit of git magic, you’ll be pulling that <code>.csv</code> and get ready for a hands-on in no time. Or, with just a line of code, you can summon and surface the dataset right into you environment. To get today’s data, simply run the following code.</p>
+<pre class="r"><code>patient_risk_profiles &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-10-24/patient_risk_profiles.csv&quot;)</code></pre>
+<p>Whatever the road you chose, at this point, we will want to look into what we pulled out before continuing.</p>
+<pre class="r"><code>head(patient_risk_profiles)
+## # A tibble: 6 × 100
+##   personId `age group:  10 -  14` `age group:  15 -  19` `age group:  20 -  24`
+##      &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;
+## 1        1                      0                      0                      0
+## 2        2                      0                      0                      0
+## 3        3                      0                      0                      0
+## 4        4                      0                      0                      0
+## 5        5                      0                      0                      0
+## 6        6                      0                      0                      0
+## # ℹ 96 more variables: `age group:  65 -  69` &lt;dbl&gt;,
+## #   `age group:  40 -  44` &lt;dbl&gt;, `age group:  45 -  49` &lt;dbl&gt;,
+## #   `age group:  55 -  59` &lt;dbl&gt;, `age group:  85 -  89` &lt;dbl&gt;,
+## #   `age group:  75 -  79` &lt;dbl&gt;, `age group:   5 -   9` &lt;dbl&gt;,
+## #   `age group:  25 -  29` &lt;dbl&gt;, `age group:   0 -   4` &lt;dbl&gt;,
+## #   `age group:  70 -  74` &lt;dbl&gt;, `age group:  50 -  54` &lt;dbl&gt;,
+## #   `age group:  60 -  64` &lt;dbl&gt;, `age group:  35 -  39` &lt;dbl&gt;, …</code></pre>
+<p>So, it looks like our dataset is a bit like a wild party: full of excitement, but also utterly chaotic. It’s like someone dropped a confetti bomb, and now we’ve got data scattered all over the place! Obviously, our first challenge is the column chaos that we need to organize into something more friendly. Else, it would be like trying to solve a puzzle with too many pieces. The information looks fragmented in every direction and we need to put this picture back together.</p>
+</div>
+<div id="we-might-need-to-pivot" class="section level1">
+<h1>We might need to pivot…</h1>
+<p>Yep, the information is like a buffet, but unfortunately right now, it’s served on too many plates! The categorical variables <code>age group</code> and <code>Sex</code> were hot one encoded into new columns and assign a binary value of 1 or 0. Some machine learning algorithms can work directly with categorical data, while some others require any inputs or outputs variables to be a number, or numeric in value. This doesn’t suit me today. It’s like we ordered one dish, and the chef decided to give us a dozen appetizers instead. But fear not, because we’re going to pivot this stack into a longer, more elegant shape.</p>
+<pre class="r"><code>patient_tbl_clean &lt;- patient_risk_profiles %&gt;% 
+  pivot_longer(cols = starts_with(&quot;age&quot;),
+               names_to = &quot;age_group&quot;,
+               values_to = &quot;age_value&quot;,
+               names_prefix = &quot;age group: &quot;) %&gt;% 
+  filter(age_value != 0)</code></pre>
+<p>As usual, <code>pivot_longer</code> is a game changer, and it greatly benefits from its perfect integration into the <code>tidyverse</code>. This command allows to select all variables starting with <code>age</code>, pivot them into a new <code>age_group</code> column containing the <code>age_value</code>, and to use a regular expression to remove the <code>age group:</code> matching text from the start of each variable name. This is one of the many options of the tidyverse, that simply feels like a magical tool for your datasets, turning the messy into the majestic and transforming any data struggles into a walk in the park.</p>
+<p>Let’s continue with the gender.</p>
+<pre class="r"><code>patient_tbl_clean &lt;- patient_tbl_clean %&gt;% 
+  pivot_longer(cols = starts_with(&quot;Sex&quot;),
+               names_to = &quot;gender&quot;,
+               values_to = &quot;sex_value&quot;,
+               names_prefix = &quot;Sex = &quot;) %&gt;% 
+  filter(sex_value != 0)</code></pre>
+<p>Hey, wait a minute. How can this output have <code>109</code> rows? More than what we started with. We must have created these duplicates while pivoting the gender.</p>
+<p>Looking back at the original observations, it’s indeed easy to spot individuals with a <code>1</code> in both male and female. Hermaphrodites that is to say. There is no way around here, we need to remove the nine culprits from our analysis. Let’s keep only individuals with a value for female different from their value for male in order to remove any double <code>1</code>, or potential double <code>0</code>. So here we go again from scratch, all steps at once this time. Finally we can clean the former variables and relocate the new categories.</p>
+<pre class="r"><code>patient_tbl_clean &lt;- patient_risk_profiles %&gt;% 
+  # pivot longer age
+  pivot_longer(cols = starts_with(&quot;age&quot;),
+               names_to = &quot;age_group&quot;,
+               values_to = &quot;age_value&quot;,
+               names_prefix = &quot;age group: &quot;) %&gt;% 
+  filter(age_value != 0) %&gt;% 
+  # filter out hermaphrodites
+  filter(`Sex = FEMALE` != `Sex = MALE`) %&gt;% 
+  # pivot longer sex
+  pivot_longer(cols = starts_with(&quot;Sex&quot;),
+               names_to = &quot;gender&quot;,
+               values_to = &quot;sex_value&quot;,
+               names_prefix = &quot;Sex = &quot;) %&gt;% 
+  filter(sex_value != 0) %&gt;% 
+  # clean and relocate
+  select(-c(age_value, sex_value)) %&gt;% 
+  relocate(age_group, gender, .after = personId)</code></pre>
+</div>
+<div id="a-look-at-the-population-pyramid" class="section level1">
+<h1>A look at the population pyramid</h1>
+<p>This really is straight forward now. We only need to pull <code>age</code> and <code>gender</code> and pivot again. However, population pyramids actually are combining two plots; each one, for male and female, displayed facing the other group. Using the default behaviors from <code>ggplot</code>, we can easily render this on a plot by mutating one of the populations to negative values and below we assign a negative value to the female individuals. Using this simple trick the female part of the pyramid will look to the left, while the male one will be displayed on the opposite side, facing to the right.</p>
+<pre class="r"><code>patient_tbl_clean %&gt;% 
+  select(age_group:gender) %&gt;% 
+  pivot_longer(!gender) %&gt;% 
+  mutate(n = ifelse(gender == &quot;FEMALE&quot;, -1, 1)) %&gt;% 
+  ggplot(aes(x = n, y = value, fill = gender)) +
+  geom_col(alpha = .7) +
+  theme_ipsum() +
+  scale_fill_manual(values=c(&quot;#ff0055&quot;, &quot;#0b53c1&quot;)) +
+  theme(legend.title = element_blank(),
+        legend.position = &quot;bottom&quot;,
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  ggtitle(&quot;A broken pyramid of age&quot;)</code></pre>
+<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Neat! But obviously we have two bummers: (i) there are more male than female individuals – we will have to live with it today, and (ii) too many categories for the total number of observations we have. Look at this, some of the buckets are empty. To tidy up this a little, we’re going to streamline these age buckets into a more manageable set. We want fewer age buckets, ensuring every box gets its fair share of attention and none are left collecting dust in the corner. Let’s use values found on Wikipedia to organize this age extravaganza into a more academical and practical party, where each age group is mapped to commonly used and broader age buckets. The <code>25-54</code> is slightly annoying to encode, but we can happily sort the leftover into <code>65+</code> using <code>.default</code>.</p>
+<pre class="r"><code>patient_tbl_clean &lt;- patient_tbl_clean %&gt;% 
+  mutate(age_group = case_match(age_group,
+                                c(&quot;  0 -   4&quot;, &quot;  5 -   9&quot;, &quot; 10 -  14&quot;) ~ &quot;0–14&quot;,
+                                c(&quot; 15 -  19&quot;, &quot; 20 -  24&quot;) ~ &quot;15–24&quot;,
+                                c(&quot; 25 -  29&quot;, &quot; 30 -  34&quot;, &quot; 35 -  39&quot;, &quot; 40 -  44&quot;, &quot; 45 -  49&quot;, &quot; 50 -  54&quot;) ~ &quot;25–54&quot;,
+                                c(&quot; 55 -  59&quot;, &quot; 60 -  64&quot;) ~ &quot;55–64&quot;,
+                                .default = &quot;65+&quot;)) </code></pre>
+<p>And now, for something completely different!</p>
+<pre class="r"><code>patient_tbl_clean %&gt;% 
+  select(age_group:gender) %&gt;% 
+  pivot_longer(!gender) %&gt;% mutate(n = ifelse(gender == &quot;FEMALE&quot;, -1, 1)) %&gt;% 
+  ggplot(aes(x = n, y = value, fill = gender)) +
+  geom_col(alpha = .7) +
+  theme_ipsum() +
+  scale_fill_manual(values = c(&quot;#ff0055&quot;, &quot;#0b53c1&quot;)) +
+  theme(legend.title = element_blank(),
+        legend.position = &quot;bottom&quot;,
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  ggtitle(&quot;A better pyramid of age&quot;)</code></pre>
+<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Yes, we nailed it. From a purely medical point of view it absolutely does make sense. We will now be working with either children, teens, young adult, mid-life, and elderly and each bucket contains a fair amount of individuals of both sexes.</p>
+</div>
+<div id="correlation-among-the-predicted-risks" class="section level1">
+<h1>Correlation among the predicted risks</h1>
+<p>Before we begin, we can spend some time investigating our data. Since many of these predicted risks are probably strongly correlated, let’s take a look at the correlation structure of the data. As mentioned earlier, the authors chose not to tidy up the column names and we will want to shorten those in order to properly use them on a correlation matrix. First, let’s gather the <code>colnames</code>, organize them into a tibble, and use two simple regular expressions to cut the names short and shorter.</p>
+<pre class="r"><code>colnames_predicted_clean &lt;- patient_tbl_clean %&gt;% 
+  select(starts_with(&quot;predicted&quot;)) %&gt;% 
+  colnames() %&gt;% 
+  as_tibble() %&gt;% 
+  mutate(short = str_remove(value, &quot;predicted risk of &quot;),
+         shorter = str_remove(short, &quot;,.*&quot;))</code></pre>
+<p>Afterwards, we quickly build a <code>patient_predicted_clean</code> data frame to be used investigating correlations of the 1-year risk predictions.</p>
+<pre class="r"><code>patient_predicted_clean &lt;- patient_tbl_clean %&gt;% 
+  select(starts_with(&quot;predicted&quot;))
+
+colnames(patient_predicted_clean) &lt;- colnames_predicted_clean$shorter</code></pre>
+<p>Now we can visually check correlations among them.</p>
+<pre class="r"><code>ft_cols &lt;- colorRampPalette(c(&quot;#ff0055&quot;, &quot;#0b53c1&quot;))
+
+patient_predicted_clean %&gt;% 
+  cor() %&gt;% 
+  corrplot(order = &#39;hclust&#39;, addrect = 5, tl.cex = .5, tl.col=&#39;black&#39;, col = ft_cols(200))</code></pre>
+<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>We notice distinct groups of outcomes. The largest, top-left corner, contains diseases showing strong correlations and it looks like this group contains the ones that tend to be associated with an aging population. Dementia and Parkinson’s disease for sure; but the others we likewise associate predominantly with elderly people. There are two smaller clusters at the bottom-right corner, with inflammatory and neurological diseases that generally affect people earlier in life.</p>
+<p>Okay, let’s try to make the magic happen.</p>
+</div>
+<div id="first-a-starter-recipe" class="section level1">
+<h1>First, a starter recipe</h1>
+<p>Alright, we will want to plant some seeds.</p>
+<pre class="r"><code>set.seed(42)</code></pre>
+<p>We start with a basic recipe to preprocess the data that will be extended with additional steps for the dimensionality reduction analyses.</p>
+<pre class="r"><code>rec_obj &lt;- patient_tbl_clean %&gt;% 
+  select(age_group, starts_with(&quot;predicted&quot;)) %&gt;% 
+  recipe(age_group ~ .) %&gt;% 
+  step_nzv(all_numeric_predictors()) %&gt;% 
+  step_normalize(all_numeric_predictors())</code></pre>
+<p>And finally, we can prep it. If new steps are added to this estimated recipe, reapplying <code>prep()</code> will estimate only the untrained steps.</p>
+<pre class="r"><code>prp_obj &lt;- rec_obj %&gt;% 
+  prep(patient_tbl_clean)</code></pre>
+</div>
+<div id="then-a-tentative-to-visualize" class="section level1">
+<h1>Then, a tentative to visualize</h1>
+<p>It’s time to look at this in a smaller space. In the realm of data, this means employing dimensionality reduction for data exploration. With sometimes hundreds of thousands of dimensions, visual exploration becomes a daunting task, and that’s where simple tools like PCA, or more advanced ones like UMAP swoop in as our investigative sidekick. Dimensionality reduction, cutting down on the noise and finding hidden relationships, makes our data party more streamlined. Having an excessive number of predictors can harm future models, introducing issues like overcrowded ordinary linear regression or chaotic dynamics of multicollinearity.</p>
+<p>I have adapted a function from the excellent <a href="https://www.tmwr.org">Tidy Modeling with R</a> that will estimate the transformation and plot the resulting data in a scatter plot matrix via the <code>ggforce</code> package. This is very handy as it can be reused as many times as needed.</p>
+<pre class="r"><code>plot_validation_results &lt;- function(recipe, dat = patient_tbl_clean) {
+  recipe %&gt;% 
+    prep() %&gt;% 
+    bake(new_data = dat) %&gt;% 
+    ggplot(aes(x = .panel_x, y = .panel_y, color = age_group, fill = age_group)) +
+    geom_point(alpha = .7) +
+    geom_autodensity(alpha = .3) +
+    facet_matrix(vars(-age_group), layer.diag = 2) +
+    theme_ipsum() +
+    scale_color_ft() +
+    scale_fill_ft() +
+    theme(legend.title = element_blank(),
+          legend.position = &quot;bottom&quot;)
+}</code></pre>
+<p>This is very convenient: all we have to do is add a <code>step_pca</code> to our <code>prp_obj</code> and pipe into the <code>plot_validation_results</code>.</p>
+<pre class="r"><code>prp_obj %&gt;% 
+  step_pca(all_numeric_predictors(), num_comp = 3) %&gt;% 
+  plot_validation_results() +
+  ggtitle(&quot;Principal Component Analysis&quot;)</code></pre>
+<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Or, should we want to explore other options like UMAP, we only need to swap the <code>step_pca</code> for a <code>step_umap</code>. How practical!</p>
+<pre class="r"><code>prp_obj %&gt;% 
+  step_umap(all_numeric_predictors(), num_comp = 3) %&gt;% 
+  plot_validation_results() +
+  ggtitle(&quot;Uniform Manifold Approximation and Projection&quot;)</code></pre>
+<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Principal Component Analysis is a very good working horse with a knack for isolating well defined groups in pretty much any dataset. Here, the 65+ population stands out prominently in the first scene of the investigation brilliantly highlighting the distinctive features of this age group. Meanwhile, PC2 emerges as the supporting component, bringing part of the 15-24 and 25-54 age groups into the limelight.</p>
+<p>Now, Uniform Manifold Approximation and Projection paints a vivid portrait of our diverse age groups based on their risk predictions. The beauty of UMAP lies in its ability to tease out specific risk factors associated with each age class. Together, this leaves me optimistic about the potential for a deeper understanding of the factors influencing health outcomes across different age categories.</p>
+</div>
+<div id="finally-we-go-to-the-forests" class="section level1">
+<h1>Finally, we go to the forests</h1>
+<p>Random forests became increasingly popular more than ten years ago due to their ability to deal with “small n large p”-problems, high-order interactions, and correlated predictor variables. While they aren’t the first choice nowadays to perform the best prediction, their are still very useful when assessing variable importance. After training, it is natural to ask which variables have the most predictive power. Variables with high importance are drivers of the outcome and their values have a significant impact on the outcome values. In our case, we can use this to assess what are the most important predictors for each outcome.</p>
+<p>We will need to loop over the 14 diseases of the dataset and inject all predictors in each random forest. As we go, we will store the results on the fly in a <code>risk_factor</code> tibble.</p>
+<pre class="r"><code>risk_factors &lt;- tibble(predicted_risk = NA, associated_risk = NA)</code></pre>
+<p>Now, let’s prepare the loop for each outcome (columns 68 to 81). One by one, we name <code>y</code>, the outcome, and the <code>x</code>, the predictors before passing it all into a random forest and writing the variable importance in the tibble. This measure is computed from permuting OOB data: for each tree, the prediction error on the out-of-bag portion of the data is recorded. Then the same is done after permuting each predictor variable. The difference between the two is then averaged over all trees, and normalized by the standard deviation of the differences. The higher number, the more important the variable.</p>
+<pre class="r"><code>for (i in 68:81) {
+  y &lt;- names(patient_tbl_clean %&gt;% clean_names())[i]
+  x &lt;- names(patient_tbl_clean %&gt;% clean_names())[2:67] %&gt;% 
+    str_flatten(collapse = &quot; + &quot;)
+
+  model_formula &lt;- formula(paste0(y, &quot; ~ &quot;, x))
+  model_rForest &lt;- randomForest(formula = model_formula, data = patient_tbl_clean %&gt;% clean_names(), importance = TRUE)
+
+  risk_factors &lt;- bind_rows(
+    risk_factors,
+    as_tibble(
+    data.frame(predicted_risk = y,
+               associated_risk = rownames(importance(model_rForest)),
+               importance(model_rForest))) %&gt;% 
+    rename(percentage_increase_in_MSE = `X.IncMSE`) %&gt;% 
+    arrange(desc(percentage_increase_in_MSE)))
+}</code></pre>
+<p>There is some wrangling before we can plot the results as all the names have to be cleaned in order for the <code>paste0</code> to work properly. This explains all the <code>mutate</code> and <code>separate_wider_delim</code> in the following code. What did you expect, we were warned that the column names were messy and this is what happens in the real-world.</p>
+<pre class="r"><code>risk_factors %&gt;% 
+  drop_na() %&gt;% 
+  mutate(predicted_risk = str_remove(predicted_risk, &quot;predicted_risk_of_&quot;),
+         predicted_risk = to_title_case(predicted_risk),
+         associated_risk = to_sentence_case(associated_risk),
+         predicted_risk = str_remove(predicted_risk, &quot; with&quot;),
+         predicted_risk = str_remove(predicted_risk, &quot; Trd&quot;)) %&gt;% 
+  separate_wider_delim(cols = predicted_risk,
+                       delim = &quot; No &quot;,
+                       names = c(&quot;predicted_risk&quot;, NA),
+                       too_few = &quot;align_start&quot;) %&gt;% 
+  separate_wider_delim(cols = predicted_risk,
+                       delim = &quot; or 2 Nd &quot;,
+                       names = c(&quot;predicted_risk&quot;, NA),
+                       too_few = &quot;align_start&quot;) %&gt;% 
+  separate_wider_delim(cols = associated_risk,
+                       delim = &quot; in prior year&quot;,
+                       names = c(&quot;associated_risk&quot;, NA),
+                       too_few = &quot;align_start&quot;) %&gt;% 
+  separate_wider_delim(cols = associated_risk,
+                       delim = &quot; dvt&quot;,
+                       names = c(&quot;associated_risk&quot;, NA),
+                       too_few = &quot;align_start&quot;) %&gt;% 
+    separate_wider_delim(cols = associated_risk,
+                       delim = &quot; dm with no type 1&quot;,
+                       names = c(&quot;associated_risk&quot;, NA),
+                       too_few = &quot;align_start&quot;) %&gt;%
+  filter(percentage_increase_in_MSE &gt; 9) %&gt;% 
+  group_by(predicted_risk) %&gt;% 
+  mutate(reorder_var = sum(percentage_increase_in_MSE)) %&gt;% 
+  ungroup() %&gt;% 
+  ggplot(aes(y = reorder(predicted_risk, reorder_var),
+             x = percentage_increase_in_MSE,
+             fill = associated_risk)) +
+  geom_bar(stat = &quot;identity&quot;,
+           position = position_stack(reverse = TRUE),
+           alpha = .7) +
+  theme_ipsum() +
+  scale_fill_ft() +
+  theme(legend.title = element_blank(),
+        legend.position = &quot;bottom&quot;,
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.text = element_text(size = 6)) +
+  ggtitle(&quot;Age is the most important risk factor&quot;)</code></pre>
+<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>In this exploration of medical conditions, the data unmistakably reveals age as the predominant risk factor associated with nine out of thirteen conditions (depression didn’t make it to this final listing). This observation aligns seamlessly with the insights gleaned from the PCA plots, particularly the prominent role as seen in PC1, where the trajectory of aging significantly amplifies the overall risk of developing various illnesses. However, amidst this overarching trend, certain exceptions command attention. Hepatitis, characterized as a viral infection, defies the age-centric narrative, emphasizing the role of external factors such as exposure to infectious agents. Migraines, predominantly affecting women is a gender-specific and age-independent condition. Similarly, ankylosing spondylitis and ulcerative colitis, both inflammatory diseases, challenge the age-centric paradigm with most people receiving a diagnosis in young to mid-adulthood. For these conditions, the most predictive factor of heightened inflammation lies in the history of prior inflammation, emphasizing the chronic nature of the diseases.</p>
+</div>
+<div id="an-apple-a-day" class="section level1">
+<h1>An apple a day…</h1>
+<p>Will only keep the doctor away for so long, unfortunately. As we age, it is inevitable to experience physical and emotional changes that can be challenging. While machine learning certainly helps to develop more effective treatments and therapies, it can only extend our healthy years, but no amount of calculation can keep us healthy forever. I particularly like the Stoic philosophy that offers a unique approach to aging which emphasizes acceptance, wisdom, and grace. With the Stoic approach, we can learn to embrace the aging process with dignity and find meaning in the later years of our lives.</p>
+<p>Interestingly, there is no clear path to prevent the diseases present in this dataset. Certainly, maintaining <em>mens sana in corpore sano</em> will help, but there are other factor we cannot always control, like genetics or infections. Whether it’s through exercise, new experiences, or spending time with loved ones, staying active can help us maintain our physical health, mental wellbeing, and sense of purpose. By embracing the aging process with a positive and proactive mindset, we can learn to grow old gracefully and celebrate the unique blessings that come with each decade of life.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/tidyverse/">tidyverse</a>
+
+  <a class="tag tag--primary tag--small" href="../../../tags/tidymodels/">tidymodels</a>
+
+  <a class="tag tag--primary tag--small" href="../../../tags/hrbrthemes/">hrbrthemes</a>
+
+  <a class="tag tag--primary tag--small" href="../../../tags/tidytuesday/">tidytuesday</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2021/01/it-has-been-a-dogs-life/" data-tooltip="It has been a Dog&#39;s Life">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=../../../2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 Christoph Freier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2021/01/it-has-been-a-dogs-life/" data-tooltip="It has been a Dog&#39;s Life">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=../../../2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2023%2F12%2Flet-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2023%2F12%2Flet-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2023%2F12%2Flet-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="../../../image/bio.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Christoph Freier</h4>
+    
+      <div id="about-card-bio">Hello, my name is Christoph Freier. Regularly, people stop me on the street and ask me <em>&ldquo;hey, what&rsquo;s your name?&rdquo;</em> I reply my name is Christoph Freier and I rock a great mustache.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        SaaS Application Consulting
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        I live in Berlin, Germany
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/image/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="../../../js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2023\/12\/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness\/';
+          
+            this.page.identifier = '\/2023\/12\/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'incodewetrust';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

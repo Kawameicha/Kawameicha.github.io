@@ -2,10 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/categories/beautiful-evidence/</loc>
-    <lastmod>2021-01-19T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>/categories/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/hrbrthemes/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/tidymodels/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/tidytuesday/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/tidyverse/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/unsupervised-learning/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/variable-importance/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/beautiful-evidence/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/descriptive-statistics/</loc>
@@ -14,25 +44,10 @@
     <loc>/tags/ggtext/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/hrbrthemes/</loc>
-    <lastmod>2021-01-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/</loc>
-    <lastmod>2021-01-19T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>/2021/01/it-has-been-a-dogs-life/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/lubridate/</loc>
-    <lastmod>2021-01-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/post/</loc>
-    <lastmod>2021-01-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2021-01-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/tidyverse/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/viridis/</loc>
@@ -48,9 +63,6 @@
     <lastmod>2020-06-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/supervised-learning/</loc>
-    <lastmod>2020-06-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/tidymodels/</loc>
     <lastmod>2020-06-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/vip/</loc>
@@ -105,9 +117,6 @@
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/tidytext/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/categories/unsupervised-learning/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/clustering/</loc>
