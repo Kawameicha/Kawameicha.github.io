@@ -13,10 +13,10 @@
 
 <meta property="og:description" content="Explore the complexity of the healthcare landscape.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Let me Break it Gently: Get Younger Now Lest You Want to Face Illness">
-<meta name="twitter:title" content="Let me Break it Gently: Get Younger Now Lest You Want to Face Illness">
-<meta property="og:url" content="/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
-<meta property="twitter:url" content="/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+<meta property="og:title" content="Get Younger Now or Face Illness">
+<meta name="twitter:title" content="Get Younger Now or Face Illness">
+<meta property="og:url" content="/2023/12/get-younger-now-or-face-illness/">
+<meta property="twitter:url" content="/2023/12/get-younger-now-or-face-illness/">
 <meta property="og:site_name" content="In Code We Trust">
 <meta property="og:description" content="Explore the complexity of the healthcare landscape.">
 <meta name="twitter:description" content="Explore the complexity of the healthcare landscape.">
@@ -75,14 +75,14 @@
   <meta property="twitter:image" content="/image/bio.png">
 
 
-    <title>Let me Break it Gently: Get Younger Now Lest You Want to Face Illness</title>
+    <title>Get Younger Now or Face Illness</title>
 
     <link rel="icon" href="image/favicon.ico">
     
 
     
 
-    <link rel="canonical" href="../../../2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+    <link rel="canonical" href="../../../2023/12/get-younger-now-or-face-illness/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -282,7 +282,7 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Let me Break it Gently: Get Younger Now Lest You Want to Face Illness
+      Get Younger Now or Face Illness
     </h1>
   
   
@@ -420,7 +420,7 @@ patient_risk_profiles &lt;- tuesdata$patient_risk_profiles</code></pre>
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()) +
   ggtitle(&quot;A broken pyramid of age&quot;)</code></pre>
-<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="../../../post/2023-12-01-get-younger-now-or-face-illness_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Neat! But obviously we have two bummers: (i) there are more male than female individuals – we will have to live with it today, and (ii) too many categories for the total number of observations we have. Look at this, some of the buckets are empty. To tidy up this a little, we’re going to streamline these age buckets into a more manageable set. We want fewer age buckets, ensuring every box gets its fair share of attention and none are left collecting dust in the corner. Let’s use values found on Wikipedia to organize this age extravaganza into a more academical and practical party, where each age group is mapped to commonly used and broader age buckets. The <code>25-54</code> is slightly annoying to encode, but we can happily sort the leftover into <code>65+</code> using <code>.default</code>.</p>
 <pre class="r"><code>patient_tbl_clean &lt;- patient_tbl_clean %&gt;% 
   mutate(age_group = case_match(age_group,
@@ -445,7 +445,7 @@ patient_risk_profiles &lt;- tuesdata$patient_risk_profiles</code></pre>
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()) +
   ggtitle(&quot;A better pyramid of age&quot;)</code></pre>
-<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="../../../post/2023-12-01-get-younger-now-or-face-illness_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Yes, we nailed it. From a purely medical point of view it absolutely does make sense. We will now be working with either children, teens, young adult, mid-life, and elderly and each bucket contains a fair amount of individuals of both sexes.</p>
 </div>
 <div id="correlation-among-the-predicted-risks" class="section level1">
@@ -468,7 +468,7 @@ colnames(patient_predicted_clean) &lt;- colnames_predicted_clean$shorter</code><
 patient_predicted_clean %&gt;% 
   cor() %&gt;% 
   corrplot(order = &#39;hclust&#39;, addrect = 5, tl.cex = .5, tl.col=&#39;black&#39;, col = ft_cols(200))</code></pre>
-<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="../../../post/2023-12-01-get-younger-now-or-face-illness_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>We notice distinct groups of outcomes. The largest, top-left corner, contains diseases showing strong correlations and it looks like this group contains the ones that tend to be associated with an aging population. Dementia and Parkinson’s disease for sure; but the others we likewise associate predominantly with elderly people. There are two smaller clusters at the bottom-right corner, with inflammatory and neurological diseases that generally affect people earlier in life.</p>
 <p>Okay, let’s try to make the magic happen.</p>
 </div>
@@ -509,13 +509,13 @@ patient_predicted_clean %&gt;%
   step_pca(all_numeric_predictors(), num_comp = 3) %&gt;% 
   plot_validation_results() +
   ggtitle(&quot;Principal Component Analysis&quot;)</code></pre>
-<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="../../../post/2023-12-01-get-younger-now-or-face-illness_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Or, should we want to explore other options like UMAP, we only need to swap the <code>step_pca</code> for a <code>step_umap</code>. How practical!</p>
 <pre class="r"><code>prp_obj %&gt;% 
   step_umap(all_numeric_predictors(), num_comp = 3) %&gt;% 
   plot_validation_results() +
   ggtitle(&quot;Uniform Manifold Approximation and Projection&quot;)</code></pre>
-<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="../../../post/2023-12-01-get-younger-now-or-face-illness_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Principal Component Analysis is a very good working horse with a knack for isolating well defined groups in pretty much any dataset. Here, the 65+ population stands out prominently in the first scene of the investigation brilliantly highlighting the distinctive features of this age group. Meanwhile, PC2 emerges as the supporting component, bringing part of the 15-24 and 25-54 age groups into the limelight.</p>
 <p>Now, Uniform Manifold Approximation and Projection paints a vivid portrait of our diverse age groups based on their risk predictions. The beauty of UMAP lies in its ability to tease out specific risk factors associated with each age class. Together, this leaves me optimistic about the potential for a deeper understanding of the factors influencing health outcomes across different age categories.</p>
 </div>
@@ -591,7 +591,7 @@ patient_predicted_clean %&gt;%
         panel.grid.minor = element_blank(),
         legend.text = element_text(size = 6)) +
   ggtitle(&quot;Age is the most important risk factor&quot;)</code></pre>
-<p><img src="../../../post/2023-12-01-let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="../../../post/2023-12-01-get-younger-now-or-face-illness_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>In this exploration of medical conditions, the data unmistakably reveals age as the predominant risk factor associated with nine out of thirteen conditions (depression didn’t make it to this final listing). This observation aligns seamlessly with the insights gleaned from the PCA plots, particularly the prominent role as seen in PC1, where the trajectory of aging significantly amplifies the overall risk of developing various illnesses. However, amidst this overarching trend, certain exceptions command attention. Hepatitis, characterized as a viral infection, defies the age-centric narrative, emphasizing the role of external factors such as exposure to infectious agents. Migraines, predominantly affecting women is a gender-specific and age-independent condition. Similarly, ankylosing spondylitis and ulcerative colitis, both inflammatory diseases, challenge the age-centric paradigm with most people receiving a diagnosis in young to mid-adulthood. For these conditions, the most predictive factor of heightened inflammation lies in the history of prior inflammation, emphasizing the chronic nature of the diseases.</p>
 </div>
 <div id="an-apple-a-day" class="section level1">
@@ -656,19 +656,19 @@ patient_predicted_clean %&gt;%
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2023/12/get-younger-now-or-face-illness/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2023/12/get-younger-now-or-face-illness/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=../../../2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=../../../2023/12/get-younger-now-or-face-illness/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -742,19 +742,19 @@ patient_predicted_clean %&gt;%
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2023/12/get-younger-now-or-face-illness/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2023/12/get-younger-now-or-face-illness/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=../../../2023/12/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=../../../2023/12/get-younger-now-or-face-illness/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -784,19 +784,19 @@ patient_predicted_clean %&gt;%
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2023%2F12%2Flet-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2023%2F12%2Fget-younger-now-or-face-illness%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2023%2F12%2Flet-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2023%2F12%2Fget-younger-now-or-face-illness%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2023%2F12%2Flet-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2023%2F12%2Fget-younger-now-or-face-illness%2F">
           <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
         </a>
       </li>
@@ -874,9 +874,9 @@ function updateMinWidth() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = '\/2023\/12\/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness\/';
+          this.page.url = '\/2023\/12\/get-younger-now-or-face-illness\/';
           
-            this.page.identifier = '\/2023\/12\/let-me-break-it-gently-get-younger-now-lest-you-want-to-face-illness\/'
+            this.page.identifier = '\/2023\/12\/get-younger-now-or-face-illness\/'
           
         };
         (function() {
