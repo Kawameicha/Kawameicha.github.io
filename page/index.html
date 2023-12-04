@@ -2,10 +2,30 @@
 <html lang="en-us">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Christoph Freier",
+    
+    "image": "/image/bio.png"
+    
+  },
+  "name":"In Code We Trust",
+  "description":"A blog by Christoph Freier",
+  "url":"\/page\/",
+  "keywords":"[, rstats, data science]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.120.4 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="generator" content="Hugo 0.120.4 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Christoph Freier">
 <meta name="keywords" content=", rstats, data science">
 <meta name="description" content="A blog by Christoph Freier">
@@ -35,17 +55,17 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/image/bio.png">
   <meta property="twitter:image" content="/image/bio.png">
 
 
+
+
+
+
     <title>Pages</title>
 
-    <link rel="icon" href="image/favicon.ico">
+    <link rel="icon" href="../image/favicon.ico">
     
       <link rel="alternate" type="application/rss+xml" title="RSS" href="../page/index.xml">
     
@@ -55,12 +75,12 @@
     <link rel="canonical" href="../page/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="../css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="../css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
 
@@ -87,12 +107,12 @@ if (!doNotTrack) {
       <header id="header" data-behavior="2">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../">In Code We Trust</a>
+    <a class="header-title-link" href="../" aria-label="Go to homepage">In Code We Trust</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../#about">
+         href="../#about" aria-label="Open the link: /#about">
     
     
     
@@ -108,7 +128,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="../#about">
+        <a href="../#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="../image/bio.png" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Christoph Freier</h4>
@@ -121,7 +141,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../">
+      <a class="sidebar-button-link " href="../" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -131,7 +151,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../categories">
+      <a class="sidebar-button-link " href="../categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-sitemap"></i>
       
@@ -141,7 +161,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../tags">
+      <a class="sidebar-button-link " href="../tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -151,7 +171,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../page/projects">
+      <a class="sidebar-button-link " href="../page/projects" title="Projects">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -161,7 +181,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../page/useful-resources">
+      <a class="sidebar-button-link " href="../page/useful-resources" title="Resources">
     
       <i class="sidebar-button-icon fa fa-lg fa-book"></i>
       
@@ -175,7 +195,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../page/about-me">
+      <a class="sidebar-button-link " href="../page/about-me" title="About Me">
     
       <i class="sidebar-button-icon fa fa-lg fa-vcard"></i>
       
@@ -185,7 +205,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/kawameicha">
+      <a class="sidebar-button-link " href="https://github.com/kawameicha" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -195,7 +215,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/christophfreier/" title="LinkedIn">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin-square"></i>
       
@@ -205,7 +225,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier">
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/10705596/christoph-freier" title="Stack Overflow">
     
       <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
       
@@ -215,7 +235,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier">
+      <a class="sidebar-button-link " href="https://twitter.com/ChristophFreier" title="Twitter">
     
       <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
       
@@ -229,7 +249,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:christoph@freier.fr" target="_blank" rel="noopener" title="Email me">
     
       <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
       
@@ -260,24 +280,28 @@ if (!doNotTrack) {
 
   
 
-<article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+<article class="postShorten postShorten--thumbnailimg-right">
   <div class="postShorten-wrap">
     
     <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="../page/about-me/">
+      <h1 class="postShorten-title">
+      
+        <a class="link-unstyled" href="../page/about-me/" aria-label="Open the post: About me">
+      
           About me
         </a>
       </h1>
       
     </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
+    <div class="postShorten-excerpt">
       
         I’m a data scientist and consultant although originally I studied pharmacy and biology, finishing my Pharm.D./Ph.D. with groups in France, Germany, and the United States. Besides, being of an inquisitive nature, I usually get interested in miscellaneous subjects. I cultivate coding skills as well as a marked preference for Unix and R.
 During my Ph.D. I rapidly got submerged in data, so that I eventually had to code on a daily basis.
       
       <p>
-        <a href="../page/about-me/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+          <a href="../page/about-me/" class="postShorten-excerpt_link link" aria-label="Open the post: About me">Continue reading</a>
+        
         
       </p>
     </div>
@@ -294,18 +318,20 @@ During my Ph.D. I rapidly got submerged in data, so that I eventually had to cod
 
   
 
-<article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+<article class="postShorten postShorten--thumbnailimg-right">
   <div class="postShorten-wrap">
     
     <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="../page/projects/">
+      <h1 class="postShorten-title">
+      
+        <a class="link-unstyled" href="../page/projects/" aria-label="Open the post: Projects">
+      
           Projects
         </a>
       </h1>
       
     </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
+    <div class="postShorten-excerpt">
       
         Every once in a while, I&rsquo;ve an idea that is worth to create a package about. A list of such projects below.
 indexSort This package&ndash;currently hosted on GitHub&ndash;contains functions to retrieve index sorted data and visually explore .fcs date files from various cell sorters.
@@ -313,7 +339,9 @@ It has been adapted as a plugin for FlowJo and is available via the FlowJo Excha
 clustRcheck This package&ndash;currently hosted on GitHub&ndash;contains statistical hypothesis testing for discovering the presence of more than one mode in cluster distributions.
       
       <p>
-        <a href="../page/projects/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+          <a href="../page/projects/" class="postShorten-excerpt_link link" aria-label="Open the post: Projects">Continue reading</a>
+        
         
       </p>
     </div>
@@ -330,23 +358,27 @@ clustRcheck This package&ndash;currently hosted on GitHub&ndash;contains statist
 
   
 
-<article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+<article class="postShorten postShorten--thumbnailimg-right">
   <div class="postShorten-wrap">
     
     <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="../page/useful-resources/">
+      <h1 class="postShorten-title">
+      
+        <a class="link-unstyled" href="../page/useful-resources/" aria-label="Open the post: Useful Resources">
+      
           Useful Resources
         </a>
       </h1>
       
     </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
+    <div class="postShorten-excerpt">
       
         Other websites Bob Rudis&rsquo;s blog, most beautiful visualizations Damiano Fantini&rsquo;s blog, useful R and python code Hadley Wickham&rsquo;s website, the R bible Julia Silge&rsquo;s blog, a truly inspirational one Diverse books An introduction to statistical learning, a must have Practical Data Science with R, basic principles and real use cases R Graphics Cookbook, for ggplot2 heroes R in a Nutshell, quick reference for beginners 
       
       <p>
-        <a href="../page/useful-resources/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+          <a href="../page/useful-resources/" class="postShorten-excerpt_link link" aria-label="Open the post: Useful Resources">Continue reading</a>
+        
         
       </p>
     </div>
@@ -370,7 +402,7 @@ clustRcheck This package&ndash;currently hosted on GitHub&ndash;contains statist
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="../image/bio.png" alt="Author&#39;s picture" />
@@ -388,7 +420,7 @@ clustRcheck This package&ndash;currently hosted on GitHub&ndash;contains statist
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         I live in Berlin, Germany
       </div>
@@ -407,28 +439,13 @@ clustRcheck This package&ndash;currently hosted on GitHub&ndash;contains statist
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="../js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="../js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
 
 
 
