@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>viridis on In Code We Trust</title>
-    <link>/tags/viridis/</link>
+    <link>https://kawameicha.github.io/tags/viridis/</link>
     <description>Recent content in viridis on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/viridis/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kawameicha.github.io/tags/viridis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>It has been a Dog&#39;s Life</title>
-      <link>/2021/01/it-has-been-a-dogs-life/</link>
+      <link>https://kawameicha.github.io/2021/01/it-has-been-a-dogs-life/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/2021/01/it-has-been-a-dogs-life/</guid>
+      <guid>https://kawameicha.github.io/2021/01/it-has-been-a-dogs-life/</guid>
       <description>A walk through my year, quite figuratively.</description>
     </item>
     <item>
       <title>Visualization and Clustering for Single-Cell Analysis</title>
-      <link>/2019/11/visualization-and-clustering-for-single-cell-analysis/</link>
+      <link>https://kawameicha.github.io/2019/11/visualization-and-clustering-for-single-cell-analysis/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>/2019/11/visualization-and-clustering-for-single-cell-analysis/</guid>
+      <guid>https://kawameicha.github.io/2019/11/visualization-and-clustering-for-single-cell-analysis/</guid>
       <description>What if there is no prediction: the challenge of unsupervised learning.</description>
     </item>
   </channel>

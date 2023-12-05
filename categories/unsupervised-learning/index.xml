@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unsupervised Learning on In Code We Trust</title>
-    <link>/categories/unsupervised-learning/</link>
+    <link>https://kawameicha.github.io/categories/unsupervised-learning/</link>
     <description>Recent content in Unsupervised Learning on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/categories/unsupervised-learning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kawameicha.github.io/categories/unsupervised-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Get Younger Now or Face Illness</title>
-      <link>/2023/12/get-younger-now-or-face-illness/</link>
+      <link>https://kawameicha.github.io/2023/12/get-younger-now-or-face-illness/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>/2023/12/get-younger-now-or-face-illness/</guid>
+      <guid>https://kawameicha.github.io/2023/12/get-younger-now-or-face-illness/</guid>
       <description>Explore the complexity of the healthcare landscape.</description>
     </item>
     <item>
       <title>The King in Yellow</title>
-      <link>/2020/02/the-king-in-yellow/</link>
+      <link>https://kawameicha.github.io/2020/02/the-king-in-yellow/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/02/the-king-in-yellow/</guid>
+      <guid>https://kawameicha.github.io/2020/02/the-king-in-yellow/</guid>
       <description>AI can&amp;rsquo;t beat humans at sentiments, but it can help analyze them.</description>
     </item>
     <item>
       <title>Visualization and Clustering for Single-Cell Analysis</title>
-      <link>/2019/11/visualization-and-clustering-for-single-cell-analysis/</link>
+      <link>https://kawameicha.github.io/2019/11/visualization-and-clustering-for-single-cell-analysis/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>/2019/11/visualization-and-clustering-for-single-cell-analysis/</guid>
+      <guid>https://kawameicha.github.io/2019/11/visualization-and-clustering-for-single-cell-analysis/</guid>
       <description>What if there is no prediction: the challenge of unsupervised learning.</description>
     </item>
     <item>
       <title>German Federal Election&#39;s Regional Differences</title>
-      <link>/2017/10/german-federal-elections-regional-differences/</link>
+      <link>https://kawameicha.github.io/2017/10/german-federal-elections-regional-differences/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>/2017/10/german-federal-elections-regional-differences/</guid>
+      <guid>https://kawameicha.github.io/2017/10/german-federal-elections-regional-differences/</guid>
       <description>Resurgence of far-right Germany or the &amp;lsquo;return of the Nazis&amp;rsquo;.</description>
     </item>
     <item>
       <title>How to Select a Reading Depending on your State of Mind</title>
-      <link>/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</link>
+      <link>https://kawameicha.github.io/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</link>
       <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
-      <guid>/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</guid>
+      <guid>https://kawameicha.github.io/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</guid>
       <description>A me too sentiment analysis and natural language processing post.</description>
     </item>
   </channel>

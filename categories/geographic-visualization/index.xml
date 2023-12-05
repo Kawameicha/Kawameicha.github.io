@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Geographic Visualization on In Code We Trust</title>
-    <link>/categories/geographic-visualization/</link>
+    <link>https://kawameicha.github.io/categories/geographic-visualization/</link>
     <description>Recent content in Geographic Visualization on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 04 Jun 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/categories/geographic-visualization/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kawameicha.github.io/categories/geographic-visualization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bombs Away!</title>
-      <link>/2017/06/bombs-away/</link>
+      <link>https://kawameicha.github.io/2017/06/bombs-away/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>/2017/06/bombs-away/</guid>
+      <guid>https://kawameicha.github.io/2017/06/bombs-away/</guid>
       <description>North Korea is well known for its hairstyle fashion and rocket science.</description>
     </item>
     <item>
       <title>Wikipedia Hall of Fame</title>
-      <link>/2016/06/wikipedia-hall-of-fame/</link>
+      <link>https://kawameicha.github.io/2016/06/wikipedia-hall-of-fame/</link>
       <pubDate>Sun, 12 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>/2016/06/wikipedia-hall-of-fame/</guid>
+      <guid>https://kawameicha.github.io/2016/06/wikipedia-hall-of-fame/</guid>
       <description>An all time humanity&amp;rsquo;s pantheon: popularity analyse in wikipedia.</description>
     </item>
   </channel>

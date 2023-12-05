@@ -2,237 +2,237 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/categories/</loc>
+    <loc>https://kawameicha.github.io/categories/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2023/12/get-younger-now-or-face-illness/</loc>
+    <loc>https://kawameicha.github.io/2023/12/get-younger-now-or-face-illness/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/hrbrthemes/</loc>
+    <loc>https://kawameicha.github.io/tags/hrbrthemes/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/</loc>
+    <loc>https://kawameicha.github.io/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/</loc>
+    <loc>https://kawameicha.github.io/post/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/</loc>
+    <loc>https://kawameicha.github.io/tags/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/tidymodels/</loc>
+    <loc>https://kawameicha.github.io/tags/tidymodels/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/tidytuesday/</loc>
+    <loc>https://kawameicha.github.io/tags/tidytuesday/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/tidyverse/</loc>
+    <loc>https://kawameicha.github.io/tags/tidyverse/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/unsupervised-learning/</loc>
+    <loc>https://kawameicha.github.io/categories/unsupervised-learning/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/variable-importance/</loc>
+    <loc>https://kawameicha.github.io/categories/variable-importance/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/beautiful-evidence/</loc>
+    <loc>https://kawameicha.github.io/categories/beautiful-evidence/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/descriptive-statistics/</loc>
+    <loc>https://kawameicha.github.io/categories/descriptive-statistics/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/ggtext/</loc>
+    <loc>https://kawameicha.github.io/tags/ggtext/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2021/01/it-has-been-a-dogs-life/</loc>
+    <loc>https://kawameicha.github.io/2021/01/it-has-been-a-dogs-life/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/lubridate/</loc>
+    <loc>https://kawameicha.github.io/tags/lubridate/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/viridis/</loc>
+    <loc>https://kawameicha.github.io/tags/viridis/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/xml/</loc>
+    <loc>https://kawameicha.github.io/tags/xml/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2020/06/hypertune-xgboost-with-tidymodels/</loc>
+    <loc>https://kawameicha.github.io/2020/06/hypertune-xgboost-with-tidymodels/</loc>
     <lastmod>2020-06-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/mlbench/</loc>
+    <loc>https://kawameicha.github.io/tags/mlbench/</loc>
     <lastmod>2020-06-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/supervised-learning/</loc>
+    <loc>https://kawameicha.github.io/categories/supervised-learning/</loc>
     <lastmod>2020-06-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/vip/</loc>
+    <loc>https://kawameicha.github.io/tags/vip/</loc>
     <lastmod>2020-06-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/xgboost/</loc>
+    <loc>https://kawameicha.github.io/categories/xgboost/</loc>
     <lastmod>2020-06-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/random-forest/</loc>
+    <loc>https://kawameicha.github.io/categories/random-forest/</loc>
     <lastmod>2020-05-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2020/05/tidymodels-machine-learning-the-tidy-way/</loc>
+    <loc>https://kawameicha.github.io/2020/05/tidymodels-machine-learning-the-tidy-way/</loc>
     <lastmod>2020-05-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/benchmarking/</loc>
+    <loc>https://kawameicha.github.io/categories/benchmarking/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/caret/</loc>
+    <loc>https://kawameicha.github.io/tags/caret/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/factoextra/</loc>
+    <loc>https://kawameicha.github.io/tags/factoextra/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/ggally/</loc>
+    <loc>https://kawameicha.github.io/tags/ggally/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/ggfortify/</loc>
+    <loc>https://kawameicha.github.io/tags/ggfortify/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/recipes/</loc>
+    <loc>https://kawameicha.github.io/tags/recipes/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/rsample/</loc>
+    <loc>https://kawameicha.github.io/tags/rsample/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2020/03/whats-a-good-model/</loc>
+    <loc>https://kawameicha.github.io/2020/03/whats-a-good-model/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/gutenbergr/</loc>
+    <loc>https://kawameicha.github.io/tags/gutenbergr/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/natural-language-processing/</loc>
+    <loc>https://kawameicha.github.io/categories/natural-language-processing/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/streamgraph/</loc>
+    <loc>https://kawameicha.github.io/tags/streamgraph/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/syuzhet/</loc>
+    <loc>https://kawameicha.github.io/tags/syuzhet/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2020/02/the-king-in-yellow/</loc>
+    <loc>https://kawameicha.github.io/2020/02/the-king-in-yellow/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/tidytext/</loc>
+    <loc>https://kawameicha.github.io/tags/tidytext/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/clustering/</loc>
+    <loc>https://kawameicha.github.io/categories/clustering/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/genefilter/</loc>
+    <loc>https://kawameicha.github.io/tags/genefilter/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/rcolorbrewer/</loc>
+    <loc>https://kawameicha.github.io/tags/rcolorbrewer/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/rphenograph/</loc>
+    <loc>https://kawameicha.github.io/tags/rphenograph/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/rtsne/</loc>
+    <loc>https://kawameicha.github.io/tags/rtsne/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/umap/</loc>
+    <loc>https://kawameicha.github.io/tags/umap/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2019/11/visualization-and-clustering-for-single-cell-analysis/</loc>
+    <loc>https://kawameicha.github.io/2019/11/visualization-and-clustering-for-single-cell-analysis/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/corrplot/</loc>
+    <loc>https://kawameicha.github.io/tags/corrplot/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/gridextra/</loc>
+    <loc>https://kawameicha.github.io/tags/gridextra/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2018/11/my-heart-will-go-down/</loc>
+    <loc>https://kawameicha.github.io/2018/11/my-heart-will-go-down/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/randomforest/</loc>
+    <loc>https://kawameicha.github.io/tags/randomforest/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/rattle/</loc>
+    <loc>https://kawameicha.github.io/tags/rattle/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/reshape2/</loc>
+    <loc>https://kawameicha.github.io/tags/reshape2/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/rpart/</loc>
+    <loc>https://kawameicha.github.io/tags/rpart/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/rpart.plot/</loc>
+    <loc>https://kawameicha.github.io/tags/rpart.plot/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/titanic/</loc>
+    <loc>https://kawameicha.github.io/tags/titanic/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/deep-learning/</loc>
+    <loc>https://kawameicha.github.io/categories/deep-learning/</loc>
     <lastmod>2018-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/keras/</loc>
+    <loc>https://kawameicha.github.io/tags/keras/</loc>
     <lastmod>2018-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/lime/</loc>
+    <loc>https://kawameicha.github.io/tags/lime/</loc>
     <lastmod>2018-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2018/03/to-eat-or-not-to-eat-that-is-the-question/</loc>
+    <loc>https://kawameicha.github.io/2018/03/to-eat-or-not-to-eat-that-is-the-question/</loc>
     <lastmod>2018-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</loc>
+    <loc>https://kawameicha.github.io/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</loc>
     <lastmod>2018-01-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/dimensionality-reduction/</loc>
+    <loc>https://kawameicha.github.io/categories/dimensionality-reduction/</loc>
     <lastmod>2017-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2017/10/german-federal-elections-regional-differences/</loc>
+    <loc>https://kawameicha.github.io/2017/10/german-federal-elections-regional-differences/</loc>
     <lastmod>2017-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/ggrepel/</loc>
+    <loc>https://kawameicha.github.io/tags/ggrepel/</loc>
     <lastmod>2017-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2017/06/bombs-away/</loc>
+    <loc>https://kawameicha.github.io/2017/06/bombs-away/</loc>
     <lastmod>2017-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/geographic-visualization/</loc>
+    <loc>https://kawameicha.github.io/categories/geographic-visualization/</loc>
     <lastmod>2017-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/ggmap/</loc>
+    <loc>https://kawameicha.github.io/tags/ggmap/</loc>
     <lastmod>2017-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/ggplot2/</loc>
+    <loc>https://kawameicha.github.io/tags/ggplot2/</loc>
     <lastmod>2017-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2017/05/beginners-guide-to-financial-report-with-r/</loc>
+    <loc>https://kawameicha.github.io/2017/05/beginners-guide-to-financial-report-with-r/</loc>
     <lastmod>2017-05-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/dplyr/</loc>
+    <loc>https://kawameicha.github.io/tags/dplyr/</loc>
     <lastmod>2017-05-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/financial-report/</loc>
+    <loc>https://kawameicha.github.io/categories/financial-report/</loc>
     <lastmod>2017-05-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/maps/</loc>
+    <loc>https://kawameicha.github.io/tags/maps/</loc>
     <lastmod>2016-06-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2016/06/wikipedia-hall-of-fame/</loc>
+    <loc>https://kawameicha.github.io/2016/06/wikipedia-hall-of-fame/</loc>
     <lastmod>2016-06-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</loc>
+    <loc>https://kawameicha.github.io/2016/05/how-to-select-a-reading-depending-on-your-state-of-mind/</loc>
     <lastmod>2016-05-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2016/04/public-health-data-from-the-who/</loc>
+    <loc>https://kawameicha.github.io/2016/04/public-health-data-from-the-who/</loc>
     <lastmod>2016-04-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/who/</loc>
+    <loc>https://kawameicha.github.io/tags/who/</loc>
     <lastmod>2016-04-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/page/about-me/</loc>
+    <loc>https://kawameicha.github.io/page/about-me/</loc>
   </url><url>
-    <loc>/page/</loc>
+    <loc>https://kawameicha.github.io/page/</loc>
   </url><url>
-    <loc>/page/projects/</loc>
+    <loc>https://kawameicha.github.io/page/projects/</loc>
   </url><url>
-    <loc>/page/useful-resources/</loc>
+    <loc>https://kawameicha.github.io/page/useful-resources/</loc>
   </url>
 </urlset>
