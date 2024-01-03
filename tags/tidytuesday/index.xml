@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tidytuesday on In Code We Trust</title>
-    <link>https://kawameicha.github.io/tags/tidytuesday/</link>
+    <link>https://christoph.freier.fr/tags/tidytuesday/</link>
     <description>Recent content in tidytuesday on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kawameicha.github.io/tags/tidytuesday/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://christoph.freier.fr/tags/tidytuesday/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Get Younger Now or Face Illness</title>
-      <link>https://kawameicha.github.io/2023/12/get-younger-now-or-face-illness/</link>
+      <link>https://christoph.freier.fr/2023/12/get-younger-now-or-face-illness/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2023/12/get-younger-now-or-face-illness/</guid>
+      <guid>https://christoph.freier.fr/2023/12/get-younger-now-or-face-illness/</guid>
       <description>Explore the complexity of the healthcare landscape.</description>
     </item>
   </channel>

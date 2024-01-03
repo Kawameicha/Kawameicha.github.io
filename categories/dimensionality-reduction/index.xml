@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dimensionality Reduction on In Code We Trust</title>
-    <link>https://kawameicha.github.io/categories/dimensionality-reduction/</link>
+    <link>https://christoph.freier.fr/categories/dimensionality-reduction/</link>
     <description>Recent content in Dimensionality Reduction on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 06 Oct 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kawameicha.github.io/categories/dimensionality-reduction/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://christoph.freier.fr/categories/dimensionality-reduction/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>German Federal Election&#39;s Regional Differences</title>
-      <link>https://kawameicha.github.io/2017/10/german-federal-elections-regional-differences/</link>
+      <link>https://christoph.freier.fr/2017/10/german-federal-elections-regional-differences/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2017/10/german-federal-elections-regional-differences/</guid>
+      <guid>https://christoph.freier.fr/2017/10/german-federal-elections-regional-differences/</guid>
       <description>Resurgence of far-right Germany or the &amp;lsquo;return of the Nazis&amp;rsquo;.</description>
     </item>
   </channel>

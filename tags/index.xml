@@ -2,297 +2,297 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on In Code We Trust</title>
-    <link>https://kawameicha.github.io/tags/</link>
+    <link>https://christoph.freier.fr/tags/</link>
     <description>Recent content in Tags on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kawameicha.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://christoph.freier.fr/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hrbrthemes</title>
-      <link>https://kawameicha.github.io/tags/hrbrthemes/</link>
+      <link>https://christoph.freier.fr/tags/hrbrthemes/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/hrbrthemes/</guid>
+      <guid>https://christoph.freier.fr/tags/hrbrthemes/</guid>
       <description></description>
     </item>
     <item>
       <title>tidymodels</title>
-      <link>https://kawameicha.github.io/tags/tidymodels/</link>
+      <link>https://christoph.freier.fr/tags/tidymodels/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/tidymodels/</guid>
+      <guid>https://christoph.freier.fr/tags/tidymodels/</guid>
       <description></description>
     </item>
     <item>
       <title>tidytuesday</title>
-      <link>https://kawameicha.github.io/tags/tidytuesday/</link>
+      <link>https://christoph.freier.fr/tags/tidytuesday/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/tidytuesday/</guid>
+      <guid>https://christoph.freier.fr/tags/tidytuesday/</guid>
       <description></description>
     </item>
     <item>
       <title>tidyverse</title>
-      <link>https://kawameicha.github.io/tags/tidyverse/</link>
+      <link>https://christoph.freier.fr/tags/tidyverse/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/tidyverse/</guid>
+      <guid>https://christoph.freier.fr/tags/tidyverse/</guid>
       <description></description>
     </item>
     <item>
       <title>ggtext</title>
-      <link>https://kawameicha.github.io/tags/ggtext/</link>
+      <link>https://christoph.freier.fr/tags/ggtext/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/ggtext/</guid>
+      <guid>https://christoph.freier.fr/tags/ggtext/</guid>
       <description></description>
     </item>
     <item>
       <title>lubridate</title>
-      <link>https://kawameicha.github.io/tags/lubridate/</link>
+      <link>https://christoph.freier.fr/tags/lubridate/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/lubridate/</guid>
+      <guid>https://christoph.freier.fr/tags/lubridate/</guid>
       <description></description>
     </item>
     <item>
       <title>viridis</title>
-      <link>https://kawameicha.github.io/tags/viridis/</link>
+      <link>https://christoph.freier.fr/tags/viridis/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/viridis/</guid>
+      <guid>https://christoph.freier.fr/tags/viridis/</guid>
       <description></description>
     </item>
     <item>
       <title>XML</title>
-      <link>https://kawameicha.github.io/tags/xml/</link>
+      <link>https://christoph.freier.fr/tags/xml/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/xml/</guid>
+      <guid>https://christoph.freier.fr/tags/xml/</guid>
       <description></description>
     </item>
     <item>
       <title>mlbench</title>
-      <link>https://kawameicha.github.io/tags/mlbench/</link>
+      <link>https://christoph.freier.fr/tags/mlbench/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/mlbench/</guid>
+      <guid>https://christoph.freier.fr/tags/mlbench/</guid>
       <description></description>
     </item>
     <item>
       <title>vip</title>
-      <link>https://kawameicha.github.io/tags/vip/</link>
+      <link>https://christoph.freier.fr/tags/vip/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/vip/</guid>
+      <guid>https://christoph.freier.fr/tags/vip/</guid>
       <description></description>
     </item>
     <item>
       <title>caret</title>
-      <link>https://kawameicha.github.io/tags/caret/</link>
+      <link>https://christoph.freier.fr/tags/caret/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/caret/</guid>
+      <guid>https://christoph.freier.fr/tags/caret/</guid>
       <description></description>
     </item>
     <item>
       <title>factoextra</title>
-      <link>https://kawameicha.github.io/tags/factoextra/</link>
+      <link>https://christoph.freier.fr/tags/factoextra/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/factoextra/</guid>
+      <guid>https://christoph.freier.fr/tags/factoextra/</guid>
       <description></description>
     </item>
     <item>
       <title>GGally</title>
-      <link>https://kawameicha.github.io/tags/ggally/</link>
+      <link>https://christoph.freier.fr/tags/ggally/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/ggally/</guid>
+      <guid>https://christoph.freier.fr/tags/ggally/</guid>
       <description></description>
     </item>
     <item>
       <title>ggfortify</title>
-      <link>https://kawameicha.github.io/tags/ggfortify/</link>
+      <link>https://christoph.freier.fr/tags/ggfortify/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/ggfortify/</guid>
+      <guid>https://christoph.freier.fr/tags/ggfortify/</guid>
       <description></description>
     </item>
     <item>
       <title>recipes</title>
-      <link>https://kawameicha.github.io/tags/recipes/</link>
+      <link>https://christoph.freier.fr/tags/recipes/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/recipes/</guid>
+      <guid>https://christoph.freier.fr/tags/recipes/</guid>
       <description></description>
     </item>
     <item>
       <title>rsample</title>
-      <link>https://kawameicha.github.io/tags/rsample/</link>
+      <link>https://christoph.freier.fr/tags/rsample/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/rsample/</guid>
+      <guid>https://christoph.freier.fr/tags/rsample/</guid>
       <description></description>
     </item>
     <item>
       <title>gutenbergr</title>
-      <link>https://kawameicha.github.io/tags/gutenbergr/</link>
+      <link>https://christoph.freier.fr/tags/gutenbergr/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/gutenbergr/</guid>
+      <guid>https://christoph.freier.fr/tags/gutenbergr/</guid>
       <description></description>
     </item>
     <item>
       <title>streamgraph</title>
-      <link>https://kawameicha.github.io/tags/streamgraph/</link>
+      <link>https://christoph.freier.fr/tags/streamgraph/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/streamgraph/</guid>
+      <guid>https://christoph.freier.fr/tags/streamgraph/</guid>
       <description></description>
     </item>
     <item>
       <title>syuzhet</title>
-      <link>https://kawameicha.github.io/tags/syuzhet/</link>
+      <link>https://christoph.freier.fr/tags/syuzhet/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/syuzhet/</guid>
+      <guid>https://christoph.freier.fr/tags/syuzhet/</guid>
       <description></description>
     </item>
     <item>
       <title>tidytext</title>
-      <link>https://kawameicha.github.io/tags/tidytext/</link>
+      <link>https://christoph.freier.fr/tags/tidytext/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/tidytext/</guid>
+      <guid>https://christoph.freier.fr/tags/tidytext/</guid>
       <description></description>
     </item>
     <item>
       <title>genefilter</title>
-      <link>https://kawameicha.github.io/tags/genefilter/</link>
+      <link>https://christoph.freier.fr/tags/genefilter/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/genefilter/</guid>
+      <guid>https://christoph.freier.fr/tags/genefilter/</guid>
       <description></description>
     </item>
     <item>
       <title>RColorBrewer</title>
-      <link>https://kawameicha.github.io/tags/rcolorbrewer/</link>
+      <link>https://christoph.freier.fr/tags/rcolorbrewer/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/rcolorbrewer/</guid>
+      <guid>https://christoph.freier.fr/tags/rcolorbrewer/</guid>
       <description></description>
     </item>
     <item>
       <title>Rphenograph</title>
-      <link>https://kawameicha.github.io/tags/rphenograph/</link>
+      <link>https://christoph.freier.fr/tags/rphenograph/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/rphenograph/</guid>
+      <guid>https://christoph.freier.fr/tags/rphenograph/</guid>
       <description></description>
     </item>
     <item>
       <title>Rtsne</title>
-      <link>https://kawameicha.github.io/tags/rtsne/</link>
+      <link>https://christoph.freier.fr/tags/rtsne/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/rtsne/</guid>
+      <guid>https://christoph.freier.fr/tags/rtsne/</guid>
       <description></description>
     </item>
     <item>
       <title>umap</title>
-      <link>https://kawameicha.github.io/tags/umap/</link>
+      <link>https://christoph.freier.fr/tags/umap/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/umap/</guid>
+      <guid>https://christoph.freier.fr/tags/umap/</guid>
       <description></description>
     </item>
     <item>
       <title>corrplot</title>
-      <link>https://kawameicha.github.io/tags/corrplot/</link>
+      <link>https://christoph.freier.fr/tags/corrplot/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/corrplot/</guid>
+      <guid>https://christoph.freier.fr/tags/corrplot/</guid>
       <description></description>
     </item>
     <item>
       <title>gridExtra</title>
-      <link>https://kawameicha.github.io/tags/gridextra/</link>
+      <link>https://christoph.freier.fr/tags/gridextra/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/gridextra/</guid>
+      <guid>https://christoph.freier.fr/tags/gridextra/</guid>
       <description></description>
     </item>
     <item>
       <title>randomForest</title>
-      <link>https://kawameicha.github.io/tags/randomforest/</link>
+      <link>https://christoph.freier.fr/tags/randomforest/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/randomforest/</guid>
+      <guid>https://christoph.freier.fr/tags/randomforest/</guid>
       <description></description>
     </item>
     <item>
       <title>rattle</title>
-      <link>https://kawameicha.github.io/tags/rattle/</link>
+      <link>https://christoph.freier.fr/tags/rattle/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/rattle/</guid>
+      <guid>https://christoph.freier.fr/tags/rattle/</guid>
       <description></description>
     </item>
     <item>
       <title>reshape2</title>
-      <link>https://kawameicha.github.io/tags/reshape2/</link>
+      <link>https://christoph.freier.fr/tags/reshape2/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/reshape2/</guid>
+      <guid>https://christoph.freier.fr/tags/reshape2/</guid>
       <description></description>
     </item>
     <item>
       <title>rpart</title>
-      <link>https://kawameicha.github.io/tags/rpart/</link>
+      <link>https://christoph.freier.fr/tags/rpart/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/rpart/</guid>
+      <guid>https://christoph.freier.fr/tags/rpart/</guid>
       <description></description>
     </item>
     <item>
       <title>rpart.plot</title>
-      <link>https://kawameicha.github.io/tags/rpart.plot/</link>
+      <link>https://christoph.freier.fr/tags/rpart.plot/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/rpart.plot/</guid>
+      <guid>https://christoph.freier.fr/tags/rpart.plot/</guid>
       <description></description>
     </item>
     <item>
       <title>titanic</title>
-      <link>https://kawameicha.github.io/tags/titanic/</link>
+      <link>https://christoph.freier.fr/tags/titanic/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/titanic/</guid>
+      <guid>https://christoph.freier.fr/tags/titanic/</guid>
       <description></description>
     </item>
     <item>
       <title>keras</title>
-      <link>https://kawameicha.github.io/tags/keras/</link>
+      <link>https://christoph.freier.fr/tags/keras/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/keras/</guid>
+      <guid>https://christoph.freier.fr/tags/keras/</guid>
       <description></description>
     </item>
     <item>
       <title>lime</title>
-      <link>https://kawameicha.github.io/tags/lime/</link>
+      <link>https://christoph.freier.fr/tags/lime/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/lime/</guid>
+      <guid>https://christoph.freier.fr/tags/lime/</guid>
       <description></description>
     </item>
     <item>
       <title>ggrepel</title>
-      <link>https://kawameicha.github.io/tags/ggrepel/</link>
+      <link>https://christoph.freier.fr/tags/ggrepel/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/ggrepel/</guid>
+      <guid>https://christoph.freier.fr/tags/ggrepel/</guid>
       <description></description>
     </item>
     <item>
       <title>ggmap</title>
-      <link>https://kawameicha.github.io/tags/ggmap/</link>
+      <link>https://christoph.freier.fr/tags/ggmap/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/ggmap/</guid>
+      <guid>https://christoph.freier.fr/tags/ggmap/</guid>
       <description></description>
     </item>
     <item>
       <title>ggplot2</title>
-      <link>https://kawameicha.github.io/tags/ggplot2/</link>
+      <link>https://christoph.freier.fr/tags/ggplot2/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/ggplot2/</guid>
+      <guid>https://christoph.freier.fr/tags/ggplot2/</guid>
       <description></description>
     </item>
     <item>
       <title>dplyr</title>
-      <link>https://kawameicha.github.io/tags/dplyr/</link>
+      <link>https://christoph.freier.fr/tags/dplyr/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/dplyr/</guid>
+      <guid>https://christoph.freier.fr/tags/dplyr/</guid>
       <description></description>
     </item>
     <item>
       <title>maps</title>
-      <link>https://kawameicha.github.io/tags/maps/</link>
+      <link>https://christoph.freier.fr/tags/maps/</link>
       <pubDate>Sun, 12 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/maps/</guid>
+      <guid>https://christoph.freier.fr/tags/maps/</guid>
       <description></description>
     </item>
     <item>
       <title>WHO</title>
-      <link>https://kawameicha.github.io/tags/who/</link>
+      <link>https://christoph.freier.fr/tags/who/</link>
       <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/tags/who/</guid>
+      <guid>https://christoph.freier.fr/tags/who/</guid>
       <description></description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Benchmarking on In Code We Trust</title>
-    <link>https://kawameicha.github.io/categories/benchmarking/</link>
+    <link>https://christoph.freier.fr/categories/benchmarking/</link>
     <description>Recent content in Benchmarking on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kawameicha.github.io/categories/benchmarking/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://christoph.freier.fr/categories/benchmarking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What&#39;s a Good Model</title>
-      <link>https://kawameicha.github.io/2020/03/whats-a-good-model/</link>
+      <link>https://christoph.freier.fr/2020/03/whats-a-good-model/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2020/03/whats-a-good-model/</guid>
+      <guid>https://christoph.freier.fr/2020/03/whats-a-good-model/</guid>
       <description>Benchmarking binary classification models for cancer screening.</description>
     </item>
   </channel>

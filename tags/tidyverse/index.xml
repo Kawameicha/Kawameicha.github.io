@@ -2,80 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tidyverse on In Code We Trust</title>
-    <link>https://kawameicha.github.io/tags/tidyverse/</link>
+    <link>https://christoph.freier.fr/tags/tidyverse/</link>
     <description>Recent content in tidyverse on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kawameicha.github.io/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://christoph.freier.fr/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Get Younger Now or Face Illness</title>
-      <link>https://kawameicha.github.io/2023/12/get-younger-now-or-face-illness/</link>
+      <link>https://christoph.freier.fr/2023/12/get-younger-now-or-face-illness/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2023/12/get-younger-now-or-face-illness/</guid>
+      <guid>https://christoph.freier.fr/2023/12/get-younger-now-or-face-illness/</guid>
       <description>Explore the complexity of the healthcare landscape.</description>
     </item>
     <item>
       <title>It has been a Dog&#39;s Life</title>
-      <link>https://kawameicha.github.io/2021/01/it-has-been-a-dogs-life/</link>
+      <link>https://christoph.freier.fr/2021/01/it-has-been-a-dogs-life/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2021/01/it-has-been-a-dogs-life/</guid>
+      <guid>https://christoph.freier.fr/2021/01/it-has-been-a-dogs-life/</guid>
       <description>A walk through my year, quite figuratively.</description>
     </item>
     <item>
       <title>Hypertune XGBoost with tidymodels</title>
-      <link>https://kawameicha.github.io/2020/06/hypertune-xgboost-with-tidymodels/</link>
+      <link>https://christoph.freier.fr/2020/06/hypertune-xgboost-with-tidymodels/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2020/06/hypertune-xgboost-with-tidymodels/</guid>
+      <guid>https://christoph.freier.fr/2020/06/hypertune-xgboost-with-tidymodels/</guid>
       <description>Grasp the nettle to reach the top rankings on Kaggle.</description>
     </item>
     <item>
       <title>Tidymodels: Machine Learning the Tidy Way</title>
-      <link>https://kawameicha.github.io/2020/05/tidymodels-machine-learning-the-tidy-way/</link>
+      <link>https://christoph.freier.fr/2020/05/tidymodels-machine-learning-the-tidy-way/</link>
       <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2020/05/tidymodels-machine-learning-the-tidy-way/</guid>
+      <guid>https://christoph.freier.fr/2020/05/tidymodels-machine-learning-the-tidy-way/</guid>
       <description>Embracing the new modeling pipeline in town: tidymodels.</description>
     </item>
     <item>
       <title>What&#39;s a Good Model</title>
-      <link>https://kawameicha.github.io/2020/03/whats-a-good-model/</link>
+      <link>https://christoph.freier.fr/2020/03/whats-a-good-model/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2020/03/whats-a-good-model/</guid>
+      <guid>https://christoph.freier.fr/2020/03/whats-a-good-model/</guid>
       <description>Benchmarking binary classification models for cancer screening.</description>
     </item>
     <item>
       <title>The King in Yellow</title>
-      <link>https://kawameicha.github.io/2020/02/the-king-in-yellow/</link>
+      <link>https://christoph.freier.fr/2020/02/the-king-in-yellow/</link>
       <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2020/02/the-king-in-yellow/</guid>
+      <guid>https://christoph.freier.fr/2020/02/the-king-in-yellow/</guid>
       <description>AI can&amp;rsquo;t beat humans at sentiments, but it can help analyze them.</description>
     </item>
     <item>
       <title>Visualization and Clustering for Single-Cell Analysis</title>
-      <link>https://kawameicha.github.io/2019/11/visualization-and-clustering-for-single-cell-analysis/</link>
+      <link>https://christoph.freier.fr/2019/11/visualization-and-clustering-for-single-cell-analysis/</link>
       <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2019/11/visualization-and-clustering-for-single-cell-analysis/</guid>
+      <guid>https://christoph.freier.fr/2019/11/visualization-and-clustering-for-single-cell-analysis/</guid>
       <description>What if there is no prediction: the challenge of unsupervised learning.</description>
     </item>
     <item>
       <title>My Heart Will Go Down</title>
-      <link>https://kawameicha.github.io/2018/11/my-heart-will-go-down/</link>
+      <link>https://christoph.freier.fr/2018/11/my-heart-will-go-down/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2018/11/my-heart-will-go-down/</guid>
+      <guid>https://christoph.freier.fr/2018/11/my-heart-will-go-down/</guid>
       <description>All has been said, so let&amp;rsquo;s call it an introduction to machine learning.</description>
     </item>
     <item>
       <title>Road Accidents and Safety Data in the United Kingdom</title>
-      <link>https://kawameicha.github.io/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</link>
+      <link>https://christoph.freier.fr/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</link>
       <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</guid>
+      <guid>https://christoph.freier.fr/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</guid>
       <description>10 years and 3.3 million accidented vehicles in the UK.</description>
     </item>
     <item>
       <title>German Federal Election&#39;s Regional Differences</title>
-      <link>https://kawameicha.github.io/2017/10/german-federal-elections-regional-differences/</link>
+      <link>https://christoph.freier.fr/2017/10/german-federal-elections-regional-differences/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2017/10/german-federal-elections-regional-differences/</guid>
+      <guid>https://christoph.freier.fr/2017/10/german-federal-elections-regional-differences/</guid>
       <description>Resurgence of far-right Germany or the &amp;lsquo;return of the Nazis&amp;rsquo;.</description>
     </item>
   </channel>

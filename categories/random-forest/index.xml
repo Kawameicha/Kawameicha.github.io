@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Random Forest on In Code We Trust</title>
-    <link>https://kawameicha.github.io/categories/random-forest/</link>
+    <link>https://christoph.freier.fr/categories/random-forest/</link>
     <description>Recent content in Random Forest on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 14 May 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kawameicha.github.io/categories/random-forest/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://christoph.freier.fr/categories/random-forest/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tidymodels: Machine Learning the Tidy Way</title>
-      <link>https://kawameicha.github.io/2020/05/tidymodels-machine-learning-the-tidy-way/</link>
+      <link>https://christoph.freier.fr/2020/05/tidymodels-machine-learning-the-tidy-way/</link>
       <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2020/05/tidymodels-machine-learning-the-tidy-way/</guid>
+      <guid>https://christoph.freier.fr/2020/05/tidymodels-machine-learning-the-tidy-way/</guid>
       <description>Embracing the new modeling pipeline in town: tidymodels.</description>
     </item>
     <item>
       <title>My Heart Will Go Down</title>
-      <link>https://kawameicha.github.io/2018/11/my-heart-will-go-down/</link>
+      <link>https://christoph.freier.fr/2018/11/my-heart-will-go-down/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2018/11/my-heart-will-go-down/</guid>
+      <guid>https://christoph.freier.fr/2018/11/my-heart-will-go-down/</guid>
       <description>All has been said, so let&amp;rsquo;s call it an introduction to machine learning.</description>
     </item>
   </channel>

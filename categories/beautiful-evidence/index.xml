@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Beautiful Evidence on In Code We Trust</title>
-    <link>https://kawameicha.github.io/categories/beautiful-evidence/</link>
+    <link>https://christoph.freier.fr/categories/beautiful-evidence/</link>
     <description>Recent content in Beautiful Evidence on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kawameicha.github.io/categories/beautiful-evidence/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://christoph.freier.fr/categories/beautiful-evidence/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>It has been a Dog&#39;s Life</title>
-      <link>https://kawameicha.github.io/2021/01/it-has-been-a-dogs-life/</link>
+      <link>https://christoph.freier.fr/2021/01/it-has-been-a-dogs-life/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2021/01/it-has-been-a-dogs-life/</guid>
+      <guid>https://christoph.freier.fr/2021/01/it-has-been-a-dogs-life/</guid>
       <description>A walk through my year, quite figuratively.</description>
     </item>
     <item>
       <title>Road Accidents and Safety Data in the United Kingdom</title>
-      <link>https://kawameicha.github.io/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</link>
+      <link>https://christoph.freier.fr/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</link>
       <pubDate>Tue, 09 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</guid>
+      <guid>https://christoph.freier.fr/2018/01/road-accidents-and-safety-data-in-the-united-kingdom/</guid>
       <description>10 years and 3.3 million accidented vehicles in the UK.</description>
     </item>
     <item>
       <title>Public Health Data from the WHO</title>
-      <link>https://kawameicha.github.io/2016/04/public-health-data-from-the-who/</link>
+      <link>https://christoph.freier.fr/2016/04/public-health-data-from-the-who/</link>
       <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2016/04/public-health-data-from-the-who/</guid>
+      <guid>https://christoph.freier.fr/2016/04/public-health-data-from-the-who/</guid>
       <description>Everything you&amp;rsquo;ll ever need to analyze public health data, well almost.</description>
     </item>
   </channel>

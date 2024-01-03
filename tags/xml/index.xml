@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>XML on In Code We Trust</title>
-    <link>https://kawameicha.github.io/tags/xml/</link>
+    <link>https://christoph.freier.fr/tags/xml/</link>
     <description>Recent content in XML on In Code We Trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kawameicha.github.io/tags/xml/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://christoph.freier.fr/tags/xml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>It has been a Dog&#39;s Life</title>
-      <link>https://kawameicha.github.io/2021/01/it-has-been-a-dogs-life/</link>
+      <link>https://christoph.freier.fr/2021/01/it-has-been-a-dogs-life/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://kawameicha.github.io/2021/01/it-has-been-a-dogs-life/</guid>
+      <guid>https://christoph.freier.fr/2021/01/it-has-been-a-dogs-life/</guid>
       <description>A walk through my year, quite figuratively.</description>
     </item>
   </channel>
